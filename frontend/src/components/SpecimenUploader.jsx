@@ -133,7 +133,7 @@ export default function SpecimenUploader() {
                 }}
                 className="font-technical text-xs uppercase tracking-wider text-ink-faint hover:text-ink underline underline-offset-4"
               >
-                Swap Specimen
+                Change Photo
               </button>
             </div>
 
@@ -196,39 +196,60 @@ export default function SpecimenUploader() {
         )}
       </div>
 
-      {/* ── PRE-CALIBRATED SPECIMENS (1-CLICK TESTING) ───────────────── */}
-      <div className="w-full mt-6 flex flex-col items-center">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="font-technical text-xs font-bold uppercase tracking-wider text-ink">
-            No tea photo on hand?
-          </span>
+      {/* ── FAKE SCIENTIFIC HISTORY DOSSIER CARD ───────────────── */}
+      <div className="w-full mt-8 p-5 sm:p-6 rounded-2xl bg-paper-dark border-3 border-ink shadow-sketch relative overflow-hidden">
+        <div className="flex flex-wrap items-center justify-between border-b-2 border-ink/20 pb-3 mb-4 gap-2">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-terracotta border border-ink" />
+            <span className="font-technical font-bold text-xs uppercase tracking-widest text-ink">
+              HISTORICAL CHAI BUBBLE ANNOTATIONS (1894–PRESENT)
+            </span>
+          </div>
           <span className="font-handwritten text-lg text-terracotta font-bold">
-            Select a calibrated laboratory specimen:
+            Archival Laboratory Records
           </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
-          {SAMPLE_SPECIMENS.map((specimen) => (
-            <button
-              key={specimen.id}
-              onClick={() => setSampleSpecimen(specimen)}
-              className="flex items-start gap-3 p-3 rounded-lg border-2 border-ink bg-paper text-left transition-all duration-150 hover:bg-paper-dark hover:-translate-y-0.5 shadow-sketch-sm hover:shadow-sketch"
-            >
-              <img
-                src={specimen.sampleUrl}
-                alt={specimen.name}
-                className="w-14 h-14 rounded object-cover border border-ink flex-shrink-0"
-              />
-              <div className="flex flex-col overflow-hidden">
-                <span className="font-technical font-bold text-xs text-ink leading-tight truncate">
-                  {specimen.name}
-                </span>
-                <span className="font-technical text-[10px] text-ink-faint line-clamp-2 mt-0.5">
-                  {specimen.tag}
-                </span>
-              </div>
-            </button>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-technical">
+          <div className="bg-paper p-3.5 rounded-xl border-2 border-ink shadow-sketch-sm space-y-1">
+            <div className="flex items-center justify-between text-terracotta font-extrabold text-[11px] uppercase tracking-wider">
+              <span>1894 • The Great Froth Accord</span>
+              <span className="text-ink-faint">Darjeeling Station</span>
+            </div>
+            <p className="text-ink text-[11px] leading-relaxed">
+              Lord Curzon commissioned brass magnifying monocles to measure roadside tea bubble tension, concluding that foam height directly correlates with station train punctuality.
+            </p>
+          </div>
+
+          <div className="bg-paper p-3.5 rounded-xl border-2 border-ink shadow-sketch-sm space-y-1">
+            <div className="flex items-center justify-between text-terracotta font-extrabold text-[11px] uppercase tracking-wider">
+              <span>1942 • Roadside Hydrodynamics</span>
+              <span className="text-ink-faint">GT Road Dhaba #4</span>
+            </div>
+            <p className="text-ink text-[11px] leading-relaxed">
+              Highway tea masters proved that pouring cutting chai from a height of 3.2 feet doubles froth aeration efficiency and preserves cardamom aromatics for 42 minutes.
+            </p>
+          </div>
+
+          <div className="bg-paper p-3.5 rounded-xl border-2 border-ink shadow-sketch-sm space-y-1">
+            <div className="flex items-center justify-between text-terracotta font-extrabold text-[11px] uppercase tracking-wider">
+              <span>1978 • The Parle-G Constant</span>
+              <span className="text-ink-faint">AIIMS Canteen</span>
+            </div>
+            <p className="text-ink text-[11px] leading-relaxed">
+              Dr. V. K. Sharma published the landmark paper proving that dunking a Parle-G biscuit for &gt;4.2 seconds causes catastrophic structural tea collapse.
+            </p>
+          </div>
+
+          <div className="bg-paper p-3.5 rounded-xl border-2 border-ink shadow-sketch-sm space-y-1">
+            <div className="flex items-center justify-between text-terracotta font-extrabold text-[11px] uppercase tracking-wider">
+              <span>2026 • Multi-Scale Computer Vision</span>
+              <span className="text-[#DE764E]">Useless Projects Lab</span>
+            </div>
+            <p className="text-ink text-[11px] leading-relaxed">
+              Classical OpenCV candidate pipelines replace brass monocles to perform multi-scale bubble counts with 99.8% ridiculously serious precision.
+            </p>
+          </div>
         </div>
       </div>
     </section>

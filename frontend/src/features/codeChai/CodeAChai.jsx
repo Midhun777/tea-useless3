@@ -121,9 +121,6 @@ export default function CodeAChai() {
     <section className="relative min-h-[90vh] px-4 py-6 max-w-5xl mx-auto flex flex-col items-center justify-start">
       {/* Page Masthead Header */}
       <div className="text-center max-w-2xl mb-6">
-        <span className="font-technical text-xs font-bold uppercase tracking-widest text-terracotta bg-saffron/10 px-3 py-1 rounded border border-terracotta/30 inline-block mb-2">
-          DEVELOPER TERMINAL × CHAI LABORATORY
-        </span>
         <h1 className="font-display text-4xl sm:text-5xl font-bold text-ink tracking-tight">
           Code a Chai
         </h1>

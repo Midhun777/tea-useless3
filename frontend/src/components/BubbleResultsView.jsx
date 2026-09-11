@@ -163,8 +163,6 @@ export default function BubbleResultsView() {
           >
             {debugMode ? "🔬 Debug View: ON" : "🔬 Enable Debug Mode"}
           </button>
-          <StampUnnecessary />
-          <StampScientific />
         </div>
       </div>
 
@@ -188,89 +186,150 @@ export default function BubbleResultsView() {
                 className="w-full h-full object-cover select-none"
               />
 
-              {/* SVG Circle Overlay */}
+              {/* SVG Scientific Inspection Grid Overlay */}
               <svg
                 viewBox="0 0 800 600"
                 preserveAspectRatio="none"
-                className="absolute inset-0 w-full h-full pointer-events-none"
+                className="absolute inset-0 w-full h-full pointer-events-auto"
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const x = Math.round(((e.clientX - rect.left) / rect.width) * 800);
+                  const y = Math.round(((e.clientY - rect.top) / rect.height) * 600);
+                  setActiveBubble((prev) => (prev && prev.isHoverReticle ? { ...prev, x, y } : { x, y, isHoverReticle: true }));
+                }}
+                onMouseLeave={() => setActiveBubble(null)}
               >
-                {displayItems.map((bubble, idx) => {
-                  const isHovered = activeBubble?.specimenId === bubble.specimenId;
-                  const isRejected = activeDebugLayer === "rejected";
-                  
-                  let strokeColor =
-                    bubble.size === "small"
-                      ? "#E89635"
-                      : bubble.size === "medium"
-                      ? "#C85A32"
-                      : "#8A4B29";
+                {/* 1. Scientific Coordinate Grid Lines */}
+                <g stroke="#1E1610" strokeWidth="0.8" strokeOpacity="0.18">
+                  {/* Vertical gridlines */}
+                  {[100, 200, 300, 400, 500, 600, 700].map((vx) => (
+                    <line key={`v-${vx}`} x1={vx} y1="0" x2={vx} y2="600" strokeDasharray="4 4" />
+                  ))}
+                  {/* Horizontal gridlines */}
+                  {[100, 200, 300, 400, 500].map((hy) => (
+                    <line key={`h-${hy}`} x1="0" y1={hy} x2="800" y2={hy} strokeDasharray="4 4" />
+                  ))}
+                </g>
 
-                  if (isRejected) strokeColor = "#6B7280";
+                {/* 2. Grid Labels & Axis Ticks */}
+                {["A", "B", "C", "D", "E", "F", "G"].map((label, idx) => (
+                  <text
+                    key={label}
+                    x={(idx + 1) * 100 - 5}
+                    y="16"
+                    fontFamily="Space Grotesk, sans-serif"
+                    fontSize="9"
+                    fontWeight="bold"
+                    fill="#1E1610"
+                    fillOpacity="0.4"
+                  >
+                    {label}
+                  </text>
+                ))}
+                {[1, 2, 3, 4, 5].map((num) => (
+                  <text
+                    key={num}
+                    x="8"
+                    y={num * 100 + 3}
+                    fontFamily="Space Grotesk, sans-serif"
+                    fontSize="9"
+                    fontWeight="bold"
+                    fill="#1E1610"
+                    fillOpacity="0.4"
+                  >
+                    {num}
+                  </text>
+                ))}
 
-                  return (
-                    <g
-                      key={bubble.specimenId || idx}
-                      className="bubble-marker pointer-events-auto cursor-pointer"
-                      onMouseEnter={() => setActiveBubble(bubble)}
-                      onMouseLeave={() => setActiveBubble(null)}
-                      style={{ transformOrigin: `${bubble.x}px ${bubble.y}px` }}
-                    >
-                      <circle
-                        cx={bubble.x}
-                        cy={bubble.y}
-                        r={bubble.radius + (isHovered ? 4 : 0)}
-                        fill={isHovered ? strokeColor : "none"}
-                        fillOpacity={isHovered ? 0.35 : 0}
-                        stroke={strokeColor}
-                        strokeWidth={isHovered ? 3.5 : bubble.size === "large" ? 2.8 : 2}
-                        strokeDasharray={isRejected ? "3 3" : bubble.size === "small" ? "none" : "6 2"}
-                        className="transition-all duration-150"
-                      />
+                {/* 3. Quadrant Crosshairs */}
+                {[
+                  [200, 200], [400, 200], [600, 200],
+                  [200, 400], [400, 400], [600, 400],
+                ].map(([cx, cy], i) => (
+                  <g key={`ch-${i}`} stroke="#C85A32" strokeWidth="1" strokeOpacity="0.4">
+                    <line x1={cx - 10} y1={cy} x2={cx + 10} y2={cy} />
+                    <line x1={cx} y1={cy - 10} x2={cx} y2={cy + 10} />
+                    <circle cx={cx} cy={cy} r="3" fill="none" />
+                  </g>
+                ))}
 
-                      <circle
-                        cx={bubble.x}
-                        cy={bubble.y}
-                        r={1.8}
-                        fill="#FAF6EE"
-                        stroke="#1E1610"
-                        strokeWidth="1"
-                      />
+                {/* 4. Subtle Pinpoints for Detected Bubbles (No Messy Overlapping Circles) */}
+                {displayItems
+                  .filter((b) => b.x >= 15 && b.x <= 785 && b.y >= 15 && b.y <= 585)
+                  .map((bubble, idx) => {
+                    const isFiltered = filterSize !== "all";
+                    const pinColor =
+                      bubble.size === "small"
+                        ? "#E89635"
+                        : bubble.size === "medium"
+                        ? "#C85A32"
+                        : "#8A4B29";
 
-                      {(isHovered || bubble.size === "large") && (
-                        <g>
-                          <line
-                            x1={bubble.x}
-                            y1={bubble.y - bubble.radius}
-                            x2={bubble.x + 16}
-                            y2={bubble.y - bubble.radius - 14}
-                            stroke="#1E1610"
+                    return (
+                      <g key={bubble.specimenId || idx}>
+                        {/* Micro Center Target Point */}
+                        <circle
+                          cx={bubble.x}
+                          cy={bubble.y}
+                          r={isFiltered ? 4 : 2}
+                          fill={pinColor}
+                          fillOpacity={isFiltered ? 0.8 : 0.6}
+                          stroke="#1E1610"
+                          strokeWidth="0.8"
+                        />
+                        {isFiltered && (
+                          <circle
+                            cx={bubble.x}
+                            cy={bubble.y}
+                            r={bubble.radius * 0.75}
+                            fill="none"
+                            stroke={pinColor}
                             strokeWidth="1.2"
+                            strokeOpacity="0.6"
+                            strokeDasharray="3 2"
                           />
-                          <rect
-                            x={bubble.x + 16}
-                            y={bubble.y - bubble.radius - 24}
-                            width="54"
-                            height="16"
-                            rx="3"
-                            fill="#FAF6EE"
-                            stroke="#1E1610"
-                            strokeWidth="1"
-                          />
-                          <text
-                            x={bubble.x + 20}
-                            y={bubble.y - bubble.radius - 13}
-                            fontFamily="Space Grotesk"
-                            fontSize="8"
-                            fontWeight="bold"
-                            fill="#1E1610"
-                          >
-                            {bubble.specimenId || `B-${idx + 1}`}
-                          </text>
-                        </g>
-                      )}
-                    </g>
-                  );
-                })}
+                        )}
+                      </g>
+                    );
+                  })}
+
+                {/* 5. Dynamic Hover Crosshair Reticle */}
+                {activeBubble?.isHoverReticle && (
+                  <g>
+                    <line
+                      x1={activeBubble.x}
+                      y1="0"
+                      x2={activeBubble.x}
+                      y2="600"
+                      stroke="#DE764E"
+                      strokeWidth="1"
+                      strokeDasharray="2 2"
+                    />
+                    <line
+                      x1="0"
+                      y1={activeBubble.y}
+                      x2="800"
+                      y2={activeBubble.y}
+                      stroke="#DE764E"
+                      strokeWidth="1"
+                      strokeDasharray="2 2"
+                    />
+                    <circle
+                      cx={activeBubble.x}
+                      cy={activeBubble.y}
+                      r="16"
+                      fill="none"
+                      stroke="#DE764E"
+                      strokeWidth="1.5"
+                    />
+                    <circle
+                      cx={activeBubble.x}
+                      cy={activeBubble.y}
+                      r="2"
+                      fill="#DE764E"
+                    />
+                  </g>
+                )}
               </svg>
 
               {/* Lab tape banner */}

@@ -8,6 +8,7 @@ import AnalysisScanner from "./components/AnalysisScanner";
 import BubbleResultsView from "./components/BubbleResultsView";
 import CodeAChai from "./features/codeChai/CodeAChai";
 import PopTheBubble from "./features/popBubble/PopTheBubble";
+import MascotPopup from "./components/MascotPopup";
 import "./index.css";
 
 export default function App() {
@@ -36,6 +37,9 @@ export default function App() {
           Dept. of Unnecessary Fluid Dynamics
         </span>
       </div>
+
+      {/* Floating Animated Mascot Popup (10s Repeat Cycle) */}
+      <MascotPopup />
 
       {/* Active Route Renderer */}
       <main ref={mainStageRef} className="w-full">

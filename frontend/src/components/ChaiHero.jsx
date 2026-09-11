@@ -25,45 +25,6 @@ export default function ChaiHero() {
   const ctaContainerRef = useRef(null);
   const cupWrapperRef = useRef(null);
   const stampRef = useRef(null);
-  const mascotRef = useRef(null);
-
-  // Mascot Pop Up / Pop Out Repeating Animation Loop
-  useEffect(() => {
-    if (!mascotRef.current) return;
-
-    // Initial state: hidden
-    gsap.set(mascotRef.current, {
-      scale: 0,
-      opacity: 0,
-      y: 30,
-      transformOrigin: "bottom right",
-    });
-
-    const mascotTl = gsap.timeline({ repeat: -1, repeatDelay: 10 });
-
-    mascotTl
-      .to(mascotRef.current, {
-        scale: 1,
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "back.out(1.7)",
-        delay: 1.2, // Initial entrance after 1.2s
-      })
-      .to(mascotRef.current, {
-        scale: 1,
-        duration: 3.8, // Stay visible for 3.8 seconds
-      })
-      .to(mascotRef.current, {
-        scale: 0,
-        opacity: 0,
-        y: 30,
-        duration: 0.5,
-        ease: "back.in(1.4)",
-      });
-
-    return () => mascotTl.kill();
-  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -139,89 +100,53 @@ export default function ChaiHero() {
   return (
     <section
       ref={heroContainerRef}
-      className="relative w-full max-w-5xl mx-auto px-4 pt-2 pb-4 flex flex-col items-center justify-between min-h-[96vh] md:min-h-[92vh]"
+      className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 flex flex-col items-center justify-center min-h-[88vh] gap-4 sm:gap-6"
     >
-      {/* ── TOP HEADER / MINIMAL EDITORIAL STRIP ──────────────────────── */}
-      <header className="w-full flex items-center justify-between border-b border-dashed border-ink/20 pb-2 mb-1">
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-terracotta border border-ink" />
-          <span className="font-technical font-bold text-xs sm:text-sm tracking-widest uppercase text-ink">
-            CHAI BUBBLE LAB
-          </span>
-          <span className="hidden sm:inline font-handwritten text-base text-ink-faint ml-2">
-            — Measure the unnecessary.
-          </span>
-        </div>
 
-        <div ref={stampRef}>
-          <StampUnnecessary />
-        </div>
-      </header>
-
-      {/* ── HEADLINE AREA (CLEAN & ISOLATED) ──────────────────────────── */}
-      <div className="text-center z-10 mt-1 mb-1 max-w-3xl">
-        <div className="inline-block mb-0.5">
+      {/* ── HEADLINE AREA (EXPANDED & PROMINENT) ──────────────────────────── */}
+      <div className="text-center z-10 max-w-4xl space-y-2">
+        <div ref={stampRef} className="inline-block mb-1">
           <StampScientific />
         </div>
         <h1
           ref={headlineRef}
-          className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink leading-tight"
+          className="font-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-ink leading-tight"
         >
           How Bubbly Is Your Chai?
         </h1>
         <p
           ref={sublineRef}
-          className="font-handwritten text-lg sm:text-xl md:text-2xl text-chai font-semibold mt-0.5"
+          className="font-handwritten text-2xl sm:text-3xl md:text-4xl text-chai font-semibold"
         >
           A ridiculously serious inquiry into roadside froth dynamics.
         </p>
       </div>
 
-      {/* ── CENTRAL CUP STAGE WITH LAB ANNOTATIONS SURROUNDING IT ─────── */}
-      <div className="relative w-full max-w-xl flex items-center justify-center my-1 flex-1">
+      {/* ── CENTRAL CUP STAGE (EXPANDED DUAL SCALE) ──────────────────── */}
+      <div className="relative w-full max-w-3xl flex items-center justify-center my-2 sm:my-4 flex-1">
         {/* Scientific Annotations Overlay strictly surrounding the cup */}
         <LabAnnotations />
 
         {/* Central Illustrated Chai Cup */}
-        <div ref={cupWrapperRef} className="relative z-10 w-full max-w-[200px] sm:max-w-[240px]">
+        <div ref={cupWrapperRef} className="relative z-10 w-full max-w-[260px] sm:max-w-[320px] md:max-w-[380px]">
           <ChaiCupIllustration />
         </div>
       </div>
 
       {/* Interactive hint */}
-      <p className="font-technical text-[10px] text-ink-faint tracking-wider uppercase my-1">
+      <p className="font-technical text-xs text-ink-faint tracking-wider uppercase">
         [ TIP: Click bubbles inside the foam to pop them ]
       </p>
 
-      {/* ── BOTTOM HERO CTA (ALWAYS VISIBLE ABOVE THE FOLD) ───────────── */}
+      {/* ── BOTTOM HERO CTA (EXPANDED PROMINENT CTA) ─────────────────── */}
       <div ref={ctaContainerRef} className="z-20 mt-1 mb-2 flex flex-col items-center">
         <IllustratedButton
           id="btn-count-bubbles"
           onClick={handleStartInspection}
-          size="md"
+          size="lg"
         >
           COUNT MY BUBBLES
         </IllustratedButton>
-      </div>
-
-      {/* ── MASCOT POSITIONED AT EXTREME RIGHT EDGE ─────────────────────── */}
-      <div
-        ref={mascotRef}
-        className="absolute bottom-2 right-0 sm:right-1 md:right-2 z-30 flex flex-col items-end group cursor-pointer pointer-events-auto"
-      >
-        {/* Label Badge */}
-        <div className="bg-paper border-2 border-ink px-3 py-1 rounded-xl shadow-sketch text-xs font-technical font-extrabold text-ink mb-1 transition-all group-hover:scale-105 group-hover:-translate-y-1">
-          <span className="text-terracotta font-black">Useless Projects 3.0</span>
-        </div>
-
-        {/* Large Mascot Image */}
-        <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 relative transition-transform duration-300 group-hover:scale-105 group-hover:rotate-1">
-          <img
-            src="/mascot.png"
-            alt="Useless Projects Mascot"
-            className="w-full h-full object-contain drop-shadow-xl select-none"
-          />
-        </div>
       </div>
     </section>
   );
