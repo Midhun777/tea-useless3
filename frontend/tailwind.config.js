@@ -4,48 +4,55 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        handwritten: ["'Caveat'", "cursive"],
+        display: ["'Kalam'", "cursive"],
+        technical: ["'Space Grotesk'", "sans-serif"],
+        sans: ["'Space Grotesk'", "system-ui", "sans-serif"],
       },
       colors: {
-        brand: {
-          50:  "#fff8ed",
-          100: "#ffefd3",
-          200: "#ffdaa5",
-          300: "#ffbe6d",
-          400: "#ff9632",
-          500: "#ff760a",
-          600: "#f05a00",
-          700: "#c74102",
-          800: "#9e3408",
-          900: "#7f2d0b",
-          950: "#451403",
+        paper: {
+          DEFAULT: "#FAF6EE",
+          dark: "#F3EBDD",
+          warm: "#EFE4D2",
+          border: "#E2D5C0",
         },
-        surface: {
-          DEFAULT: "#0f0a06",
-          50:  "#1e140c",
-          100: "#271a10",
-          200: "#3a2518",
-          300: "#4d3021",
-          400: "#6b4530",
+        chai: {
+          DEFAULT: "#5C2C16",
+          dark: "#3D1B0B",
+          light: "#8A4B29",
+          foam: "#F7EFE1",
+        },
+        ink: {
+          DEFAULT: "#1E1610",
+          light: "#3F3227",
+          faint: "#7A685A",
+        },
+        terracotta: {
+          DEFAULT: "#C85A32",
+          dark: "#9E3D1A",
+          light: "#DE764E",
+        },
+        saffron: {
+          DEFAULT: "#E89635",
+          light: "#F4B362",
+          dark: "#BA6B16",
+        },
+        foam: {
+          DEFAULT: "#FBF5EB",
+          cream: "#F5EAD4",
+          border: "#EBD9BE",
         },
       },
-      backgroundImage: {
-        "foam-gradient": "radial-gradient(ellipse at top, #3a2518 0%, #0f0a06 70%)",
+      boxShadow: {
+        'sketch': '2px 3px 0px #1E1610',
+        'sketch-lg': '4px 6px 0px #1E1610',
+        'sketch-hover': '5px 8px 0px #1E1610',
+        'sketch-sm': '1px 2px 0px #1E1610',
       },
-      animation: {
-        "pulse-slow": "pulse 3s cubic-bezier(0.4,0,0.6,1) infinite",
-        "fade-in": "fadeIn 0.4s ease-out forwards",
-        "slide-up": "slideUp 0.35s ease-out forwards",
-      },
-      keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        slideUp: {
-          "0%": { opacity: "0", transform: "translateY(16px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
+      borderRadius: {
+        'organic': '255px 15px 225px 15px/15px 225px 15px 255px',
+        'organic-lg': '255px 25px 225px 25px/25px 225px 25px 255px',
+        'organic-sm': '120px 10px 110px 10px/10px 110px 10px 120px',
       },
     },
   },
