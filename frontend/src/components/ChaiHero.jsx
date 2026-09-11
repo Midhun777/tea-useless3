@@ -164,6 +164,23 @@ export default function ChaiHero() {
           COUNT MY BUBBLES
         </IllustratedButton>
       </div>
+
+      {/* ── MASCOT POSITIONED AT EXTREME RIGHT EDGE ─────────────────────── */}
+      <div className="absolute bottom-2 right-0 sm:right-1 md:right-2 z-30 flex flex-col items-end group cursor-pointer pointer-events-auto">
+        {/* Label Badge */}
+        <div className="bg-paper border-2 border-ink px-3 py-1 rounded-xl shadow-sketch text-xs font-technical font-extrabold text-ink mb-1 transition-all group-hover:scale-105 group-hover:-translate-y-1">
+          <span className="text-terracotta font-black">Useless Projects 3.0</span>
+        </div>
+
+        {/* Large Mascot Image */}
+        <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 relative transition-transform duration-300 group-hover:scale-105 group-hover:rotate-1">
+          <img
+            src="/mascot.png"
+            alt="Useless Projects Mascot"
+            className="w-full h-full object-contain drop-shadow-xl select-none"
+          />
+        </div>
+      </div>
     </section>
   );
 }

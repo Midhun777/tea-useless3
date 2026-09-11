@@ -152,10 +152,16 @@ export const INITIAL_RECIPE = {
   stirred: false,
 };
 
-const initialRoute = typeof window !== "undefined" && window.location.pathname === "/code-a-chai" ? "code-a-chai" : "detector";
+const getInitialRoute = () => {
+  if (typeof window === "undefined") return "detector";
+  const path = window.location.pathname;
+  if (path === "/code-a-chai") return "code-a-chai";
+  if (path === "/pop-the-bubble") return "pop-the-bubble";
+  return "detector";
+};
 
 const useBubbleStore = create((set, get) => ({
-  route: initialRoute, // 'detector' | 'code-a-chai'
+  route: getInitialRoute(), // 'detector' | 'code-a-chai' | 'pop-the-bubble'
   stage: "hero",
   image: null,
   preview: null,
@@ -169,14 +175,19 @@ const useBubbleStore = create((set, get) => ({
   activeDebugLayer: "final",
 
   // Code a Chai state
-  codeChaiPhase: "TERMINAL", // 'TERMINAL' | 'COMPILING' | 'BREWING' | 'RESULT'
+  codeChaiPhase: "TERMINAL",
   chaiRecipe: { ...INITIAL_RECIPE },
   commandHistory: [],
   historyIndex: -1,
 
+  // Pop the Bubble game bridge state
+  customGameProfile: null,
+
   setRoute: (route) => {
     if (typeof window !== "undefined") {
-      const targetPath = route === "code-a-chai" ? "/code-a-chai" : "/";
+      let targetPath = "/";
+      if (route === "code-a-chai") targetPath = "/code-a-chai";
+      if (route === "pop-the-bubble") targetPath = "/pop-the-bubble";
       if (window.location.pathname !== targetPath) {
         window.history.pushState(null, "", targetPath);
       }
@@ -189,6 +200,18 @@ const useBubbleStore = create((set, get) => ({
   setDebugMode: (val) => set({ debugMode: val }),
   setActiveDebugLayer: (layer) => set({ activeDebugLayer: layer }),
   setCodeChaiPhase: (phase) => set({ codeChaiPhase: phase }),
+
+  playWithRealChai: (results) => {
+    set({
+      customGameProfile: results ? {
+        total: results.count?.total || 40,
+        small: results.count?.small || 25,
+        medium: results.count?.medium || 10,
+        large: results.count?.large || 5,
+      } : null,
+    });
+    get().setRoute("pop-the-bubble");
+  },
 
   updateRecipe: (updater) => {
     set((state) => ({
@@ -349,10 +372,13 @@ const useBubbleStore = create((set, get) => ({
   }
 }));
 
-// Synchronize browser history navigation (back/forward buttons)
+// Synchronize browser history navigation
 if (typeof window !== "undefined") {
   window.addEventListener("popstate", () => {
-    const r = window.location.pathname === "/code-a-chai" ? "code-a-chai" : "detector";
+    const path = window.location.pathname;
+    let r = "detector";
+    if (path === "/code-a-chai") r = "code-a-chai";
+    if (path === "/pop-the-bubble") r = "pop-the-bubble";
     useBubbleStore.setState({ route: r });
   });
 }

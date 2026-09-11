@@ -7,6 +7,7 @@ import SpecimenUploader from "./components/SpecimenUploader";
 import AnalysisScanner from "./components/AnalysisScanner";
 import BubbleResultsView from "./components/BubbleResultsView";
 import CodeAChai from "./features/codeChai/CodeAChai";
+import PopTheBubble from "./features/popBubble/PopTheBubble";
 import "./index.css";
 
 export default function App() {
@@ -40,6 +41,8 @@ export default function App() {
       <main ref={mainStageRef} className="w-full">
         {route === "code-a-chai" ? (
           <CodeAChai />
+        ) : route === "pop-the-bubble" ? (
+          <PopTheBubble />
         ) : (
           <>
             {stage === "hero" && <ChaiHero />}

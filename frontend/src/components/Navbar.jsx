@@ -6,6 +6,7 @@ import useBubbleStore from "../store/useBubbleStore";
  * Global top navigation bar allowing seamless switching between:
  * - Analyze Chai (OpenCV foam detector)
  * - Code a Chai (ChaiScript terminal compiler)
+ * - Pop the Bubble (Interactive arcade mini-game)
  */
 export default function Navbar() {
   const { route, setRoute } = useBubbleStore();
@@ -31,7 +32,7 @@ export default function Navbar() {
         <nav className="flex items-center gap-2 font-technical text-xs font-bold uppercase tracking-wider">
           <button
             onClick={() => setRoute("detector")}
-            className={`px-3 sm:px-4 py-1.5 rounded-lg border-2 transition-all ${
+            className={`px-2.5 sm:px-4 py-1.5 rounded-lg border-2 transition-all ${
               route === "detector"
                 ? "bg-ink text-paper border-ink shadow-sketch-sm"
                 : "bg-paper text-ink border-ink/30 hover:border-ink hover:bg-paper-dark"
@@ -42,13 +43,24 @@ export default function Navbar() {
 
           <button
             onClick={() => setRoute("code-a-chai")}
-            className={`px-3 sm:px-4 py-1.5 rounded-lg border-2 flex items-center gap-1.5 transition-all ${
+            className={`px-2.5 sm:px-4 py-1.5 rounded-lg border-2 flex items-center gap-1.5 transition-all ${
               route === "code-a-chai"
                 ? "bg-chai text-paper border-ink shadow-sketch-sm"
                 : "bg-paper text-ink border-ink/30 hover:border-ink hover:bg-paper-dark"
             }`}
           >
             <span>Code a Chai</span>
+          </button>
+
+          <button
+            onClick={() => setRoute("pop-the-bubble")}
+            className={`px-2.5 sm:px-4 py-1.5 rounded-lg border-2 flex items-center gap-1.5 transition-all ${
+              route === "pop-the-bubble"
+                ? "bg-terracotta text-paper border-ink shadow-sketch-sm"
+                : "bg-paper text-ink border-ink/30 hover:border-ink hover:bg-paper-dark"
+            }`}
+          >
+            <span>Pop the Bubble</span>
             <span className="w-2 h-2 rounded-full bg-saffron animate-pulse" />
           </button>
         </nav>

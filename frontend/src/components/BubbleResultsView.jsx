@@ -24,6 +24,7 @@ export default function BubbleResultsView() {
     setDebugMode,
     activeDebugLayer,
     setActiveDebugLayer,
+    playWithRealChai,
   } = useBubbleStore();
 
   const containerRef = useRef(null);
@@ -533,22 +534,30 @@ export default function BubbleResultsView() {
 
           {/* ── ACTION BUTTONS ────────────────────────────────────────── */}
           <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+            <button
+              type="button"
+              onClick={() => playWithRealChai(results)}
+              className="w-full sm:flex-1 px-5 py-3 font-technical text-xs uppercase font-extrabold tracking-wider rounded-xl border-2 border-ink bg-terracotta text-paper hover:bg-terracotta-dark hover:scale-[1.02] transition-all shadow-sketch flex items-center justify-center gap-2"
+            >
+              <span>PLAY WITH THIS CHAI 🎮</span>
+            </button>
+
             <IllustratedButton
               id="btn-inspect-again"
               onClick={() => setStage("tray")}
               showArrow={false}
               size="md"
-              className="w-full sm:w-auto flex-1"
+              className="w-full sm:w-auto"
             >
-              INSPECT ANOTHER SPECIMEN
+              INSPECT ANOTHER
             </IllustratedButton>
 
             <button
               type="button"
               onClick={resetAll}
-              className="w-full sm:w-auto px-5 py-3 font-technical text-xs uppercase font-bold tracking-wider rounded-xl border-2 border-ink bg-paper hover:bg-paper-dark transition-all shadow-sketch-sm hover:shadow-sketch"
+              className="w-full sm:w-auto px-4 py-3 font-technical text-xs uppercase font-bold tracking-wider rounded-xl border-2 border-ink bg-paper hover:bg-paper-dark transition-all shadow-sketch-sm"
             >
-              Return Home
+              Home
             </button>
           </div>
         </div>
