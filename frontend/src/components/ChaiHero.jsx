@@ -268,7 +268,7 @@ export default function ChaiHero() {
             The Three Pillars of ചായ Physics
           </h2>
           <p className="font-handwritten text-xl sm:text-2xl text-terracotta font-semibold">
-            High-precision classical OpenCV detection without neural network fluff.
+            Simple, honest OpenCV bubble detection — no complicated AI nonsense.
           </p>
         </div>
 
@@ -299,17 +299,17 @@ export default function ChaiHero() {
                   </svg>
                 </div>
                 <div className="font-technical text-[10px] font-black uppercase tracking-wider text-terracotta">
-                  PILLAR 01 • SURFACE TENSION
+                  PILLAR 01 • FROTH & BUBBLES
                 </div>
                 <h3 className="font-display font-bold text-xl text-ink">
-                  Micro-Froth Physics
+                  Bubble Spotter
                 </h3>
                 <p className="font-technical text-xs text-ink/75 leading-relaxed">
-                  Calculates surface tension, bubble radius distributions, and packing efficiency within the upper 15mm foam boundary.
+                  Scans the top layer of your tea to count every single micro-bubble floating on the froth before it vanishes.
                 </p>
               </div>
               <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-terracotta pt-2 border-t border-dashed border-ink/20 flex justify-between">
-                <span>ACCURACY: &plusmn; 0.01 BUBBLES</span>
+                <span>ACCURACY: 99.9% FOAM</span>
                 <span>FIG A</span>
               </div>
             </div>
@@ -328,17 +328,17 @@ export default function ChaiHero() {
                   </svg>
                 </div>
                 <div className="font-technical text-[10px] font-black uppercase tracking-wider text-chai">
-                  PILLAR 02 • VISCOSITY MATRIX
+                  PILLAR 02 • TEA THICKNESS
                 </div>
                 <h3 className="font-display font-bold text-xl text-ink">
-                  Kadak Viscosity Matrix
+                  Kadak Strength Check
                 </h3>
                 <p className="font-technical text-xs text-ink/75 leading-relaxed">
-                  Determines liquid opacity and boiling duration by assessing milk-fat light scattering and tea leaf extraction depth.
+                  Checks if your tea has that proper golden kadak shade or if it’s just hot sweetened milk pretending to be chai.
                 </p>
               </div>
               <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-chai pt-2 border-t border-dashed border-ink/20 flex justify-between">
-                <span>STEEPMETER: 100% ROAD-TESTED</span>
+                <span>STEEPMETER: 100% KADAK</span>
                 <span>FIG B</span>
               </div>
             </div>
@@ -356,17 +356,17 @@ export default function ChaiHero() {
                   </svg>
                 </div>
                 <div className="font-technical text-[10px] font-black uppercase tracking-wider text-saffron-dark">
-                  PILLAR 03 • THERMAL STEAM
+                  PILLAR 03 • STEAM & HEAT
                 </div>
                 <h3 className="font-display font-bold text-xl text-ink">
-                  Vapor Plume Dynamics
+                  Steam & Sip Alarm
                 </h3>
                 <p className="font-technical text-xs text-ink/75 leading-relaxed">
-                  Tracks thermal steam wisps rising from fresh pours to calculate optimal sipping temperature without tongue scalding.
+                  Monitors hot steam wisps rising from the glass so you know exactly when it’s safe to sip without burning your tongue.
                 </p>
               </div>
               <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-saffron-dark pt-2 border-t border-dashed border-ink/20 flex justify-between">
-                <span>THERMAL INDEX: 68&deg;C OPTIMAL</span>
+                <span>SIP STATUS: SAFE TO DRINK</span>
                 <span>FIG C</span>
               </div>
             </div>
