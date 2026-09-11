@@ -424,68 +424,89 @@ export default function ChaiHero() {
           )}
         </div>
 
-        {/* Global Laboratory Metrics (Unique, Non-Duplicate Metrics) */}
+        {/* Global Laboratory Metrics (Curious Tea Science & Froth Dynamics) */}
         <div className="p-6 sm:p-8 rounded-3xl bg-paper border-3 border-ink shadow-sketch space-y-4 text-center">
-          <h3 className="font-technical text-xs sm:text-sm font-bold uppercase tracking-widest text-terracotta">
-            📊 Global Laboratory Metrics
+          <h3 className="font-technical text-xs sm:text-sm font-bold uppercase tracking-widest text-terracotta flex items-center justify-center gap-2">
+            <span>📊</span> Curious Tea Science & Froth Metrics
           </h3>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 pt-2">
-            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
+            {/* Metric 1 */}
+            <div className="p-3.5 rounded-2xl bg-paper-dark border-2 border-ink shadow-sketch-sm space-y-1 hover:scale-[1.02] transition-transform">
               <div className="font-display font-black text-2xl sm:text-3xl text-terracotta">
-                8,420
+                1.2M+
               </div>
-              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink/70">
-                Tapri Talks Overhead 🗣️
+              <div className="font-technical text-[10px] font-extrabold uppercase tracking-wider text-ink">
+                Bubbles / Meter Pour 🫧
               </div>
+              <p className="font-handwritten text-[11px] text-terracotta font-semibold">
+                Formed during 1m high metered pour
+              </p>
             </div>
 
-            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
+            {/* Metric 2 */}
+            <div className="p-3.5 rounded-2xl bg-paper-dark border-2 border-ink shadow-sketch-sm space-y-1 hover:scale-[1.02] transition-transform">
               <div className="font-display font-black text-2xl sm:text-3xl text-chai">
-                98.2%
+                0.04s
               </div>
-              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink/70">
-                Leaf Extraction Rate 🫖
+              <div className="font-technical text-[10px] font-extrabold uppercase tracking-wider text-ink">
+                Bubble Pop Speed ⚡
               </div>
+              <p className="font-handwritten text-[11px] text-chai font-semibold">
+                Micro-collapse velocity
+              </p>
             </div>
 
-            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
+            {/* Metric 3 */}
+            <div className="p-3.5 rounded-2xl bg-paper-dark border-2 border-ink shadow-sketch-sm space-y-1 hover:scale-[1.02] transition-transform">
               <div className="font-display font-black text-2xl sm:text-3xl text-ink">
-                14.2 km
+                92%
               </div>
-              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink/70">
-                Meniscus Distance 📏
+              <div className="font-technical text-[10px] font-extrabold uppercase tracking-wider text-ink">
+                Heat Trapped by Foam 🔥
               </div>
+              <p className="font-handwritten text-[11px] text-ink/80 font-semibold">
+                Froth insulates tea 3x longer
+              </p>
             </div>
 
-            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
+            {/* Metric 4 */}
+            <div className="p-3.5 rounded-2xl bg-paper-dark border-2 border-ink shadow-sketch-sm space-y-1 hover:scale-[1.02] transition-transform">
               <div className="font-display font-black text-2xl sm:text-3xl text-saffron-dark">
-                0.00s
+                3.8s
               </div>
-              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink/70">
-                Market Value 📉
+              <div className="font-technical text-[10px] font-extrabold uppercase tracking-wider text-ink">
+                Ideal Biscuit Dunk 🍪
               </div>
-              <div className="font-handwritten text-[11px] text-terracotta">
-                Re-verified: Still 0.00s
-              </div>
+              <p className="font-handwritten text-[11px] text-saffron-dark font-semibold">
+                Golden Parle-G soak window
+              </p>
             </div>
 
-            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
+            {/* Metric 5 */}
+            <div className="p-3.5 rounded-2xl bg-paper-dark border-2 border-ink shadow-sketch-sm space-y-1 hover:scale-[1.02] transition-transform">
               <div className="font-display font-black text-2xl sm:text-3xl text-terracotta">
-                5,190
+                68°C
               </div>
-              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink/70">
-                Crumbs Dissolved 🍪
+              <div className="font-technical text-[10px] font-extrabold uppercase tracking-wider text-ink">
+                Perfect Sip Temp ☕
               </div>
+              <p className="font-handwritten text-[11px] text-terracotta font-semibold">
+                Peak flavor, zero tongue burn
+              </p>
             </div>
 
-            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
+            {/* Metric 6 */}
+            <div className="p-3.5 rounded-2xl bg-paper-dark border-2 border-ink shadow-sketch-sm space-y-1 hover:scale-[1.02] transition-transform">
               <div className="font-display font-black text-2xl sm:text-3xl text-chai">
                 100%
               </div>
-              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink/70">
-                Roadside Authenticity ☕
+              <div className="font-technical text-[10px] font-extrabold uppercase tracking-wider text-ink">
+                Kadak Aeration 🫖
               </div>
+              <p className="font-handwritten text-[11px] text-chai font-semibold">
+                Roadside tea-stall certified
+              </p>
             </div>
           </div>
         </div>
