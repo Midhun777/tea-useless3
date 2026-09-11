@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0f0a06;
+    color: #f5e6d0;
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #1e140c;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #6b4530;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-surface-50/80 backdrop-blur-md border border-brand-800/30 rounded-2xl;
+  }
+
+  .btn-primary {
+    @apply bg-brand-500 hover:bg-brand-400 text-white font-semibold px-6 py-3 rounded-xl
+           transition-all duration-200 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed
+           shadow-lg shadow-brand-600/30 hover:shadow-brand-500/40;
+  }
+
+  .btn-ghost {
+    @apply border border-brand-700/50 hover:border-brand-500 text-brand-300 hover:text-brand-100
+           font-medium px-5 py-2.5 rounded-xl transition-all duration-200 active:scale-95
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .count-badge {
+    @apply flex flex-col items-center justify-center p-4 rounded-xl text-center;
+  }
+
+  .drop-zone {
+    @apply border-2 border-dashed border-brand-700/50 hover:border-brand-500
+           rounded-2xl transition-all duration-300 cursor-pointer
+           bg-surface-50/40 hover:bg-surface-100/60;
+  }
+
+  .drop-zone-active {
+    @apply border-brand-400 bg-surface-100/80 scale-[1.01];
+  }
+
+  .sensitivity-track {
+    @apply w-full h-2 rounded-full bg-surface-300 appearance-none cursor-pointer;
+  }
+}
+
+/* Range input thumb styling */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ff760a;
+  border: 2px solid #ff9632;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 118, 10, 0.4);
+  transition: all 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 16px rgba(255, 118, 10, 0.6);
+  transform: scale(1.1);
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(to right, #ff760a var(--progress, 40%), #3a2518 var(--progress, 40%));
+}

@@ -1,0 +1,11 @@
+# Backend dependencies for Python 3.14+
+# Install with: pip install --pre -r requirements.txt --prefer-binary
+
+fastapi>=0.141.1
+uvicorn[standard]>=0.52.4
+opencv-python-headless>=5.0.0.93
+numpy>=2.5.3
+python-multipart>=0.0.32
+pydantic>=2.13.5
+pydantic-settings>=2.15.0
+python-dotenv>=1.2.3
