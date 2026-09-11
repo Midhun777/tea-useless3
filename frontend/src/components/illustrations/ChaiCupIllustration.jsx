@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import useBubbleStore from "../../store/useBubbleStore";
 
 /**
  * Hand-drawn Indian Cutting Chai Glass / Cup
@@ -105,6 +106,7 @@ export default function ChaiCupIllustration({ className = "", isHero = true, onB
       prev.map((b) => (b.id === id ? { ...b, popped: true } : b))
     );
     if (onBubbleClick) onBubbleClick(id);
+    useBubbleStore.getState().registerBubblePop(1);
 
     // Respawn bubble after 2.5 seconds
     setTimeout(() => {

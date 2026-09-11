@@ -183,6 +183,18 @@ const useBubbleStore = create((set, get) => ({
   // Pop the Bubble game bridge state
   customGameProfile: null,
 
+  // Real-time live popping statistics state (counts from start of popping)
+  appLaunchTimestamp: typeof window !== "undefined" ? Date.now() : 0,
+  sessionPoppedCount: 0,
+  firstPopTimestamp: null,
+
+  registerBubblePop: (count = 1) => {
+    set((state) => ({
+      sessionPoppedCount: state.sessionPoppedCount + count,
+      firstPopTimestamp: state.firstPopTimestamp || Date.now(),
+    }));
+  },
+
   setRoute: (route) => {
     if (typeof window !== "undefined") {
       let targetPath = "/";

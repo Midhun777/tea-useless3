@@ -15,8 +15,23 @@ export default function TeaGlassPopper() {
   const steam3Ref = useRef(null);
 
   const [poppedTotal, setPoppedTotal] = useState(0);
+  const [timeElapsedSec, setTimeElapsedSec] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const [ripples, setRipples] = useState([]);
+
+  // Live Time Wasted timer for game screen
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeElapsedSec((s) => s + 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTime = (totalSec) => {
+    const mins = Math.floor(totalSec / 60);
+    const secs = totalSec % 60;
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  };
 
   // Generate initial bubble grid positioned inside tea liquid foam (cx: 140 to 260, cy: 135 to 165 in 400x440 viewBox)
   const generateInitialBubbles = () => {
@@ -194,6 +209,15 @@ export default function TeaGlassPopper() {
             </span>
             <span className="font-display font-black text-2xl text-terracotta">
               {poppedTotal}
+            </span>
+          </div>
+
+          <div className="px-4 py-2 rounded-xl bg-terracotta/10 border-2 border-terracotta/40 text-terracotta shadow-sketch-sm flex items-center gap-2">
+            <span className="font-technical text-xs font-bold uppercase tracking-wider">
+              ⏱️ TIME WASTED
+            </span>
+            <span className="font-mono font-black text-2xl text-ink">
+              {formatTime(timeElapsedSec)}
             </span>
           </div>
 

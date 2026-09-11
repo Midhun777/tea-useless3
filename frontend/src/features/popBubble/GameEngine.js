@@ -5,6 +5,7 @@ import { BUBBLE_TYPES } from "./BubbleTypes";
 import { ParticleSystem } from "./ParticleSystem";
 import { RippleSystem } from "./RippleSystem";
 import { sounds } from "./SoundEffects";
+import useBubbleStore from "../../store/useBubbleStore";
 
 export class GameEngine {
   constructor() {
@@ -98,6 +99,7 @@ export class GameEngine {
 
         if (fullyPopped) {
           this.popsTotal += 1;
+          useBubbleStore.getState().registerBubblePop(1);
 
           if (bubble.type === BUBBLE_TYPES.GOLDEN) {
             sounds.playGoldenPop();

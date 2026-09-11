@@ -17,7 +17,7 @@ import useBubbleStore from "../store/useBubbleStore";
  *    - Useless Statistics Banner & Bottom CTA
  */
 export default function ChaiHero() {
-  const { setStage, setRoute } = useBubbleStore();
+  const { setStage, setRoute, sessionPoppedCount, firstPopTimestamp } = useBubbleStore();
   const heroContainerRef = useRef(null);
   const headlineRef = useRef(null);
   const sublineRef = useRef(null);
@@ -26,6 +26,17 @@ export default function ChaiHero() {
   const cupStageSectionRef = useRef(null);
   
   const [isCupRevealed, setIsCupRevealed] = useState(false);
+  const [elapsedSec, setElapsedSec] = useState(0);
+
+  useEffect(() => {
+    if (!firstPopTimestamp) return;
+    const updateElapsed = () => {
+      setElapsedSec(Math.max(1, Math.floor((Date.now() - firstPopTimestamp) / 1000)));
+    };
+    updateElapsed();
+    const interval = setInterval(updateElapsed, 1000);
+    return () => clearInterval(interval);
+  }, [firstPopTimestamp]);
 
   // Entrance animations for Hero Headline & CTA
   useEffect(() => {
@@ -213,77 +224,37 @@ export default function ChaiHero() {
       </section>
 
       {/* ── CHAISCRIPT TERMINAL PORTAL CARD ────────────────────────────── */}
-      <section className="w-full max-w-5xl mx-auto px-4">
+      <section className="w-full max-w-4xl mx-auto px-4">
         <div
           onClick={() => setRoute("code-a-chai")}
-          className="group relative rounded-2xl bg-[#1E1610] border-3 border-ink shadow-sketch p-6 sm:p-8 cursor-pointer overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-sketch-lg"
+          className="group relative rounded-2xl bg-[#1E1610] border-2 border-ink shadow-sketch p-6 cursor-pointer flex flex-col sm:flex-row items-center justify-between gap-4 transition-all hover:bg-[#261B14]"
         >
-          {/* Terminal Window Header Bar */}
-          <div className="flex items-center justify-between border-b border-[#3D2C20] pb-3 mb-5 select-none">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-[#E05342]" />
-              <span className="w-3 h-3 rounded-full bg-[#E5A83B]" />
-              <span className="w-3 h-3 rounded-full bg-[#4BB543]" />
-              <span className="font-mono text-xs text-paper/50 ml-2">
-                chaiscript-terminal v2.4
-              </span>
+          <div className="flex items-center gap-4 text-left">
+            <div className="w-12 h-12 rounded-xl bg-saffron/20 border border-saffron/40 flex items-center justify-center text-2xl shrink-0">
+              💻
             </div>
-            <div className="font-technical text-[10px] font-bold uppercase tracking-widest text-saffron bg-[#2A1D16] px-2.5 py-0.5 rounded border border-[#3D2C20]">
-              DEVELOPER IDE
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            {/* Left side: Terminal code output preview */}
-            <div className="lg:col-span-7 font-mono text-xs space-y-2 text-paper/90 bg-[#140E0B] p-4 rounded-xl border border-[#3D2C20] select-none">
-              <div className="text-saffron font-bold flex items-center gap-2">
-                <span className="text-terracotta">$</span> chai.init --recipe "Tapri Special"
-              </div>
-              <div className="text-paper/60 pl-3">
-                ✓ Environment initialized. Boiling matrix ready.
-              </div>
-              <div className="text-saffron font-bold flex items-center gap-2 pt-1">
-                <span className="text-terracotta">$</span> chai.set --tea CTC --milk 70% --cardamom 2
-              </div>
-              <div className="text-paper/60 pl-3">
-                ✓ Viscosity parameters configured.
-              </div>
-              <div className="text-saffron font-bold flex items-center gap-2 pt-1">
-                <span className="text-terracotta">$</span> chai.brew --time 180s --stir
-              </div>
-              <div className="text-saffron-dark font-extrabold flex items-center gap-2 pt-1">
-                <span className="w-2 h-2 rounded-full bg-saffron animate-pulse" />
-                <span>Ready to compile & brew live cup...</span>
-              </div>
-            </div>
-
-            {/* Right side: Action Prompt */}
-            <div className="lg:col-span-5 flex flex-col items-start justify-center space-y-3">
-              <div className="space-y-1.5">
-                <span className="font-handwritten text-2xl text-saffron font-bold block">
-                  Prefer coding your tea?
-                </span>
-                <h3 className="font-display font-bold text-xl sm:text-2xl text-paper">
-                  ChaiScript Terminal Compiler
-                </h3>
-                <p className="font-technical text-xs text-paper/70 leading-relaxed">
-                  Program your recipe line-by-line in code to compile, brew, and render an interactive animated cup.
-                </p>
-              </div>
-
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setRoute("code-a-chai");
-                }}
-                className="w-full px-5 py-3 rounded-xl bg-chai text-paper font-technical font-extrabold text-xs uppercase tracking-wider border-2 border-paper/30 group-hover:border-paper group-hover:bg-saffron group-hover:text-ink transition-all shadow-sketch-sm flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>LAUNCH CHAISCRIPT TERMINAL</span>
-                <span className="text-base">💻</span>
-              </button>
+            <div>
+              <h3 className="font-display font-bold text-lg sm:text-xl text-paper flex items-center gap-2">
+                <span>ChaiScript Terminal Compiler</span>
+                <span className="text-[10px] font-technical uppercase font-bold text-saffron bg-saffron/20 px-2 py-0.5 rounded">IDE</span>
+              </h3>
+              <p className="font-technical text-xs text-paper/70 mt-0.5">
+                Code & compile your custom tea recipe step-by-step in terminal.
+              </p>
             </div>
           </div>
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setRoute("code-a-chai");
+            }}
+            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-saffron text-ink font-technical font-bold text-xs uppercase tracking-wider hover:bg-paper transition-all shrink-0 flex items-center justify-center gap-2 cursor-pointer shadow-sketch-sm"
+          >
+            <span>Launch Terminal</span>
+            <span className="text-sm">→</span>
+          </button>
         </div>
       </section>
 
@@ -432,43 +403,125 @@ export default function ChaiHero() {
         </div>
       </section>
 
-      {/* ── 5. USELESS STATISTICS BANNER ──────────────────────────────── */}
-      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="p-8 rounded-3xl bg-paper border-3 border-ink shadow-sketch lab-grid-dense text-center">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="space-y-1">
-              <div className="font-display font-black text-4xl sm:text-5xl text-terracotta">
+      {/* ── 5. USELESS STATISTICS & LIVE SESSION TRACKER ──────────────── */}
+      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
+        {/* Real Live Session Popping Counter */}
+        <div className="p-6 rounded-3xl bg-paper-dark border-3 border-ink shadow-sketch space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-ink/15 pb-2">
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-saffron animate-pulse" />
+              <h3 className="font-technical text-xs sm:text-sm font-bold uppercase tracking-widest text-ink">
+                🔴 Live Session Waste Tracker (Real Data)
+              </h3>
+            </div>
+            <span className="font-technical text-[11px] font-bold text-terracotta bg-terracotta/10 px-2.5 py-0.5 rounded border border-terracotta/30">
+              {sessionPoppedCount > 0 ? "Tracking Active Pops Live" : "Waiting for First Bubble Pop..."}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center pt-1">
+            <div className="p-3.5 rounded-2xl bg-paper border-2 border-ink shadow-sketch-sm space-y-1">
+              <div className="font-display font-black text-3xl sm:text-4xl text-terracotta">
+                {sessionPoppedCount}
+              </div>
+              <div className="font-technical text-xs font-bold uppercase tracking-wider text-ink-faint">
+                Bubbles Popped by You 🫧
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-2xl bg-paper border-2 border-ink shadow-sketch-sm space-y-1">
+              <div className="font-display font-black text-3xl sm:text-4xl text-chai">
+                {(sessionPoppedCount * 0.45).toFixed(1)} ml
+              </div>
+              <div className="font-technical text-xs font-bold uppercase tracking-wider text-ink-faint">
+                Chai Displaced by You ☕
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-2xl bg-paper border-2 border-ink shadow-sketch-sm space-y-1">
+              <div className="font-display font-black text-3xl sm:text-4xl text-ink">
+                {firstPopTimestamp ? `${Math.floor(elapsedSec / 60)}m ${elapsedSec % 60}s` : "0m 0s"}
+              </div>
+              <div className="font-technical text-xs font-bold uppercase tracking-wider text-ink-faint">
+                Session Time Wasted ⏰
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-2xl bg-paper border-2 border-ink shadow-sketch-sm space-y-1">
+              <div className="font-display font-black text-3xl sm:text-4xl text-saffron-dark">
+                {Math.floor(sessionPoppedCount / 8)}
+              </div>
+              <div className="font-technical text-xs font-bold uppercase tracking-wider text-ink-faint">
+                Parle-G Lost to Foam 🍪
+              </div>
+            </div>
+          </div>
+
+          {sessionPoppedCount === 0 && (
+            <p className="font-technical text-[11px] text-ink/70 text-center italic pt-1">
+              💡 Tip: Click micro-bubbles on the illustrated cup above or open <button onClick={() => setRoute("pop-the-bubble")} className="underline font-bold text-terracotta">Bubble Popper</button> to start your live session popping counter!
+            </p>
+          )}
+        </div>
+
+        {/* Global Lifetime Metrics */}
+        <div className="p-6 sm:p-8 rounded-3xl bg-paper border-3 border-ink shadow-sketch space-y-4 text-center">
+          <h3 className="font-technical text-xs sm:text-sm font-bold uppercase tracking-widest text-terracotta">
+            📊 Global Laboratory Metrics
+          </h3>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 pt-2">
+            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
+              <div className="font-display font-black text-3xl sm:text-4xl text-terracotta">
+                412 L
+              </div>
+              <div className="font-technical text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/70">
+                Chai Wasted ☕
+              </div>
+            </div>
+
+            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
+              <div className="font-display font-black text-3xl sm:text-4xl text-chai">
+                89.4 hrs
+              </div>
+              <div className="font-technical text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/70">
+                Work Time Wasted ⏰
+              </div>
+            </div>
+
+            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
+              <div className="font-display font-black text-3xl sm:text-4xl text-ink">
+                1.42M+
+              </div>
+              <div className="font-technical text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/70">
+                Bubbles Cataloged 🫧
+              </div>
+            </div>
+
+            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
+              <div className="font-display font-black text-3xl sm:text-4xl text-saffron-dark">
                 99.8%
               </div>
-              <div className="font-technical text-xs font-bold uppercase tracking-wider text-ink-faint">
-                Unnecessary Accuracy
+              <div className="font-technical text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/70">
+                Unnecessary Accuracy 🔬
               </div>
             </div>
 
-            <div className="space-y-1">
-              <div className="font-display font-black text-4xl sm:text-5xl text-ink">
-                1,420,000+
+            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
+              <div className="font-display font-black text-3xl sm:text-4xl text-terracotta">
+                1,204
               </div>
-              <div className="font-technical text-xs font-bold uppercase tracking-wider text-ink-faint">
-                Bubbles Measured
+              <div className="font-technical text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/70">
+                Parle-G Sacrificed 🍪
               </div>
             </div>
 
-            <div className="space-y-1">
-              <div className="font-display font-black text-4xl sm:text-5xl text-chai">
+            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
+              <div className="font-display font-black text-3xl sm:text-4xl text-chai">
                 0.00s
               </div>
-              <div className="font-technical text-xs font-bold uppercase tracking-wider text-ink-faint">
-                Real Utility
-              </div>
-            </div>
-
-            <div className="space-y-1">
-              <div className="font-display font-black text-4xl sm:text-5xl text-saffron-dark">
-                &infin;
-              </div>
-              <div className="font-technical text-xs font-bold uppercase tracking-wider text-ink-faint">
-                Cups Brewed
+              <div className="font-technical text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/70">
+                Practical Utility 📉
               </div>
             </div>
           </div>

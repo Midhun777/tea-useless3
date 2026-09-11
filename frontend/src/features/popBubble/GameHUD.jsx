@@ -48,9 +48,11 @@ export default function GameHUD({
         {/* Right Side: Time Wasted & Controls */}
         <div className="flex items-center gap-2.5 pointer-events-auto">
           {/* Time Wasted Display */}
-          <div className="bg-[#1E1610]/90 border border-[#FF9D42]/30 px-4 py-2 rounded-2xl text-xs font-bold text-[#FAF6EE] backdrop-blur-md flex items-center gap-2 shadow-xl">
-            <span className="text-[10px] text-terracotta uppercase font-black">Time Wasted</span>
-            <span className="font-mono text-base font-black text-amber-300">{timeWasted}</span>
+          <div className="bg-[#1E1610]/95 border-2 border-[#DE764E]/60 px-4 py-2 rounded-2xl text-xs font-bold text-[#FAF6EE] backdrop-blur-md flex items-center gap-2 shadow-xl">
+            <span className="text-[11px] text-[#FF9D42] uppercase font-black tracking-wider flex items-center gap-1">
+              <span>⏱️</span> Time Wasted:
+            </span>
+            <span className="font-mono text-lg font-black text-amber-300 tracking-wider">{timeWasted}</span>
           </div>
 
           {/* Refill Cup Button */}

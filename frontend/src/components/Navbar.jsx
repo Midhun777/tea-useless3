@@ -2,66 +2,75 @@ import React from "react";
 import useBubbleStore from "../store/useBubbleStore";
 
 /**
- * Navbar Component
- * Global top navigation bar allowing seamless switching between:
- * - Analyze Chai (OpenCV foam detector)
- * - Code a Chai (ChaiScript terminal compiler)
- * - Pop the Bubble (Interactive arcade mini-game)
+ * Clean & Minimal Navbar Component
  */
 export default function Navbar() {
-  const { route, setRoute } = useBubbleStore();
+  const { route, setRoute, setStage } = useBubbleStore();
+
+  const navToDetector = () => {
+    setRoute("detector");
+    setStage("hero");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
-    <header className="w-full bg-paper/95 backdrop-blur border-b-2 border-ink/20 sticky top-0 z-40 px-4 py-3 select-none">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
-        {/* Brand Title */}
-        <div
-          onClick={() => setRoute("detector")}
-          className="flex items-center gap-2.5 cursor-pointer group"
+    <header className="w-full bg-paper/90 backdrop-blur border-b border-ink/15 sticky top-0 z-40 px-4 py-2.5 select-none">
+      <div className="max-w-5xl mx-auto flex items-center justify-between gap-2">
+        {/* Simple Brand Title */}
+        <button
+          onClick={navToDetector}
+          className="flex items-center gap-2 font-technical font-bold text-sm sm:text-base tracking-wider uppercase text-ink hover:text-terracotta transition-colors shrink-0"
         >
-          <span className="w-3 h-3 rounded-full bg-terracotta border border-ink group-hover:scale-110 transition-transform" />
-          <span className="font-technical font-bold text-sm sm:text-base tracking-widest uppercase text-ink group-hover:text-terracotta transition-colors">
-            ചായ BUBBLE LAB
-          </span>
-        </div>
+          <span className="w-2.5 h-2.5 rounded-full bg-terracotta" />
+          <span>ചായ BUBBLE LAB</span>
+        </button>
 
-        {/* Navigation Tabs */}
-        <nav className="flex items-center gap-2 font-technical text-xs font-bold uppercase tracking-wider">
+        {/* Minimal Navigation Pills */}
+        <nav className="flex items-center gap-1 bg-ink/5 p-1 rounded-xl border border-ink/10 font-technical text-xs font-bold uppercase tracking-wider">
           <button
-            onClick={() => setRoute("detector")}
-            className={`px-2.5 sm:px-4 py-1.5 rounded-lg border-2 transition-all ${
+            onClick={navToDetector}
+            className={`px-3 py-1.5 rounded-lg transition-all ${
               route === "detector"
-                ? "bg-ink text-paper border-ink shadow-sketch-sm"
-                : "bg-paper text-ink border-ink/30 hover:border-ink hover:bg-paper-dark"
+                ? "bg-ink text-paper shadow-sm"
+                : "text-ink/70 hover:text-ink hover:bg-ink/5"
             }`}
           >
-            Analyze ചായ
+            Detector
           </button>
 
           <button
-            onClick={() => setRoute("code-a-chai")}
-            className={`px-2.5 sm:px-4 py-1.5 rounded-lg border-2 flex items-center gap-1.5 transition-all ${
+            onClick={() => {
+              setRoute("code-a-chai");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className={`px-3 py-1.5 rounded-lg transition-all ${
               route === "code-a-chai"
-                ? "bg-chai text-paper border-ink shadow-sketch-sm"
-                : "bg-paper text-ink border-ink/30 hover:border-ink hover:bg-paper-dark"
+                ? "bg-ink text-paper shadow-sm"
+                : "text-ink/70 hover:text-ink hover:bg-ink/5"
             }`}
           >
-            <span>Code a ചായ</span>
+            Code Terminal
           </button>
 
           <button
-            onClick={() => setRoute("pop-the-bubble")}
-            className={`px-2.5 sm:px-4 py-1.5 rounded-lg border-2 flex items-center gap-1.5 transition-all ${
+            onClick={() => {
+              setRoute("pop-the-bubble");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className={`px-3 py-1.5 rounded-lg transition-all ${
               route === "pop-the-bubble"
-                ? "bg-terracotta text-paper border-ink shadow-sketch-sm"
-                : "bg-paper text-ink border-ink/30 hover:border-ink hover:bg-paper-dark"
+                ? "bg-ink text-paper shadow-sm"
+                : "text-ink/70 hover:text-ink hover:bg-ink/5"
             }`}
           >
-            <span>Tea Glass Popper</span>
-            <span className="w-2 h-2 rounded-full bg-saffron animate-pulse" />
+            Bubble Popper
           </button>
         </nav>
       </div>
     </header>
   );
 }
+
+
+
+

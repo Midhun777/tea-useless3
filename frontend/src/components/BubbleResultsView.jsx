@@ -591,6 +591,34 @@ export default function BubbleResultsView() {
             </div>
           </div>
 
+          {/* ── FUNNY WASTED STATS & THANKS BADGE ───────────────────── */}
+          <div className="p-4 rounded-xl bg-paper-dark border-2 border-ink/40 font-technical text-xs space-y-2">
+            <div className="flex items-center justify-between border-b border-ink/15 pb-1">
+              <span className="font-bold text-terracotta uppercase tracking-wider text-[10px]">
+                🗑️ Specimen Waste & Special Acknowledgments
+              </span>
+              <span className="text-[10px] text-ink-faint">100% Useless Data</span>
+            </div>
+            <div className="grid grid-cols-2 gap-2 text-[11px]">
+              <div className="bg-paper p-2 rounded border border-ink/10">
+                <span className="text-ink-faint block text-[10px]">☕ Tea Wasted:</span>
+                <strong className="text-ink">250 ml poured & forgotten</strong>
+              </div>
+              <div className="bg-paper p-2 rounded border border-ink/10">
+                <span className="text-ink-faint block text-[10px]">⏰ Time Wasted:</span>
+                <strong className="text-chai">4.2 mins staring at foam</strong>
+              </div>
+              <div className="bg-paper p-2 rounded border border-ink/10">
+                <span className="text-ink-faint block text-[10px]">🍪 Biscuits Lost:</span>
+                <strong className="text-terracotta">2x Parle-G dunked to death</strong>
+              </div>
+              <div className="bg-paper p-2 rounded border border-ink/10">
+                <span className="text-ink-faint block text-[10px]">🙏 Thanks To:</span>
+                <strong className="text-ink">Tapri Chaiwala & HoughCircles</strong>
+              </div>
+            </div>
+          </div>
+
           {/* ── ACTION BUTTONS ────────────────────────────────────────── */}
           <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
             <button
