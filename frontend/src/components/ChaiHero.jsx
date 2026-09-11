@@ -308,10 +308,6 @@ export default function ChaiHero() {
                   Scans the top layer of your tea to count every single micro-bubble floating on the froth before it vanishes.
                 </p>
               </div>
-              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-terracotta pt-2 border-t border-dashed border-ink/20 flex justify-between">
-                <span>ACCURACY: 99.9% FOAM</span>
-                <span>FIG A</span>
-              </div>
             </div>
 
             {/* Pillar 2: Ink SVG Diagram */}
@@ -337,10 +333,6 @@ export default function ChaiHero() {
                   Checks if your tea has that proper golden kadak shade or if it’s just hot sweetened milk pretending to be chai.
                 </p>
               </div>
-              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-chai pt-2 border-t border-dashed border-ink/20 flex justify-between">
-                <span>STEEPMETER: 100% KADAK</span>
-                <span>FIG B</span>
-              </div>
             </div>
 
             {/* Pillar 3: Ink SVG Diagram */}
@@ -364,10 +356,6 @@ export default function ChaiHero() {
                 <p className="font-technical text-xs text-ink/75 leading-relaxed">
                   Monitors hot steam wisps rising from the glass so you know exactly when it’s safe to sip without burning your tongue.
                 </p>
-              </div>
-              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-saffron-dark pt-2 border-t border-dashed border-ink/20 flex justify-between">
-                <span>SIP STATUS: SAFE TO DRINK</span>
-                <span>FIG C</span>
               </div>
             </div>
           </div>
