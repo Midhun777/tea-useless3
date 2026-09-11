@@ -17,7 +17,7 @@ import useBubbleStore from "../store/useBubbleStore";
  *    - Useless Statistics Banner & Bottom CTA
  */
 export default function ChaiHero() {
-  const { setStage, setRoute, sessionPoppedCount, firstPopTimestamp } = useBubbleStore();
+  const { setStage, setRoute, sessionPoppedCount, appLaunchTimestamp } = useBubbleStore();
   const heroContainerRef = useRef(null);
   const headlineRef = useRef(null);
   const sublineRef = useRef(null);
@@ -29,14 +29,14 @@ export default function ChaiHero() {
   const [elapsedSec, setElapsedSec] = useState(0);
 
   useEffect(() => {
-    if (!firstPopTimestamp) return;
+    const startMs = appLaunchTimestamp || Date.now();
     const updateElapsed = () => {
-      setElapsedSec(Math.max(1, Math.floor((Date.now() - firstPopTimestamp) / 1000)));
+      setElapsedSec(Math.max(0, Math.floor((Date.now() - startMs) / 1000)));
     };
     updateElapsed();
     const interval = setInterval(updateElapsed, 1000);
     return () => clearInterval(interval);
-  }, [firstPopTimestamp]);
+  }, [appLaunchTimestamp]);
 
   // Entrance animations for Hero Headline & CTA
   useEffect(() => {
@@ -376,7 +376,7 @@ export default function ChaiHero() {
               </h3>
             </div>
             <span className="font-technical text-[11px] font-bold text-terracotta bg-terracotta/10 px-2.5 py-0.5 rounded border border-terracotta/30">
-              {Number.isFinite(sessionPoppedCount) && sessionPoppedCount > 0 ? "Tracking Active Pops Live" : "Awaiting First Specimen Pop..."}
+              {Number.isFinite(sessionPoppedCount) && sessionPoppedCount > 0 ? "Tracking Active Pops Live" : "Live Session Active ⏱️"}
             </span>
           </div>
 
@@ -400,8 +400,8 @@ export default function ChaiHero() {
             </div>
 
             <div className="p-4 rounded-2xl bg-paper border-2 border-ink shadow-sketch-sm space-y-1">
-              <div className="font-display font-black text-3xl sm:text-4xl text-ink">
-                {firstPopTimestamp && Number.isFinite(elapsedSec) && elapsedSec > 0
+              <div className="font-display font-black text-3xl sm:text-4xl text-ink font-mono">
+                {Number.isFinite(elapsedSec)
                   ? `${Math.floor(elapsedSec / 60)}m ${elapsedSec % 60}s`
                   : "0m 0s"}
               </div>

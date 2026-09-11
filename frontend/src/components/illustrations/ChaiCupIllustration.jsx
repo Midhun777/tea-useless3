@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import useBubbleStore from "../../store/useBubbleStore";
+import { sounds } from "../../features/popBubble/SoundEffects";
 
 /**
  * Hand-drawn Indian Cutting Chai Glass / Cup
@@ -102,6 +103,9 @@ export default function ChaiCupIllustration({ className = "", isHero = true, onB
 
   const popBubble = (id, e) => {
     e.stopPropagation();
+    try {
+      sounds.playPop(1.0 + Math.random() * 0.4);
+    } catch (err) {}
     setBubbles((prev) =>
       prev.map((b) => (b.id === id ? { ...b, popped: true } : b))
     );
