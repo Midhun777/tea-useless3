@@ -3,522 +3,600 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Hackathon Journey</title>
-    <meta name="description" content="An unnecessarily detailed record of how we tried to count bubbles in chai.">
+    <title>☕ Chai Bubble Detector — Our Hackathon Journey</title>
+    <meta name="description" content="An unnecessarily detailed record of how we tried to count bubbles in chai. Useless Projects 3.0.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&family=Permanent+Marker&family=Inter:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&family=Permanent+Marker&family=Patrick+Hand&family=Inter:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    
-    <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <div class="journal-container">
-        
-        <!-- COVER PAGE -->
-        <section class="page cover-page gsap-fade-in">
-            <div class="doodle chai-doodle">☕</div>
-            <div class="doodle bubble-doodle bubble-1">💭</div>
-            <div class="doodle bubble-doodle bubble-2">💭</div>
-            
-            <h1 class="title">OUR HACKATHON JOURNEY</h1>
-            <h2 class="subtitle">From Moondream → YOLO → Hugging Face → OpenCV → Actually Building the Thing</h2>
-            
-            <div class="tape top-center"></div>
-            
-            <p class="handwritten-note time-range">6:00 PM → 5:00 PM</p>
-            
-            <p class="handwritten-note small-note" style="margin-top: 3rem; transform: rotate(1deg);">
-                "An unnecessarily detailed record of how we tried to count bubbles in chai."
-            </p>
 
-            <div class="doodles-container">
-                <span class="doodle">💻</span>
-                <span class="doodle">🕒</span>
-                <span class="doodle code-doodle">{ ... }</span>
+<!-- FLOATING BACKGROUND DOODLES -->
+<div class="bg-doodle bd1">☕</div>
+<div class="bg-doodle bd2">🫧</div>
+<div class="bg-doodle bd3">💡</div>
+<div class="bg-doodle bd4">💻</div>
+
+<div class="notebook">
+
+    <!-- ======== COVER ======== -->
+    <section class="spread cover-spread">
+        <div class="ruled-lines"></div>
+
+        <!-- top-left corner badge -->
+        <div class="corner-badge">
+            <span>Useless Projects 3.0</span>
+        </div>
+
+        <!-- stain / watermark -->
+        <div class="chai-stain"></div>
+
+        <!-- scribbled out attempts in the margin -->
+        <div class="margin-scribbles">
+            <span class="scribble crossed">Project v1</span><br>
+            <span class="scribble crossed">Project v2</span><br>
+            <span class="scribble">☕ This one</span>
+        </div>
+
+        <div class="cover-content">
+            <div class="cover-header-note">Day 1 of hackathon — written post-event by two sleepy people</div>
+
+            <h1 class="cover-title">
+                OUR<br>HACKATHON<br>JOURNEY
+            </h1>
+
+            <div class="cover-subtitle-wrapper">
+                <span class="cover-arrow">↘</span>
+                <p class="cover-subtitle">
+                    "An unnecessarily detailed<br>record of how we tried<br>to count bubbles in chai."
+                </p>
             </div>
-            
-            <div class="scroll-hint">
-                <span class="handwritten-note">Turn the page</span>
-                <br>↓
+
+            <div class="model-trail">
+                <span class="trail-item fail">Moondream</span>
+                <span class="trail-sep">→</span>
+                <span class="trail-item fail">YOLO</span>
+                <span class="trail-sep">→</span>
+                <span class="trail-item fail">Hugging Face</span>
+                <span class="trail-sep">→</span>
+                <span class="trail-item win">OpenCV ✓</span>
             </div>
-        </section>
 
-        <!-- TIMELINE SECTION -->
-        <section class="page timeline-page">
-            <div class="timeline" id="main-timeline">
-                <div class="timeline-line"></div>
-                
-                <!-- 6:00 PM -->
-                <div class="timeline-event right gsap-slide-right">
-                    <div class="time-stamp">6:00 PM</div>
-                    <div class="event-content">
-                        <h3>Starting with Moondream</h3>
-                        <p class="body-text">The hackathon started at 6 PM. Our first approach was trying to build the project using Moondream. We spent time trying to make it work and get useful/accurate results.</p>
-                        
-                        <div class="photo-placeholder polaroid">
-                            <!-- INSERT PHOTO / SCREENSHOT OF MOONDREAM ATTEMPT -->
-                            <div class="placeholder-img">[Moondream attempt screenshot]</div>
-                            <span class="doodle stamp-nope">NOPE ❌</span>
-                        </div>
+            <div class="cover-timestamp">
+                <div class="timestamp-tape"></div>
+                6:00 PM  →  5:00 PM (next day)
+            </div>
 
-                        <div class="sticky-note">
-                            "Thought this would be straightforward. It wasn't. 😭"
-                        </div>
+            <div class="cover-doodles">
+                <div class="doodle-cup">☕<div class="cup-steam">〰〰〰</div></div>
+                <div class="doodle-bubble-group">
+                    <span style="font-size:2.5rem">🫧</span>
+                    <span style="font-size:1.5rem; opacity:0.6">🫧</span>
+                    <span style="font-size:1rem; opacity:0.4">🫧</span>
+                </div>
+                <div class="doodle-laptop">💻</div>
+            </div>
+        </div>
+
+        <div class="scroll-nudge">
+            <div class="nudge-line"></div>
+            <span>keep scrolling</span>
+            <div class="nudge-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- ======== TIMELINE ======== -->
+    <section class="spread timeline-spread">
+        <div class="ruled-lines"></div>
+        <div class="section-tab">THE STORY</div>
+
+        <div class="chapter-heading">
+            <span class="chapter-number">01</span>
+            <h2>The Approach Graveyard</h2>
+            <p class="chapter-note">aka: things that didn't work, in order</p>
+        </div>
+
+        <div class="events-column">
+
+            <!-- 6 PM -->
+            <div class="event-entry gsap-reveal" data-rotate="-1.5">
+                <div class="event-time-block">
+                    <div class="event-time">6:00 PM</div>
+                    <div class="event-time-sub">Day 1</div>
+                </div>
+                <div class="event-body">
+                    <div class="event-tag fail-tag">ATTEMPT #1</div>
+                    <h3 class="event-title">Starting with Moondream</h3>
+                    <p class="event-text">Hackathon kicked off at 6 PM. First idea: throw Moondream at it. Spent a good chunk of time trying to coax decent, accurate results out of it.</p>
+                    <div class="margin-note mn-right" style="transform: rotate(8deg);">"Thought this<br>would be simple.<br>😭"</div>
+                    <div class="placeholder-block">
+                        <!-- INSERT MOONDREAM SCREENSHOT -->
+                        <div class="insert-label">📸 INSERT: Moondream attempt screenshot</div>
+                    </div>
+                    <div class="verdict-stamp">NOPE ❌</div>
+                </div>
+            </div>
+
+            <!-- 7 PM -->
+            <div class="event-entry gsap-reveal" data-rotate="1">
+                <div class="event-time-block">
+                    <div class="event-time">7:00 PM</div>
+                </div>
+                <div class="event-body">
+                    <div class="event-tag fail-tag">ATTEMPT #2</div>
+                    <h3 class="event-title">Okay… YOLO?</h3>
+                    <p class="event-text">Moondream said no. Next idea: YOLO. Maybe object detection will save us.</p>
+                    <div class="inline-thought">"Maybe YOLO will work." — us, optimistically</div>
+                    <div class="placeholder-block crossed-placeholder">
+                        <!-- INSERT YOLO RESULT -->
+                        <div class="insert-label">📸 INSERT: YOLO result screenshot</div>
+                        <div class="x-cross">✕</div>
+                    </div>
+                    <div class="inline-thought err">"YOLO also decided not to cooperate."</div>
+                </div>
+            </div>
+
+            <!-- 8 PM -->
+            <div class="event-entry desperate-entry gsap-reveal" data-rotate="-0.5">
+                <div class="event-time-block">
+                    <div class="event-time">8:00 PM</div>
+                </div>
+                <div class="event-body">
+                    <div class="event-tag fail-tag">ATTEMPT #3</div>
+                    <h3 class="event-title">Hugging Face / SME</h3>
+                    <p class="event-text desperation-text">"AI model #3… please cooperate. We are begging."</p>
+                    <div class="desperation-meter">
+                        <span class="dm-label">Desperation level:</span>
+                        <div class="dm-bar"><div class="dm-fill" style="width:85%"></div></div>
+                        <span class="dm-val">85%</span>
+                    </div>
+                    <div class="fail-doodles">
+                        <span>💥</span><span>🔥</span><span>😭</span><span>🙏</span>
                     </div>
                 </div>
+            </div>
 
-                <!-- 7:00 PM -->
-                <div class="timeline-event left gsap-slide-left">
-                    <div class="time-stamp">7:00 PM</div>
-                    <div class="event-content">
-                        <h3>Okay… YOLO?</h3>
-                        <p class="body-text">After Moondream did not give satisfactory results, we tried YOLO.</p>
-                        
-                        <p class="handwritten-note">"Maybe YOLO will work."</p>
-                        
-                        <div class="photo-placeholder polaroid">
-                            <!-- INSERT YOLO RESULT -->
-                            <div class="placeholder-img crossed-out-img">[YOLO result screenshot]</div>
-                        </div>
-
-                        <p class="handwritten-note">"YOLO also decided not to cooperate."</p>
-                    </div>
+            <!-- 8:30 PM — THE PIVOT -->
+            <div class="pivot-block gsap-reveal">
+                <div class="pivot-time">~ 8:30 PM</div>
+                <div class="pivot-text">ENOUGH.<br>LET'S TRY SOMETHING<br>DIFFERENT.</div>
+                <div class="pivot-arrow-row">
+                    <svg class="hand-arrow" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10,30 Q60,5 120,30 T190,30" stroke="#cc0000" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <polygon points="185,24 195,30 185,36" fill="#cc0000"/>
+                    </svg>
+                    <span class="pivot-dest">OPENCV</span>
                 </div>
-
-                <!-- 8:00 PM -->
-                <div class="timeline-event right gsap-slide-right">
-                    <div class="time-stamp">8:00 PM</div>
-                    <div class="event-content">
-                        <h3>Hugging Face / SME</h3>
-                        <p class="handwritten-note huge-desperate">"AI model #3…"</p>
-                        <p class="handwritten-note">"Please cooperate."</p>
-                        
-                        <div class="doodles-container">
-                            <span class="doodle">💥</span>
-                            <span class="doodle">🔥</span>
-                            <span class="doodle">😭</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 8:30 PM: THE PIVOT -->
-                <div class="timeline-event centered-event gsap-fade-in pivot-event">
-                    <div class="time-stamp highlight-time">~ 8:30 PM</div>
-                    <h2 class="massive-marker-title">ENOUGH. LET'S TRY SOMETHING DIFFERENT.</h2>
-                    <h2 class="massive-marker-title blue-ink">→ OPENCV</h2>
-                    
-                    <div class="event-content no-bg">
-                        <p class="body-text">After several AI-based approaches were not giving the expected results, we switched direction toward OpenCV.</p>
-                        
-                        <div class="sketch-placeholder">
-                            <!-- INSERT OPENCV NOTEBOOK SKETCHES / CODE FRAGMENTS -->
-                            <pre class="code-fragment">
-import cv2
+                <div class="code-scrap">
+                    <pre>import cv2
 import numpy as np
 
-# Let's hope this works...
-bubbles = cv2.HoughCircles(...)
-                            </pre>
-                            <p class="handwritten-note">"Finally, some actual control over the pixels."</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 9:00 PM -->
-                <div class="timeline-event right break-event gsap-slide-right">
-                    <div class="time-stamp highlight-time">9:00 PM — CRITICAL SYSTEM UPDATE</div>
-                    <div class="event-content">
-                        <h2 class="marker-title">BIRIYANI.</h2>
-                        
-                        <div class="photo-placeholder polaroid">
-                            <!-- INSERT PHOTO OF BIRIYANI -->
-                            <div class="placeholder-img">[Picture of Biriyani]</div>
-                            <div class="tape top-center"></div>
-                        </div>
-
-                        <p class="handwritten-note bold-note">"Very important development milestone."</p>
-                        
-                        <div class="fake-progress">
-                            <p class="monospace-text">PROJECT: ███████░░░</p>
-                            <p class="monospace-text">BIRIYANI: ██████████</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 9:00 - 10:30 PM -->
-                <div class="timeline-event left break-event gsap-slide-left">
-                    <div class="time-stamp">9:00 - 10:30 PM</div>
-                    <div class="event-content">
-                        <h3 class="marker-title">PROJECT PAUSED.</h3>
-                        <p class="body-text">Music programs and other venue events were happening, so we took a break and watched/attended them for a while.</p>
-                        
-                        <div class="photo-placeholder polaroid">
-                            <!-- INSERT PHOTO / GIF OF MUSIC PROGRAMS -->
-                            <div class="placeholder-img">[Music / Venue programs]</div>
-                        </div>
-
-                        <div class="sticky-note pink">
-                            "Music mode ON 🎵"
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 10:30 PM -->
-                <div class="timeline-event right gsap-slide-right">
-                    <div class="time-stamp">10:30 PM</div>
-                    <div class="event-content">
-                        <h3 class="marker-title">Okay. Enough distractions.</h3>
-                        <p class="body-text">We returned and started experimenting with OpenCV again and worked toward a demo.</p>
-                        
-                        <div class="photo-placeholder polaroid">
-                            <!-- INSERT TEAM/WORKSPACE PHOTO HERE -->
-                            <div class="placeholder-img">[Team working / workspace photo]</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 12:00 AM -->
-                <div class="timeline-event highlight-event centered-event gsap-fade-in">
-                    <div class="time-stamp huge-time">12:00 AM</div>
-                    <h2 class="massive-marker-title red-ink">THE REAL BUILD STARTS</h2>
-                    <p class="handwritten-note massive-note">"Okay. NOW WE ACTUALLY BUILD IT."</p>
-                    
-                    <div class="event-content no-bg">
-                        <p class="body-text">After the earlier model experiments and failed approaches, this was when we properly started building the project.</p>
-                        
-                        <div class="gallery-grid">
-                            <div class="photo-placeholder polaroid tilted-right">
-                                <!-- INSERT CODE SCREENSHOT -->
-                                <div class="placeholder-img">[Code Editor Screenshot]</div>
-                            </div>
-                            <div class="photo-placeholder polaroid tilted-left">
-                                <!-- INSERT TERMINAL SCREENSHOT -->
-                                <div class="placeholder-img">[Terminal Screenshot]</div>
-                            </div>
-                            <div class="photo-placeholder polaroid tilted-right">
-                                <!-- INSERT TEAM PHOTO -->
-                                <div class="placeholder-img">[Late night team photo]</div>
-                            </div>
-                        </div>
-
-                        <div class="arrow-down-sketch">↓</div>
-                        
-                        <div class="sticky-note green large-sticky">
-                            "NO MORE CHANGING MODELS. JUST BUILD."
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 1:30 AM -->
-                <div class="timeline-event left highlight-event gsap-slide-left">
-                    <div class="time-stamp huge-time">1:30 AM</div>
-                    <h2 class="massive-marker-title">WAIT...</h2>
-                    
-                    <div class="event-content">
-                        <h3 class="marker-title">WE'RE ALMOST DONE.</h3>
-                        <p class="handwritten-note bold-note">"After all that experimenting, we finally got somewhere."</p>
-                        
-                        <div class="doodles-container">
-                            <span class="doodle">🎉</span>
-                            <span class="doodle">🤯</span>
-                            <span class="doodle">✨</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="timeline-divider"></div>
-
-                <!-- MAKING THE CHAI MORE FUN -->
-                <div class="timeline-event centered-event highlight-event gsap-fade-in">
-                    <h2 class="massive-marker-title">WE COULD'VE STOPPED HERE.</h2>
-                    <h3 class="subtitle">But apparently… we didn't.</h3>
-                </div>
-
-                <!-- The Chai Code Terminal -->
-                <div class="timeline-event right gsap-slide-right">
-                    <div class="event-content">
-                        <h3 class="marker-title">💻 CHAI CODE TERMINAL</h3>
-                        <p class="body-text">We created a terminal-style interaction for the chai. Instead of just looking at the bubble-detection result, the user could interact with the chai through a terminal-style interface and type code or commands to influence what happens.</p>
-                        
-                        <div class="photo-placeholder polaroid">
-                            <!-- INSERT TERMINAL UI SCREENSHOT -->
-                            <div class="placeholder-img">[Chai Terminal UI Screenshot]</div>
-                        </div>
-
-                        <div class="sticky-note">
-                            "Okay, we detected the bubbles. Now let's give the chai a terminal."
-                        </div>
-                        <p class="handwritten-note">"It gave the project a little personality — like the chai wasn't just sitting there waiting to be analyzed. 😭"</p>
-                    </div>
-                </div>
-
-                <!-- Tea Glass Popper -->
-                <div class="timeline-event left gsap-slide-left">
-                    <div class="event-content">
-                        <h3 class="marker-title">🫧 TEA GLASS POPPER</h3>
-                        <p class="body-text">Instead of only detecting/counting bubbles, we built an interactive feature where users can actually pop the bubbles.</p>
-                        
-                        <div class="hand-drawn-sequence">
-                            <span class="step">DETECT</span>
-                            <span class="arrow">→</span>
-                            <span class="step">COUNT</span>
-                            <span class="arrow">→</span>
-                            <span class="step pop">POP</span>
-                        </div>
-                        
-                        <p class="handwritten-note">"We could've just counted the bubbles… but apparently popping them was necessary."</p>
-                    </div>
-                </div>
-
-                <!-- DEPLOYMENT -->
-                <div class="timeline-event right gsap-slide-right">
-                    <div class="time-stamp highlight-time">DEPLOYMENT</div>
-                    <div class="event-content">
-                        <h3 class="marker-title">🚀 IT LEFT OUR LAPTOP.</h3>
-                        <p class="body-text">The web app was hosted using Vercel.</p>
-                        
-                        <div class="hand-drawn-sequence small">
-                            <span>Local machine</span>
-                            <span>→</span>
-                            <span>INTERNET</span>
-                        </div>
-
-                        <div class="photo-placeholder polaroid">
-                            <!-- INSERT DEPLOYED APP SCREENSHOT -->
-                            <div class="placeholder-img">[Deployed App Screenshot on Vercel]</div>
-                            <div class="tape top-right"></div>
-                        </div>
-                        
-                        <p class="handwritten-note">"It wasn't just: 'Look, it works on our laptop.' It became: 'Here. Open the webapp and try it.'"</p>
-                    </div>
-                </div>
-
-                <!-- THE MODEL BREAKS -->
-                <div class="timeline-event centered-event highlight-event gsap-fade-in">
-                    <h2 class="massive-marker-title">AND THEN…</h2>
-                    <h2 class="massive-handwritten-title red-ink">WHY IS THE MODEL GETTING WORSE?</h2>
-                    
-                    <div class="event-content no-bg">
-                        <p class="body-text">After deployment, bubble-detection performance started degrading and detection was no longer as reliable as expected.</p>
-                        
-                        <div class="gallery-grid">
-                            <div class="sticky-note pink tilted-left">
-                                "ERROR?"
-                            </div>
-                            <div class="sketch-placeholder broken-chart">
-                                <!-- FAKE BROKEN CHART SKETCH -->
-                                <svg width="200" height="100" viewBox="0 0 200 100">
-                                    <polyline points="0,20 50,30 100,15 120,80 150,90 200,95" fill="none" stroke="red" stroke-width="4" />
-                                </svg>
-                                <span class="handwritten-note">Accuracy over time</span>
-                            </div>
-                            <div class="sticky-note yellow tilted-right">
-                                "WHY?"
-                            </div>
-                        </div>
-
-                        <h3 class="marker-title" style="margin-top: 3rem;">BACK TO EXPERIMENTING.</h3>
-                        <p class="body-text">We began exploring another software/approach for the bubble-detection portion to improve reliability.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-divider"></div>
-            </div>
-        </section>
-
-        <!-- TEAM SECTION -->
-        <section class="page team-page gsap-fade-in">
-            <h2 class="massive-marker-title text-center">WHO ACTUALLY DID WHAT?</h2>
-            <p class="handwritten-note text-center">"BUILDING TOGETHER > BUILDING PERFECTLY"</p>
-            
-            <div class="team-cards-container">
-                <!-- TEAM MEMBER 1 -->
-                <div class="team-card paper-card">
-                    <div class="tape top-center"></div>
-                    <!-- INSERT TEAM MEMBER 1 PHOTO -->
-                    <div class="avatar-placeholder">[Photo]</div>
-                    <h3 class="marker-title">[TEAM MEMBER 1]</h3>
-                    <p class="handwritten-note">[Role / contribution]</p>
-                </div>
-                
-                <!-- TEAM MEMBER 2 -->
-                <div class="team-card paper-card">
-                    <div class="tape top-left"></div>
-                    <!-- INSERT TEAM MEMBER 2 PHOTO -->
-                    <div class="avatar-placeholder">[Photo]</div>
-                    <h3 class="marker-title">[TEAM MEMBER 2]</h3>
-                    <p class="handwritten-note">[Role / contribution]</p>
-                </div>
-                
-                <!-- TEAM MEMBER 3 -->
-                <div class="team-card paper-card">
-                    <div class="tape top-right"></div>
-                    <!-- INSERT TEAM MEMBER 3 PHOTO -->
-                    <div class="avatar-placeholder">[Photo]</div>
-                    <h3 class="marker-title">[TEAM MEMBER 3]</h3>
-                    <p class="handwritten-note">[Role / contribution]</p>
+# finally. actual control.
+bubbles = cv2.HoughCircles(gray, ...)</pre>
+                    <div class="code-note">"Finally, some actual control<br>over the pixels."</div>
                 </div>
             </div>
 
-            <div class="working-together-section paper-card">
-                <h3 class="marker-title">How we worked together</h3>
-                <!-- INSERT WORKING DETAILS -->
-                <p class="body-text">[Editable placeholder text describing how the team collaborated, split tasks, and survived the night.]</p>
-            </div>
-        </section>
-
-        <!-- LEARNINGS SECTION -->
-        <section class="page learnings-page gsap-fade-in">
-            <h2 class="massive-marker-title text-center">THINGS WE LEARNED THE HARD WAY</h2>
-            
-            <div class="learnings-grid">
-                
-                <!-- LEARNING 1 -->
-                <div class="learning-card sticky-note yellow">
-                    <h4 class="marker-title">OpenCV & CV Experimentation</h4>
-                    <p><strong>What we tried:</strong> [Placeholder]</p>
-                    <p><strong>What happened:</strong> [Placeholder]</p>
-                    <p><strong>What we learned:</strong> [Placeholder]</p>
+            <!-- 9 PM BIRIYANI -->
+            <div class="biriyani-block gsap-reveal">
+                <div class="biriyani-time-badge">9:00 PM</div>
+                <div class="biriyani-banner">⚠️ CRITICAL SYSTEM UPDATE ⚠️</div>
+                <div class="biriyani-title">BIRIYANI.</div>
+                <div class="placeholder-block biriyani-ph">
+                    <!-- INSERT BIRIYANI PHOTO -->
+                    <div class="insert-label">📸 INSERT: Biriyani photo</div>
                 </div>
-
-                <!-- LEARNING 2 -->
-                <div class="learning-card sticky-note pink">
-                    <h4 class="marker-title">Model Limitations</h4>
-                    <p><strong>What we tried:</strong> [Placeholder]</p>
-                    <p><strong>What happened:</strong> [Placeholder]</p>
-                    <p><strong>What we learned:</strong> [Placeholder]</p>
-                </div>
-
-                <!-- LEARNING 3 -->
-                <div class="learning-card sticky-note green">
-                    <h4 class="marker-title">Debugging & Web Deployment</h4>
-                    <p><strong>What we tried:</strong> [Placeholder]</p>
-                    <p><strong>What happened:</strong> [Placeholder]</p>
-                    <p><strong>What we learned:</strong> [Placeholder]</p>
-                </div>
-
-                <!-- LEARNING 4 -->
-                <div class="learning-card paper-card">
-                    <div class="tape top-center"></div>
-                    <h4 class="marker-title">Interactive UI & Time Pressure</h4>
-                    <p><strong>What we tried:</strong> [Placeholder]</p>
-                    <p><strong>What happened:</strong> [Placeholder]</p>
-                    <p><strong>What we learned:</strong> Choosing practical approaches over theoretically better ones is a survival skill.</p>
+                <div class="progress-terminal">
+                    <div class="term-line">PROJECT  <span class="bar">███████░░░</span> 70%</div>
+                    <div class="term-line">BIRIYANI <span class="bar bar-done">██████████</span> 100%</div>
+                    <div class="term-note">// very important development milestone</div>
                 </div>
             </div>
-        </section>
 
-        <!-- VISUAL DOCUMENTATION GALLERY -->
-        <section class="page gallery-page gsap-fade-in">
-            <h2 class="massive-marker-title text-center">VISUAL DOCUMENTATION</h2>
-            <p class="handwritten-note text-center">"Pics or it didn't happen."</p>
-
-            <div class="scrapbook-gallery">
-                
-                <div class="gallery-item polaroid" style="top: 10%; left: 5%; transform: rotate(-5deg);">
-                    <div class="tape top-left"></div>
-                    <div class="placeholder-img">[DURING THE BUILD Media]</div>
-                    <p class="handwritten-note">DURING THE BUILD</p>
+            <!-- 9 - 10:30 PM Break -->
+            <div class="event-entry break-entry gsap-reveal" data-rotate="2">
+                <div class="event-time-block">
+                    <div class="event-time">9 – 10:30 PM</div>
                 </div>
-
-                <div class="gallery-item polaroid" style="top: 15%; right: 5%; transform: rotate(8deg);">
-                    <div class="tape top-right"></div>
-                    <div class="placeholder-img">[FAILED ATTEMPTS Media]</div>
-                    <p class="handwritten-note">FAILED ATTEMPTS</p>
+                <div class="event-body">
+                    <h3 class="event-title">PROJECT PAUSED.</h3>
+                    <p class="event-text">Music programs and other events were happening at the venue. We went. We watched. We rested.</p>
+                    <div class="sticky-scrap pink-sticky" style="transform: rotate(-3deg);">
+                        "Music mode ON 🎵<br><small>project can wait</small>"
+                    </div>
+                    <div class="placeholder-block">
+                        <!-- INSERT MUSIC/VENUE PHOTO OR GIF -->
+                        <div class="insert-label">📸 INSERT: Music / venue photo or GIF</div>
+                    </div>
                 </div>
-
-                <div class="gallery-item polaroid" style="top: 40%; left: 35%; transform: rotate(2deg);">
-                    <div class="tape top-center"></div>
-                    <div class="placeholder-img">[THE UI Media]</div>
-                    <p class="handwritten-note">THE UI</p>
-                </div>
-
-                <div class="gallery-item polaroid" style="top: 60%; left: 10%; transform: rotate(-8deg);">
-                    <div class="tape top-left"></div>
-                    <div class="placeholder-img">[THE TEAM Media]</div>
-                    <p class="handwritten-note">THE TEAM</p>
-                </div>
-
-                <div class="gallery-item polaroid" style="top: 65%; right: 10%; transform: rotate(5deg);">
-                    <div class="tape top-right"></div>
-                    <div class="placeholder-img">[VERY IMPORTANT BIRIYANI Media]</div>
-                    <p class="handwritten-note">VERY IMPORTANT BIRIYANI</p>
-                </div>
-
             </div>
-        </section>
 
-        <!-- PROJECT REALITY CHECK -->
-        <section class="page reality-check-page gsap-fade-in">
-            <h2 class="massive-marker-title text-center">A LITTLE PROJECT REALITY CHECK</h2>
-            
-            <div class="comic-sequence">
-                <div class="comic-row"><span class="prompt">"Try this."</span><span class="arrow">→</span><span class="response">"Nope."</span></div>
-                <div class="comic-row"><span class="prompt">"Try this one."</span><span class="arrow">→</span><span class="response">"Also nope."</span></div>
-                <div class="comic-row"><span class="prompt">"Okay, OpenCV."</span><span class="arrow">→</span><span class="response highlight">"Wait, that works."</span></div>
-                <div class="comic-row"><span class="prompt">"Let's make it interactive."</span><span class="arrow">→</span><span class="response">"Can we pop the bubbles?"</span></div>
-                <div class="comic-row"><span class="prompt">"Sure."</span></div>
-                <div class="comic-row"><span class="prompt">"Let's put it online."</span><span class="arrow">→</span><span class="response error">"Why is the model getting worse?"</span></div>
-                <div class="comic-row"><span class="prompt">"...okay, back to experimenting."</span></div>
+            <!-- 10:30 PM -->
+            <div class="event-entry gsap-reveal" data-rotate="-1">
+                <div class="event-time-block">
+                    <div class="event-time">10:30 PM</div>
+                </div>
+                <div class="event-body">
+                    <h3 class="event-title">Okay. Enough distractions.</h3>
+                    <p class="event-text">Came back, opened the laptops again, started experimenting with OpenCV to get something that looked like a working demo.</p>
+                    <div class="placeholder-block">
+                        <!-- INSERT TEAM / WORKSPACE PHOTO -->
+                        <div class="insert-label">📸 INSERT: Team or workspace photo</div>
+                    </div>
+                </div>
             </div>
-            
-        </section>
 
-        <!-- STATS SECTION -->
-        <section class="page stats-page gsap-fade-in">
-            <div class="tape top-left"></div>
-            <h2 class="stats-title">☕ Hackathon Survival Stats</h2>
-            <ul class="stats-list">
-                <li><span class="stat-icon">🍗</span> <strong>Biriyani:</strong> 1</li>
-                <li><span class="stat-icon">🥤</span> <strong>Coca-Cola:</strong> 1</li>
-                <li><span class="stat-icon">🍪</span> <strong>Biscuit packet:</strong> 1</li>
-                <li><span class="stat-icon">🧠</span> <strong>AI approaches tried:</strong> Multiple</li>
-                <li>
-                    <ul class="sub-stats">
-                        <li class="crossed-out">Moondream: tried ❌</li>
-                        <li class="crossed-out">YOLO: tried ❌</li>
-                        <li class="crossed-out">Hugging Face / SME: tried ❌</li>
-                        <li class="highlight-stat">OpenCV: final direction ✅</li>
-                    </ul>
-                </li>
-                <li><span class="stat-icon">🕛</span> <strong>Serious building:</strong> ~12 AM</li>
-                <li><span class="stat-icon">🏁</span> <strong>Almost finished:</strong> ~1:30 AM</li>
-            </ul>
-            <div class="sticky-note">
-                "By the time we finished, one Coca-Cola and a packet of biscuits had also disappeared somewhere along the way."
+            <!-- 12 AM — THE BUILD -->
+            <div class="midnight-block gsap-reveal">
+                <div class="midnight-label">12:00 AM</div>
+                <div class="midnight-title">THE REAL BUILD STARTS</div>
+                <p class="midnight-note">"Okay. NOW WE ACTUALLY BUILD IT."</p>
+                <p class="event-text" style="max-width:600px; margin: 1rem auto;">After all the model experiments and failed approaches, this was when we properly sat down and built the project. No more switching models. Just build.</p>
+
+                <div class="midnight-gallery">
+                    <div class="polaroid-card tilt-left">
+                        <!-- INSERT CODE SCREENSHOT -->
+                        <div class="pol-img"><div class="insert-label">📸 Code editor screenshot</div></div>
+                        <div class="pol-caption">code mode activated</div>
+                    </div>
+                    <div class="polaroid-card tilt-right">
+                        <!-- INSERT TERMINAL SCREENSHOT -->
+                        <div class="pol-img"><div class="insert-label">📸 Terminal screenshot</div></div>
+                        <div class="pol-caption">cv2 doing its thing</div>
+                    </div>
+                    <div class="polaroid-card tilt-left" style="--deg: -2deg">
+                        <!-- INSERT TEAM PHOTO - LATE NIGHT -->
+                        <div class="pol-img"><div class="insert-label">📸 Late night team photo</div></div>
+                        <div class="pol-caption">2 people, 1 deadline</div>
+                    </div>
+                </div>
+
+                <div class="big-sticky-note">
+                    "NO MORE CHANGING MODELS. JUST BUILD."
+                </div>
             </div>
-        </section>
 
-        <!-- FINAL PAGE -->
-        <section class="page final-page gsap-fade-in">
-            <h1 class="title final-title">And Somehow… We Built It.</h1>
-            
-            <div class="journey-summary">
+            <!-- 1:30 AM -->
+            <div class="event-entry victory-entry gsap-reveal" data-rotate="1">
+                <div class="event-time-block">
+                    <div class="event-time">1:30 AM</div>
+                </div>
+                <div class="event-body">
+                    <h3 class="event-title wait-title">WAIT…</h3>
+                    <h3 class="event-title">WE'RE ALMOST DONE.</h3>
+                    <p class="event-text">"After all that experimenting, we finally got somewhere."</p>
+                    <div class="confetti-row">🎉 🤯 ✨ 🫧 ☕</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="page-divider">
+            <div class="divider-line"></div>
+            <div class="divider-note">but we didn't stop there…</div>
+            <div class="divider-line"></div>
+        </div>
+
+        <!-- BONUS FEATURES -->
+        <div class="chapter-heading">
+            <span class="chapter-number">02</span>
+            <h2>Making it Unnecessarily Fun</h2>
+            <p class="chapter-note">we could've stopped. we didn't.</p>
+        </div>
+
+        <div class="bonus-grid">
+
+            <!-- Chai Terminal -->
+            <div class="bonus-card gsap-reveal">
+                <div class="bonus-icon">💻</div>
+                <h3 class="bonus-title">CHAI CODE TERMINAL</h3>
+                <p class="event-text">We created a terminal-style interface for the chai. Instead of just seeing the bubble count, you could type commands into the chai. Gave the project some personality.</p>
+                <div class="placeholder-block">
+                    <!-- INSERT CHAI TERMINAL SCREENSHOT -->
+                    <div class="insert-label">📸 INSERT: Chai terminal UI screenshot</div>
+                </div>
+                <div class="sticky-scrap yellow-sticky" style="transform:rotate(2deg)">
+                    "we detected bubbles.<br>now let's give it a terminal."
+                </div>
+            </div>
+
+            <!-- Bubble Popper -->
+            <div class="bonus-card gsap-reveal">
+                <div class="bonus-icon">🫧</div>
+                <h3 class="bonus-title">TEA GLASS POPPER</h3>
+                <p class="event-text">We didn't just detect and count. We made them <em>poppable</em>. Interactive bubble popping on a tea glass view.</p>
+                <div class="step-sequence">
+                    <div class="step-box">DETECT</div>
+                    <div class="step-arrow">→</div>
+                    <div class="step-box">COUNT</div>
+                    <div class="step-arrow">→</div>
+                    <div class="step-box pop-box">POP 💥</div>
+                </div>
+                <p class="inline-thought">"We could've just counted them.<br>But popping was necessary."</p>
+            </div>
+
+        </div>
+
+        <!-- DEPLOYMENT -->
+        <div class="deploy-block gsap-reveal">
+            <div class="deploy-label">DEPLOYMENT</div>
+            <h2 class="deploy-title">🚀 IT LEFT OUR LAPTOP.</h2>
+            <div class="deploy-flow">
+                <div class="df-node">Local machine</div>
+                <div class="df-arrow">
+                    <svg viewBox="0 0 120 30" width="120" height="30">
+                        <path d="M5,15 Q60,2 110,15" stroke="#1e3a8a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <polygon points="106,10 115,15 106,20" fill="#1e3a8a"/>
+                    </svg>
+                </div>
+                <div class="df-node df-node-dest">INTERNET<br><small>via Vercel</small></div>
+            </div>
+            <div class="placeholder-block" style="max-width:700px; margin: 2rem auto;">
+                <!-- INSERT DEPLOYED APP SCREENSHOT -->
+                <div class="insert-label">📸 INSERT: Deployed app screenshot (Vercel)</div>
+            </div>
+            <p class="inline-thought">"Not just 'look, it works on our laptop.' Now: 'Open the link.'"</p>
+        </div>
+
+        <!-- MODEL BREAKS -->
+        <div class="chaos-block gsap-reveal">
+            <div class="chaos-and-then">AND THEN…</div>
+            <div class="chaos-title">WHY IS THE MODEL<br>GETTING WORSE?</div>
+            <p class="event-text" style="max-width:600px; margin: 1rem auto;">After deployment, bubble-detection performance started degrading. Detection wasn't staying as reliable as before.</p>
+            <div class="warning-row">
+                <div class="warn-card pink-sticky" style="transform:rotate(-4deg)">ERROR?</div>
+                <div class="broken-graph">
+                    <svg viewBox="0 0 240 100" width="240" height="100">
+                        <text x="10" y="14" font-family="Kalam" font-size="11" fill="#555">Accuracy over time</text>
+                        <polyline points="10,70 40,60 70,55 90,75 120,85 160,90 210,95" fill="none" stroke="#cc0000" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="160" cy="90" r="5" fill="#cc0000" opacity="0.7"/>
+                        <text x="145" y="108" font-family="Kalam" font-size="10" fill="#cc0000">ruh roh</text>
+                    </svg>
+                </div>
+                <div class="warn-card yellow-sticky" style="transform:rotate(3deg)">WHY?</div>
+            </div>
+            <div class="chaos-resolution">BACK TO EXPERIMENTING.</div>
+            <p class="event-text" style="max-width:580px; margin: 1rem auto; font-size:1rem;">We began exploring another software approach for bubble detection to get better, more reliable results.</p>
+        </div>
+    </section>
+
+    <!-- ======== TEAM ======== -->
+    <section class="spread team-spread">
+        <div class="ruled-lines"></div>
+        <div class="section-tab tab-right">THE CREW</div>
+
+        <div class="chapter-heading">
+            <span class="chapter-number">03</span>
+            <h2>Who Actually Did What?</h2>
+            <p class="chapter-note">a two-person operation</p>
+        </div>
+
+        <div class="two-person-layout">
+
+            <!-- MEMBER 1 -->
+            <div class="member-card gsap-reveal" style="--card-rot: -3deg">
+                <div class="mc-tape"></div>
+                <!-- INSERT TEAM MEMBER 1 PHOTO -->
+                <div class="mc-photo"><div class="insert-label">📸 Photo</div></div>
+                <h3 class="mc-name">[TEAM MEMBER 1]</h3>
+                <div class="mc-role">[Role / contributions]</div>
+                <div class="mc-note">[What they actually did during the hackathon]</div>
+                <!-- To replace: change the above text with actual name, role, and contribution -->
+            </div>
+
+            <!-- "VS" / connector in the middle -->
+            <div class="team-connector">
+                <div class="tc-line"></div>
+                <div class="tc-badge">+</div>
+                <div class="tc-line"></div>
+                <p class="tc-note">"two laptops,<br>one mission"</p>
+            </div>
+
+            <!-- MEMBER 2 -->
+            <div class="member-card gsap-reveal" style="--card-rot: 2deg">
+                <div class="mc-tape"></div>
+                <!-- INSERT TEAM MEMBER 2 PHOTO -->
+                <div class="mc-photo"><div class="insert-label">📸 Photo</div></div>
+                <h3 class="mc-name">[TEAM MEMBER 2]</h3>
+                <div class="mc-role">[Role / contributions]</div>
+                <div class="mc-note">[What they actually did during the hackathon]</div>
+            </div>
+
+        </div>
+
+        <div class="collab-note paper-block gsap-reveal">
+            <h4>How we worked together</h4>
+            <p>[Editable: describe how tasks were split, how decisions were made, and how two people managed to ship something overnight.]</p>
+            <div class="collab-banner">BUILDING TOGETHER > BUILDING PERFECTLY</div>
+        </div>
+    </section>
+
+    <!-- ======== LEARNINGS ======== -->
+    <section class="spread learnings-spread">
+        <div class="ruled-lines"></div>
+        <div class="section-tab">LEARNINGS</div>
+
+        <div class="chapter-heading">
+            <span class="chapter-number">04</span>
+            <h2>Things We Learned the Hard Way</h2>
+            <p class="chapter-note">no fluff, all honest</p>
+        </div>
+
+        <div class="learnings-board">
+
+            <div class="learn-card lc-yellow gsap-reveal" style="--r: -2deg">
+                <div class="lc-tape"></div>
+                <h4>OpenCV & Computer Vision</h4>
+                <div class="lc-row"><strong>Tried:</strong> <span>[placeholder]</span></div>
+                <div class="lc-row"><strong>Happened:</strong> <span>[placeholder]</span></div>
+                <div class="lc-row"><strong>Learned:</strong> <span>[placeholder]</span></div>
+            </div>
+
+            <div class="learn-card lc-pink gsap-reveal" style="--r: 3deg; margin-top:2rem">
+                <div class="lc-tape"></div>
+                <h4>AI Model Limitations</h4>
+                <div class="lc-row"><strong>Tried:</strong> <span>[placeholder]</span></div>
+                <div class="lc-row"><strong>Happened:</strong> <span>[placeholder]</span></div>
+                <div class="lc-row"><strong>Learned:</strong> <span>[placeholder]</span></div>
+            </div>
+
+            <div class="learn-card lc-green gsap-reveal" style="--r: -1deg">
+                <div class="lc-tape"></div>
+                <h4>Debugging & Web Deployment</h4>
+                <div class="lc-row"><strong>Tried:</strong> <span>[placeholder]</span></div>
+                <div class="lc-row"><strong>Happened:</strong> <span>[placeholder]</span></div>
+                <div class="lc-row"><strong>Learned:</strong> <span>[placeholder]</span></div>
+            </div>
+
+            <div class="learn-card lc-white gsap-reveal" style="--r: 2deg; margin-top:2rem">
+                <div class="lc-tape"></div>
+                <h4>Building Under Time Pressure</h4>
+                <div class="lc-row"><strong>Tried:</strong> <span>[placeholder]</span></div>
+                <div class="lc-row"><strong>Happened:</strong> <span>[placeholder]</span></div>
+                <div class="lc-row"><strong>Learned:</strong> Choosing the practical approach over the theoretically correct one is a legitimate skill.</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ======== GALLERY ======== -->
+    <section class="spread gallery-spread">
+        <div class="ruled-lines"></div>
+        <div class="section-tab tab-right">PHOTOS</div>
+
+        <div class="chapter-heading">
+            <span class="chapter-number">05</span>
+            <h2>Visual Documentation</h2>
+            <p class="chapter-note">"pics or it didn't happen"</p>
+        </div>
+
+        <div class="pinboard">
+            <div class="pinboard-item pi-1 gsap-reveal">
+                <div class="pin"></div>
+                <!-- INSERT DURING-THE-BUILD PHOTO -->
+                <div class="pi-img"><div class="insert-label">📸 During the build</div></div>
+                <div class="pi-caption">DURING THE BUILD</div>
+            </div>
+            <div class="pinboard-item pi-2 gsap-reveal">
+                <div class="pin"></div>
+                <!-- INSERT FAILED ATTEMPTS SCREENSHOT -->
+                <div class="pi-img"><div class="insert-label">📸 Failed attempts</div></div>
+                <div class="pi-caption">FAILED ATTEMPTS</div>
+            </div>
+            <div class="pinboard-item pi-3 gsap-reveal">
+                <div class="pin"></div>
+                <!-- INSERT THE UI SCREENSHOT -->
+                <div class="pi-img"><div class="insert-label">📸 The final UI</div></div>
+                <div class="pi-caption">THE UI</div>
+            </div>
+            <div class="pinboard-item pi-4 gsap-reveal">
+                <div class="pin"></div>
+                <!-- INSERT TEAM PHOTO -->
+                <div class="pi-img"><div class="insert-label">📸 The team</div></div>
+                <div class="pi-caption">THE TEAM (both of us)</div>
+            </div>
+            <div class="pinboard-item pi-5 gsap-reveal">
+                <div class="pin"></div>
+                <!-- INSERT BIRIYANI PHOTO -->
+                <div class="pi-img biriyani-ph-small"><div class="insert-label">📸 THE BIRIYANI</div></div>
+                <div class="pi-caption">VERY IMPORTANT BIRIYANI</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== REALITY CHECK ======== -->
+    <section class="spread reality-spread">
+        <div class="ruled-lines"></div>
+        <div class="section-tab">REALITY CHECK</div>
+
+        <div class="chapter-heading">
+            <span class="chapter-number">06</span>
+            <h2>A Little Project Reality Check</h2>
+        </div>
+
+        <div class="comic-board">
+            <div class="cb-row gsap-reveal"><div class="cb-us">Us:</div><div class="cb-bubble say">"Try this."</div><div class="cb-gap">→</div><div class="cb-bubble reply">"Nope."</div></div>
+            <div class="cb-row gsap-reveal"><div class="cb-us">Us:</div><div class="cb-bubble say">"Try this one."</div><div class="cb-gap">→</div><div class="cb-bubble reply">"Also nope."</div></div>
+            <div class="cb-row gsap-reveal"><div class="cb-us">Us:</div><div class="cb-bubble say">"Okay, OpenCV."</div><div class="cb-gap">→</div><div class="cb-bubble reply win-reply">"Wait. That works."</div></div>
+            <div class="cb-row gsap-reveal"><div class="cb-us">Us:</div><div class="cb-bubble say">"Let's make it interactive."</div><div class="cb-gap">→</div><div class="cb-bubble reply">"Can we pop the bubbles?"</div></div>
+            <div class="cb-row cb-mono gsap-reveal"><div class="cb-us">Us:</div><div class="cb-bubble say">"Sure."</div></div>
+            <div class="cb-row gsap-reveal"><div class="cb-us">Us:</div><div class="cb-bubble say">"Let's put it online."</div><div class="cb-gap">→</div><div class="cb-bubble reply err-reply">"Why is the model getting worse?"</div></div>
+            <div class="cb-row cb-mono gsap-reveal"><div class="cb-us">Us:</div><div class="cb-bubble say say-quiet">"…okay. back to experimenting."</div></div>
+        </div>
+    </section>
+
+    <!-- ======== SURVIVAL STATS ======== -->
+    <section class="spread stats-spread">
+        <div class="ruled-lines"></div>
+
+        <div class="chapter-heading">
+            <span class="chapter-number">07</span>
+            <h2>Hackathon Survival Stats</h2>
+            <p class="chapter-note">official nutrition and AI report</p>
+        </div>
+
+        <div class="stats-diptych">
+            <div class="stats-column">
+                <h4 class="stats-col-head">Consumed</h4>
+                <div class="stat-item gsap-reveal"><span class="si-emoji">🍗</span><span class="si-name">Biriyani</span><span class="si-val">1</span></div>
+                <div class="stat-item gsap-reveal"><span class="si-emoji">🥤</span><span class="si-name">Coca-Cola</span><span class="si-val">1</span></div>
+                <div class="stat-item gsap-reveal"><span class="si-emoji">🍪</span><span class="si-name">Biscuit packet</span><span class="si-val">1</span></div>
+            </div>
+
+            <div class="stats-divider-v"></div>
+
+            <div class="stats-column">
+                <h4 class="stats-col-head">AI Approaches</h4>
+                <div class="stat-item ai-stat gsap-reveal"><span class="si-emoji">❌</span><span class="si-name ai-fail">Moondream</span></div>
+                <div class="stat-item ai-stat gsap-reveal"><span class="si-emoji">❌</span><span class="si-name ai-fail">YOLO</span></div>
+                <div class="stat-item ai-stat gsap-reveal"><span class="si-emoji">❌</span><span class="si-name ai-fail">Hugging Face / SME</span></div>
+                <div class="stat-item ai-stat gsap-reveal"><span class="si-emoji">✅</span><span class="si-name ai-win">OpenCV</span></div>
+            </div>
+
+            <div class="stats-divider-v"></div>
+
+            <div class="stats-column">
+                <h4 class="stats-col-head">Timeline</h4>
+                <div class="stat-item gsap-reveal"><span class="si-emoji">🕛</span><span class="si-name">Serious build started</span><span class="si-val">~12 AM</span></div>
+                <div class="stat-item gsap-reveal"><span class="si-emoji">🏁</span><span class="si-name">Almost finished</span><span class="si-val">~1:30 AM</span></div>
+                <div class="stat-item gsap-reveal"><span class="si-emoji">😴</span><span class="si-name">Hours of sleep</span><span class="si-val">¯\_(ツ)_/¯</span></div>
+            </div>
+        </div>
+
+        <div class="stats-sticky gsap-reveal">
+            "By the time we finished, one Coca-Cola and a packet of biscuits had also disappeared somewhere along the way."
+        </div>
+    </section>
+
+    <!-- ======== FINAL PAGE ======== -->
+    <section class="spread final-spread">
+        <div class="ruled-lines"></div>
+
+        <div class="final-content">
+            <div class="final-journey-trail gsap-reveal">
                 Moondream → YOLO → Hugging Face → OpenCV → biriyani → music → back to work → midnight build → almost finished → fun features → deployment → debugging again
             </div>
+            <h1 class="final-title gsap-reveal">And Somehow…<br>We Built It.</h1>
+            <p class="final-not-smooth gsap-reveal">"Not the smoothest journey."</p>
+            <p class="final-but-ours gsap-reveal">But definitely ours.</p>
+            <div class="final-doodles gsap-reveal">☕ 🫧 💻</div>
+        </div>
+    </section>
 
-            <p class="handwritten-note signature-note">
-                "Not the smoothest journey."
-            </p>
-            <h2 class="massive-handwritten-title blue-ink" style="margin-top: 2rem;">
-                But definitely ours.
-            </h2>
-            
-            <div class="doodle final-doodle">❤️💻🫧</div>
-        </section>
+    <!-- ======== FOOTER ======== -->
+    <footer class="journal-footer">
+        <div class="footer-inner">
+            <p class="footer-event">Built during <strong>Useless Projects 3.0</strong></p>
+            <p class="footer-project">☕ Chai Bubble Detector</p>
+            <p class="footer-note">"Documented as it actually happened."</p>
+        </div>
+    </footer>
 
-        <footer class="journal-footer">
-            <p>Built during <strong>Useless Projects 3.0</strong></p>
-            <p><strong>Chai Bubble Detector</strong></p>
-            <p class="handwritten-note">"Documented as it actually happened."</p>
-        </footer>
+</div><!-- end .notebook -->
 
-    </div>
-
-    <!-- Initialization Script -->
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
