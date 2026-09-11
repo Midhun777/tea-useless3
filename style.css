@@ -1282,6 +1282,95 @@ body {
 /* ─── GSAP INITIAL STATES ────────────────────────── */
 .gsap-reveal { opacity: 0; transform: translateY(24px); }
 
+/* ─── README BLOCK ──────────────────────────────────── */
+.readme-block {
+    background: #0d1117;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.2rem 0;
+    box-shadow: var(--shadow-hard);
+    font-family: var(--mono);
+}
+.readme-header {
+    background: #161b22;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-bottom: 1px solid #30363d;
+}
+.readme-icon { font-size: 1rem; }
+.readme-name {
+    font-size: 0.9rem;
+    color: #58a6ff;
+    font-weight: bold;
+}
+.readme-badge {
+    font-size: 0.7rem;
+    color: #666;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #30363d;
+    padding: 0.1rem 0.5rem;
+    border-radius: 10px;
+    margin-left: auto;
+}
+.readme-preview {
+    padding: 1rem 1.2rem;
+}
+.rp-line {
+    margin-bottom: 0.3rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+.rp-h1  { color: #f0f6fc; font-size: 1rem; font-weight: bold; }
+.rp-h2  { color: #c9d1d9; margin-top: 0.5rem; }
+.rp-text { color: #8b949e; }
+.rp-muted { color: #484f58; font-style: italic; }
+.readme-note {
+    font-family: var(--notes);
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.35);
+    padding: 0.8rem 1.2rem;
+    border-top: 1px solid #21262d;
+}
+
+/* ─── LANDING PAGE TECH TAGS ─────────────────────── */
+.lp-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+.lp-tag {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    background: rgba(30,58,138,0.08);
+    color: var(--ink-blue);
+    border: 1px solid rgba(30,58,138,0.2);
+    letter-spacing: 0.04em;
+}
+
+/* ─── EXTRAS LIST ────────────────────────────────── */
+.extras-list {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    border-radius: 3px;
+}
+.extra-item {
+    font-family: var(--hand);
+    font-size: 1.2rem;
+    color: var(--ink-green);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+.extra-item span { color: #555; }
+
 /* ─── RESPONSIVE ─────────────────────────────────── */
 @media (max-width: 768px) {
     .spread { padding: 3rem 1.5rem 3rem 3.5rem; }
