@@ -4,20 +4,13 @@ import { evaluateChaiQuality } from "./ChaiEvaluator";
 
 /**
  * AnimeBrewingAnimation Component
- * Anime.js v4 powered step-by-step visual brewing sequence:
- * - Falling tea leaves into cup
- * - Milk pouring stream
- * - Liquid color blend transition
- * - Stirring wobble
- * - Elastic foam bubbles popping on the surface
- * - Continuous steam wisps
- * - Tea Quality Rating & Critique
+ * Anime.js v4 powered visual brewing sequence.
+ * Includes fail-safe execution to guarantee transition to result screen.
  */
 export default function AnimeBrewingAnimation({ recipe, onComplete }) {
   const containerRef = useRef(null);
   const liquidRef = useRef(null);
   const milkStreamRef = useRef(null);
-  const bubblesRef = useRef(null);
 
   const evaluation = evaluateChaiQuality(recipe);
 
@@ -38,89 +31,105 @@ export default function AnimeBrewingAnimation({ recipe, onComplete }) {
   else if (teaRatio > 0.7) targetColor = "#50200C";
 
   useEffect(() => {
-    if (!containerRef.current) return;
-
-    // 1. Initial hidden state using Anime.js v4 set()
-    set(".tea-leaf", { opacity: 0, translateY: -40, scale: 0.5 });
-    if (milkStreamRef.current) set(milkStreamRef.current, { scaleY: 0, opacity: 0 });
-    set(".foam-bubble-pop", { scale: 0, opacity: 0 });
-    set(".spice-particle", { opacity: 0, translateY: -20 });
-
-    // 2. Timeline using Anime.js v4 createTimeline()
-    const tl = createTimeline({
-      onComplete: () => {
+    let completed = false;
+    const safeComplete = () => {
+      if (!completed) {
+        completed = true;
         if (onComplete) onComplete();
-      },
-    });
+      }
+    };
 
-    // Step A: Tea leaves fall into cup
-    tl.add(".tea-leaf", {
-      opacity: [0, 1],
-      translateY: [-40, 20],
-      scale: [0.5, 1],
-      delay: stagger(120),
-      duration: 600,
-      ease: "easeOutBack",
-    });
+    // Guarantee progression even if animation is interrupted
+    const fallbackTimer = setTimeout(safeComplete, 3500);
 
-    // Step B: Milk stream pours down
-    if (milkStreamRef.current) {
-      tl.add(milkStreamRef.current, {
-        opacity: [0, 1],
-        scaleY: [0, 1],
-        duration: 500,
-        ease: "easeOutQuad",
+    try {
+      if (!containerRef.current) return;
+
+      // 1. Initial hidden state using Anime.js v4 set()
+      set(".tea-leaf", { opacity: 0, translateY: -40, scale: 0.5 });
+      if (milkStreamRef.current) set(milkStreamRef.current, { scaleY: 0, opacity: 0 });
+      set(".foam-bubble-pop", { scale: 0, opacity: 0 });
+      set(".spice-particle", { opacity: 0, translateY: -20 });
+
+      // 2. Timeline using Anime.js v4
+      const tl = createTimeline({
+        onComplete: safeComplete,
       });
+
+      // Step A: Tea leaves fall into cup
+      tl.add(".tea-leaf", {
+        opacity: [0, 1],
+        translateY: [-40, 20],
+        scale: [0.5, 1],
+        delay: stagger(120),
+        duration: 600,
+        ease: "outBack",
+      });
+
+      // Step B: Milk stream pours down
+      if (milkStreamRef.current) {
+        tl.add(milkStreamRef.current, {
+          opacity: [0, 1],
+          scaleY: [0, 1],
+          duration: 500,
+          ease: "outQuad",
+        });
+      }
+
+      // Step C: Liquid color blends to chai color
+      if (liquidRef.current) {
+        tl.add(liquidRef.current, {
+          fill: ["#F3EBDD", targetColor],
+          duration: 1000,
+          ease: "inOutQuad",
+        }, "-=200");
+      }
+
+      // Step D: Spices drop if enabled
+      tl.add(".spice-particle", {
+        opacity: [0, 1],
+        translateY: [-20, 0],
+        delay: stagger(150),
+        duration: 500,
+        ease: "outBounce",
+      }, "-=300");
+
+      // Step E: Stirring wobble
+      tl.add(containerRef.current, {
+        rotate: [-3, 3, -2, 2, 0],
+        duration: 700,
+        ease: "inOutSine",
+      });
+
+      // Step F: Foam bubbles pop on surface
+      tl.add(".foam-bubble-pop", {
+        scale: [0, 1],
+        opacity: [0, 1],
+        delay: stagger(30),
+        duration: 700,
+        ease: "outElastic",
+      }, "-=400");
+
+      // Continuous steam wisp animation
+      animate(".steam-wisp-anime", {
+        translateY: [0, -35],
+        opacity: [0.7, 0],
+        duration: 1800,
+        delay: stagger(300),
+        loop: true,
+        ease: "linear",
+      });
+    } catch (err) {
+      console.warn("Anime.js animation fallback:", err);
     }
 
-    // Step C: Liquid color blends to chai color
-    if (liquidRef.current) {
-      tl.add(liquidRef.current, {
-        fill: ["#F3EBDD", targetColor],
-        duration: 1000,
-        ease: "easeInOutQuad",
-      }, "-=200");
-    }
-
-    // Step D: Spices drop if enabled
-    tl.add(".spice-particle", {
-      opacity: [0, 1],
-      translateY: [-20, 0],
-      delay: stagger(150),
-      duration: 500,
-      ease: "easeOutBounce",
-    }, "-=300");
-
-    // Step E: Stirring wobble
-    tl.add(containerRef.current, {
-      rotate: [-3, 3, -2, 2, 0],
-      duration: 700,
-      ease: "easeInOutSine",
-    });
-
-    // Step F: Foam bubbles pop on surface with elastic bounce
-    tl.add(".foam-bubble-pop", {
-      scale: [0, 1],
-      opacity: [0, 1],
-      delay: stagger(30),
-      duration: 700,
-      ease: "easeOutElastic(1, 0.5)",
-    }, "-=400");
-
-    // Continuous steam wisp animation
-    animate(".steam-wisp-anime", {
-      translateY: [0, -35],
-      opacity: [0.7, 0],
-      duration: 1800,
-      delay: stagger(300),
-      loop: true,
-      ease: "linear",
-    });
-
+    return () => {
+      clearTimeout(fallbackTimer);
+    };
   }, []);
 
   return (
-    <div className="w-full max-w-xl flex flex-col items-center gap-4 py-4">
+    <div className="w-full max-w-xl flex flex-col items-center gap-4 py-4 animate-fade-in">
       {/* Anime.js Stage */}
       <div ref={containerRef} className="relative w-[280px] h-[240px] flex items-center justify-center">
         {/* Steam Wisps */}
@@ -179,7 +188,7 @@ export default function AnimeBrewingAnimation({ recipe, onComplete }) {
           {cardamom && <ellipse className="spice-particle" cx="155" cy="77" rx="3.5" ry="2" fill="#52A054" stroke="#1E1610" strokeWidth="1" />}
 
           {/* Foam Bubbles Elastic Pop Group */}
-          <g ref={bubblesRef}>
+          <g>
             {Array.from({ length: foam.type === "small" ? 30 : foam.type === "large" ? 10 : 20 }).map((_, idx) => {
               const angle = (idx / 20) * Math.PI * 2;
               const r = 4 + (idx % 4) * 2;

@@ -62,7 +62,7 @@ export default function CodeAChai() {
     if (res.action === "brew") {
       setTimeout(() => {
         setCodeChaiPhase("COMPILING");
-      }, 600);
+      }, 400);
     }
   };
 
@@ -152,9 +152,7 @@ export default function CodeAChai() {
         <AnimeBrewingAnimation
           recipe={chaiRecipe}
           onComplete={() => {
-            setTimeout(() => {
-              setCodeChaiPhase("RESULT");
-            }, 1200);
+            setCodeChaiPhase("RESULT");
           }}
         />
       )}
