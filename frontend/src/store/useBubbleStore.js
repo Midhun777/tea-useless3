@@ -5,7 +5,7 @@ import { analyzeImage } from "../services/api";
 export const SAMPLE_SPECIMENS = [
   {
     id: "specimen-cutting",
-    name: "Specimen 01: Mumbai Cutting Chai",
+    name: "Specimen 01: Mumbai Cutting ചായ",
     tag: "High froth meniscus, road-stall ambient steam",
     color: "#C8783E",
     sampleUrl: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=900&q=80",
@@ -15,7 +15,7 @@ export const SAMPLE_SPECIMENS = [
       stats: { small_candidates: 62, medium_candidates: 24, large_candidates: 8, merged_candidates: 52, final_bubbles: 47 },
       bubbles: generateRealisticBubbles(47, 800, 600),
       verdict: {
-        title: "Chaotic Chai",
+        title: "Chaotic ചായ",
         status: "Bubble density: unnecessarily impressive.",
         observation: "Aggressive boiling pattern detected. Foam demonstrates stubborn resistance to atmospheric dissipation.",
         recommendation: "Consume with Parle-G immediately to stabilize surface tension."
@@ -34,7 +34,7 @@ export const SAMPLE_SPECIMENS = [
       stats: { small_candidates: 85, medium_candidates: 30, large_candidates: 10, merged_candidates: 72, final_bubbles: 64 },
       bubbles: generateRealisticBubbles(64, 800, 600),
       verdict: {
-        title: "Overachiever Chai",
+        title: "Overachiever ചായ",
         status: "Foam personality: wildly ambitious.",
         observation: "Bubble colony spans edge-to-edge. Micro-structures indicate high kinetic aeration during hand-pour.",
         recommendation: "Submit findings to the Indian National Academy of Tea Physics."
@@ -53,7 +53,7 @@ export const SAMPLE_SPECIMENS = [
       stats: { small_candidates: 28, medium_candidates: 11, large_candidates: 4, merged_candidates: 25, final_bubbles: 23 },
       bubbles: generateRealisticBubbles(23, 800, 600),
       verdict: {
-        title: "Calm Zen Chai",
+        title: "Calm Zen ചായ",
         status: "Bubble tension: meditative.",
         observation: "Subtle micro-foam forming a peaceful halo along the clay rim. Minimal gas turbulence.",
         recommendation: "Sip with solemn respect. No abrupt movements."
@@ -115,8 +115,8 @@ export function computeVerdict(total, small, medium, large) {
     };
   } else if (total > 35) {
     return {
-      title: "Chaotic Chai",
-      status: "Chai foam status: dramatic.",
+      title: "Chaotic ചായ",
+      status: "ചായ foam status: dramatic.",
       observation: "Irregular clustering along the meniscus suggests spirited boiling and high ginger-cardamom vibration.",
       recommendation: "Recommended dosage: 2 biscuits, promptly dunked."
     };
@@ -129,9 +129,9 @@ export function computeVerdict(total, small, medium, large) {
     };
   } else {
     return {
-      title: "Calm Chai",
+      title: "Calm ചായ",
       status: "Surface status: contemplative.",
-      observation: "Low bubble population. Chai is either cooling gracefully or deliberately avoiding scrutiny.",
+      observation: "Low bubble population. ചായ is either cooling gracefully or deliberately avoiding scrutiny.",
       recommendation: "Stir counter-clockwise to stimulate curiosity."
     };
   }

@@ -36,7 +36,7 @@ export default function ResultScreen() {
           BUILD SUCCESSFUL ✓
         </span>
         <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink">
-          YOUR DREAM CHAI
+          YOUR DREAM ചായ
         </h2>
 
         {/* TEA QUALITY RATING BADGE & SOMMELIER VERDICT */}
@@ -99,7 +99,7 @@ export default function ResultScreen() {
             onClick={handleCompareWithRealChai}
             size="md"
           >
-            COMPARE WITH REAL CHAI
+            COMPARE WITH REAL ചായ
           </IllustratedButton>
 
           <button

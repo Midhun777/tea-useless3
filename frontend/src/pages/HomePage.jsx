@@ -20,13 +20,13 @@ export default function HomePage() {
           <span>🫧</span> Classical OpenCV · No ML Required
         </div>
         <h1 className="text-4xl md:text-5xl font-bold text-brand-100 leading-tight">
-          Chai Bubble
+          ചായ Bubble
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-brand-600">
             {" "}Detector
           </span>
         </h1>
         <p className="text-brand-500 mt-3 text-base max-w-md mx-auto">
-          Upload a chai foam image. We'll detect and classify every bubble —
+          Upload a ചായ foam image. We'll detect and classify every bubble —
           small, medium, and large — using Hough circles, contours, and edge detection.
         </p>
       </header>

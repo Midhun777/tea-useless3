@@ -122,7 +122,7 @@ export default function CodeAChai() {
       {/* Page Masthead Header */}
       <div className="text-center max-w-2xl mb-6">
         <h1 className="font-display text-4xl sm:text-5xl font-bold text-ink tracking-tight">
-          Code a Chai
+          Code a ചായ
         </h1>
         <p className="font-handwritten text-xl sm:text-2xl text-chai font-semibold mt-1">
           Program your perfect cup using ChaiScript.

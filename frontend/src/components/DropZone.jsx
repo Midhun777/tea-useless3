@@ -68,7 +68,7 @@ export default function DropZone() {
         <div className="w-full flex flex-col items-center gap-3">
           <img
             src={preview}
-            alt="Chai foam preview"
+            alt="ചായ foam preview"
             className="max-h-80 w-full object-contain rounded-xl"
           />
           <button
@@ -103,7 +103,7 @@ export default function DropZone() {
 
           <div className="text-center">
             <p className="text-brand-200 font-semibold text-lg">
-              Drop your chai image here
+              Drop your ചായ image here
             </p>
             <p className="text-brand-500 text-sm mt-1">
               or click to browse · JPEG, PNG, WebP

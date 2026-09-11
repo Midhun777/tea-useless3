@@ -148,7 +148,7 @@ export default function BubbleResultsView() {
           onClick={() => setStage("tray")}
           className="flex items-center gap-1.5 font-technical text-xs uppercase tracking-wider text-ink-faint hover:text-ink font-semibold"
         >
-          <span className="text-base font-bold">←</span> Inspect Another Chai
+          <span className="text-base font-bold">←</span> Inspect Another ചായ
         </button>
 
         <div className="flex items-center gap-3">
@@ -182,7 +182,7 @@ export default function BubbleResultsView() {
             <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border-2 border-ink bg-chai-dark/10">
               <img
                 src={preview}
-                alt="Chai bubble specimen"
+                alt="ചായ bubble specimen"
                 className="w-full h-full object-cover select-none"
               />
 
@@ -598,7 +598,7 @@ export default function BubbleResultsView() {
               onClick={() => playWithRealChai(results)}
               className="w-full sm:flex-1 px-5 py-3 font-technical text-xs uppercase font-extrabold tracking-wider rounded-xl border-2 border-ink bg-terracotta text-paper hover:bg-terracotta-dark hover:scale-[1.02] transition-all shadow-sketch flex items-center justify-center gap-2"
             >
-              <span>PLAY WITH THIS CHAI 🎮</span>
+              <span>POP GLASS BUBBLES 🫧</span>
             </button>
 
             <IllustratedButton

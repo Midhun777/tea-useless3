@@ -17,14 +17,14 @@ export default function GameOver({
     if (s >= 6000) {
       return {
         title: "BUBBLE MENACE 👑",
-        subtitle: "Supreme Chai Overlord",
-        desc: "ABSOLUTE LEGEND. No bubble survives your gaze. The chai foam bows down before you.",
+        subtitle: "Supreme ചായ Overlord",
+        desc: "ABSOLUTE LEGEND. No bubble survives your gaze. The ചായ foam bows down before you.",
         badgeColor: "from-amber-400 to-yellow-600 text-black",
       };
     }
     if (s >= 3500) {
       return {
-        title: "Chai Master ☕",
+        title: "ചായ Master ☕",
         subtitle: "Elite Foam Controller",
         desc: "Elite foam control! The computer vision laboratory hereby standardizes your popping technique.",
         badgeColor: "from-amber-600 to-orange-600 text-white",
@@ -55,7 +55,7 @@ export default function GameOver({
       };
     }
     return {
-      title: "Chai Sleeper 💤",
+      title: "ചായ Sleeper 💤",
       subtitle: "Stove Left on Low",
       desc: "Did you leave the stove on low fire? The bubbles outpaced your reflexes completely.",
       badgeColor: "from-stone-700 to-stone-900 text-white",
@@ -133,7 +133,7 @@ export default function GameOver({
           <div className="text-xs text-[#FAF6EE]/70 bg-black/30 p-2.5 rounded-xl border border-white/5 flex items-center justify-center gap-2">
             <span>☕ Played with Specimen:</span>
             <strong className="text-[#FF9D42] font-mono">
-              {customProfile.name || "Real OpenCV Chai"}
+              {customProfile.name || "Real OpenCV ചായ"}
             </strong>
           </div>
         )}
@@ -156,7 +156,7 @@ export default function GameOver({
             onClick={onAnalyzeChai}
             className="w-full sm:w-auto px-5 py-3.5 bg-black/40 hover:bg-black/60 border border-white/10 text-amber-300 font-bold rounded-2xl transition-all hover:scale-105 text-xs uppercase"
           >
-            ANALYZE CHAI 🔬
+            ANALYZE ചായ 🔬
           </button>
         </div>
       </div>

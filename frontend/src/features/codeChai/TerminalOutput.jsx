@@ -13,7 +13,7 @@ export default function TerminalOutput({ history }) {
           ☕ CHAISCRIPT INTERACTIVE COMPILER v1.0
         </div>
         <p className="text-[#CDB397]">
-          Welcome to the terminal chai laboratory. Type commands to craft your recipe.
+          Welcome to the terminal ചായ laboratory. Type commands to craft your recipe.
         </p>
         <div className="mt-2 text-[11px] text-[#A68F7A]">
           Type <code className="text-[#F5CA80] font-bold">chai.init</code> to start or <code className="text-[#F5CA80] font-bold">chai.help</code> for commands.

@@ -17,7 +17,7 @@ import useBubbleStore from "../store/useBubbleStore";
  *    - Useless Statistics Banner & Bottom CTA
  */
 export default function ChaiHero() {
-  const { setStage } = useBubbleStore();
+  const { setStage, setRoute } = useBubbleStore();
   const heroContainerRef = useRef(null);
   const headlineRef = useRef(null);
   const sublineRef = useRef(null);
@@ -150,7 +150,7 @@ export default function ChaiHero() {
             ref={headlineRef}
             className="font-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-ink leading-tight"
           >
-            How Bubbly Is Your Chai?
+            How Bubbly Is Your ചായ?
           </h1>
           <p
             ref={sublineRef}
@@ -160,8 +160,8 @@ export default function ChaiHero() {
           </p>
         </div>
 
-        {/* Action Button */}
-        <div ref={ctaContainerRef} className="flex items-center justify-center pt-2">
+        {/* Action Buttons: Count Bubbles + Code a Chai Terminal */}
+        <div ref={ctaContainerRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
           <IllustratedButton
             id="btn-count-bubbles"
             onClick={handleStartInspection}
@@ -169,6 +169,20 @@ export default function ChaiHero() {
           >
             COUNT MY BUBBLES 🔬
           </IllustratedButton>
+
+          <button
+            type="button"
+            onClick={() => setRoute("code-a-chai")}
+            className="group relative px-6 py-3.5 rounded-2xl bg-[#1E1610] text-[#F7EEDF] border-3 border-ink font-mono text-sm font-bold tracking-wider hover:bg-[#2A1D16] hover:scale-[1.03] transition-all shadow-sketch flex items-center gap-3 cursor-pointer"
+          >
+            <span className="flex items-center gap-1.5 text-saffron font-extrabold">
+              <span className="text-xs text-terracotta">&gt;</span> chai.init
+            </span>
+            <span className="w-2 h-4 bg-saffron animate-pulse" />
+            <span className="text-xs text-paper/80 group-hover:text-paper uppercase tracking-widest border-l border-paper/20 pl-3">
+              Code a ചായ 💻
+            </span>
+          </button>
         </div>
       </section>
 
@@ -180,7 +194,7 @@ export default function ChaiHero() {
 
 
         {/* Central Illustrated Chai Cup (Starts hidden, reveals on scroll) */}
-        <div className="relative w-full max-w-3xl flex items-center justify-center my-4 py-8 rounded-3xl bg-paper-dark/60 border-2 border-dashed border-ink/20 lab-grid">
+        <div className="relative w-full max-w-3xl flex items-center justify-center my-4 py-4 bg-transparent">
           {/* Scientific Annotations Overlay */}
           <LabAnnotations />
 
@@ -196,6 +210,81 @@ export default function ChaiHero() {
         <p className="font-technical text-xs text-ink-faint tracking-wider uppercase text-center">
           [ TIP: Click micro-bubbles inside the glass foam to pop them live ]
         </p>
+      </section>
+
+      {/* ── CHAISCRIPT TERMINAL PORTAL CARD ────────────────────────────── */}
+      <section className="w-full max-w-5xl mx-auto px-4">
+        <div
+          onClick={() => setRoute("code-a-chai")}
+          className="group relative rounded-2xl bg-[#1E1610] border-3 border-ink shadow-sketch p-6 sm:p-8 cursor-pointer overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-sketch-lg"
+        >
+          {/* Terminal Window Header Bar */}
+          <div className="flex items-center justify-between border-b border-[#3D2C20] pb-3 mb-5 select-none">
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-[#E05342]" />
+              <span className="w-3 h-3 rounded-full bg-[#E5A83B]" />
+              <span className="w-3 h-3 rounded-full bg-[#4BB543]" />
+              <span className="font-mono text-xs text-paper/50 ml-2">
+                chaiscript-terminal v2.4
+              </span>
+            </div>
+            <div className="font-technical text-[10px] font-bold uppercase tracking-widest text-saffron bg-[#2A1D16] px-2.5 py-0.5 rounded border border-[#3D2C20]">
+              DEVELOPER IDE
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            {/* Left side: Terminal code output preview */}
+            <div className="lg:col-span-7 font-mono text-xs space-y-2 text-paper/90 bg-[#140E0B] p-4 rounded-xl border border-[#3D2C20] select-none">
+              <div className="text-saffron font-bold flex items-center gap-2">
+                <span className="text-terracotta">$</span> chai.init --recipe "Tapri Special"
+              </div>
+              <div className="text-paper/60 pl-3">
+                ✓ Environment initialized. Boiling matrix ready.
+              </div>
+              <div className="text-saffron font-bold flex items-center gap-2 pt-1">
+                <span className="text-terracotta">$</span> chai.set --tea CTC --milk 70% --cardamom 2
+              </div>
+              <div className="text-paper/60 pl-3">
+                ✓ Viscosity parameters configured.
+              </div>
+              <div className="text-saffron font-bold flex items-center gap-2 pt-1">
+                <span className="text-terracotta">$</span> chai.brew --time 180s --stir
+              </div>
+              <div className="text-saffron-dark font-extrabold flex items-center gap-2 pt-1">
+                <span className="w-2 h-2 rounded-full bg-saffron animate-pulse" />
+                <span>Ready to compile & brew live cup...</span>
+              </div>
+            </div>
+
+            {/* Right side: Action Prompt */}
+            <div className="lg:col-span-5 flex flex-col items-start justify-center space-y-3">
+              <div className="space-y-1.5">
+                <span className="font-handwritten text-2xl text-saffron font-bold block">
+                  Prefer coding your tea?
+                </span>
+                <h3 className="font-display font-bold text-xl sm:text-2xl text-paper">
+                  ChaiScript Terminal Compiler
+                </h3>
+                <p className="font-technical text-xs text-paper/70 leading-relaxed">
+                  Program your recipe line-by-line in code to compile, brew, and render an interactive animated cup.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setRoute("code-a-chai");
+                }}
+                className="w-full px-5 py-3 rounded-xl bg-chai text-paper font-technical font-extrabold text-xs uppercase tracking-wider border-2 border-paper/30 group-hover:border-paper group-hover:bg-saffron group-hover:text-ink transition-all shadow-sketch-sm flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>LAUNCH CHAISCRIPT TERMINAL</span>
+                <span className="text-base">💻</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ── 3. THREE PILLARS OF ABSURD SCIENCE ──────────────────────────── */}
@@ -273,7 +362,7 @@ export default function ChaiHero() {
             Official Laboratory Quality Scale
           </h2>
           <p className="font-technical text-xs sm:text-sm text-ink/70">
-            Categorizing tapri chai brews based strictly on bubble volume and froth integrity.
+            Categorizing tapri ചായ brews based strictly on bubble volume and froth integrity.
           </p>
         </div>
 
@@ -390,14 +479,14 @@ export default function ChaiHero() {
       <section className="w-full max-w-4xl mx-auto px-4 text-center space-y-6 pt-6">
         <div className="space-y-2">
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-ink tracking-tight">
-            Ready to Analyze Your Chai?
+            Ready to Analyze Your ചായ?
           </h2>
           <p className="font-handwritten text-2xl text-terracotta font-semibold">
             Upload your tea photograph to calculate foam volume and bubble density.
           </p>
         </div>
 
-        <div className="flex items-center justify-center pt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
           <IllustratedButton
             id="btn-bottom-count"
             onClick={handleStartInspection}
@@ -405,6 +494,15 @@ export default function ChaiHero() {
           >
             BEGIN BUBBLE CENSUS 🔬
           </IllustratedButton>
+
+          <button
+            type="button"
+            onClick={() => setRoute("code-a-chai")}
+            className="px-6 py-4 rounded-2xl bg-[#1E1610] text-[#F7EEDF] border-3 border-ink font-technical font-extrabold text-sm uppercase tracking-wider hover:bg-[#2A1D16] hover:scale-[1.03] transition-all shadow-sketch flex items-center gap-2.5 cursor-pointer"
+          >
+            <span>OPEN CHAISCRIPT TERMINAL</span>
+            <span className="text-base">💻</span>
+          </button>
         </div>
       </section>
     </div>

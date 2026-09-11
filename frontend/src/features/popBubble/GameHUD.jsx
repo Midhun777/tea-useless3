@@ -29,12 +29,12 @@ export default function GameHUD({
         <div className="hidden md:flex flex-col items-center">
           <div className="bg-[#1E1610]/90 backdrop-blur-md border border-[#DE764E]/30 px-4 py-1.5 rounded-full shadow-lg text-center">
             <span className="font-extrabold text-xs text-[#FF9D42] tracking-wider uppercase">
-              ☕ Endless Useless Chai Bubble Popper
+              ☕ Endless Useless ചായ Bubble Popper
             </span>
           </div>
           {customProfile && (
             <div className="text-[11px] text-[#FAF6EE]/80 mt-1 flex items-center gap-1.5 bg-black/40 px-3 py-0.5 rounded-full border border-white/10 pointer-events-auto">
-              <span>Specimen: {customProfile.name || "Real OpenCV Chai"}</span>
+              <span>Specimen: {customProfile.name || "Real OpenCV ചായ"}</span>
               <button
                 onClick={onClearProfile}
                 className="text-amber-300 hover:underline font-bold ml-1"

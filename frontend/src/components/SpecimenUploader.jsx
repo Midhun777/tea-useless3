@@ -99,7 +99,7 @@ export default function SpecimenUploader() {
             <div className="relative max-w-[440px] w-full aspect-video sm:aspect-[4/3] rounded-lg overflow-hidden border-2 border-ink shadow-sketch bg-paper">
               <img
                 src={preview}
-                alt="Selected chai specimen"
+                alt="Selected ചായ specimen"
                 className="w-full h-full object-cover"
               />
 
@@ -183,7 +183,7 @@ export default function SpecimenUploader() {
             </div>
 
             <span className="font-technical font-bold text-lg sm:text-xl uppercase tracking-widest text-ink mb-1">
-              DROP YOUR CHAI HERE
+              DROP YOUR ചായ HERE
             </span>
             <p className="font-handwritten text-2xl text-terracotta font-semibold mb-2">
               or click to place your tea photo on the laboratory tray

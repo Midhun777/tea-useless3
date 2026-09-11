@@ -21,7 +21,7 @@ export default function Navbar() {
         >
           <span className="w-3 h-3 rounded-full bg-terracotta border border-ink group-hover:scale-110 transition-transform" />
           <span className="font-technical font-bold text-sm sm:text-base tracking-widest uppercase text-ink group-hover:text-terracotta transition-colors">
-            CHAI BUBBLE LAB
+            ചായ BUBBLE LAB
           </span>
         </div>
 
@@ -35,7 +35,7 @@ export default function Navbar() {
                 : "bg-paper text-ink border-ink/30 hover:border-ink hover:bg-paper-dark"
             }`}
           >
-            Analyze Chai
+            Analyze ചായ
           </button>
 
           <button
@@ -46,7 +46,7 @@ export default function Navbar() {
                 : "bg-paper text-ink border-ink/30 hover:border-ink hover:bg-paper-dark"
             }`}
           >
-            <span>Code a Chai</span>
+            <span>Code a ചായ</span>
           </button>
 
           <button
@@ -57,7 +57,7 @@ export default function Navbar() {
                 : "bg-paper text-ink border-ink/30 hover:border-ink hover:bg-paper-dark"
             }`}
           >
-            <span>Pop the Bubble</span>
+            <span>Tea Glass Popper</span>
             <span className="w-2 h-2 rounded-full bg-saffron animate-pulse" />
           </button>
         </nav>

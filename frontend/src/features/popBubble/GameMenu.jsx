@@ -16,13 +16,13 @@ export default function GameMenu({ onStartGame, customProfile, onClearProfile })
         {/* Header Title */}
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#DE764E]/10 border border-[#DE764E]/30 text-[#DE764E] font-bold text-xs uppercase tracking-widest">
-            <span>🎮 CHAI LABORATORY MINI-GAME</span>
+            <span>🎮 ചായ LABORATORY MINI-GAME</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-black text-[#1E1610] tracking-tight font-serif">
             Pop the Bubble!
           </h1>
           <p className="text-sm md:text-base text-[#1E1610]/70 max-w-xl mx-auto font-medium">
-            Test your tapping speed on interactive hot chai foam. Build combos, burst golden cardamom bubbles, and earn your official Chai Performance Rank!
+            Test your tapping speed on interactive hot ചായ foam. Build combos, burst golden cardamom bubbles, and earn your official ചായ Performance Rank!
           </p>
         </div>
 
@@ -58,7 +58,7 @@ export default function GameMenu({ onStartGame, customProfile, onClearProfile })
               onClick={onClearProfile}
               className="text-xs text-[#FAF6EE]/60 hover:text-[#FAF6EE] underline px-3 py-1.5 hover:bg-white/5 rounded-lg transition-colors whitespace-nowrap"
             >
-              Use Standard Chai
+              Use Standard ചായ
             </button>
           </div>
         )}
