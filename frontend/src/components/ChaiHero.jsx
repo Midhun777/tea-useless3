@@ -25,6 +25,45 @@ export default function ChaiHero() {
   const ctaContainerRef = useRef(null);
   const cupWrapperRef = useRef(null);
   const stampRef = useRef(null);
+  const mascotRef = useRef(null);
+
+  // Mascot Pop Up / Pop Out Repeating Animation Loop
+  useEffect(() => {
+    if (!mascotRef.current) return;
+
+    // Initial state: hidden
+    gsap.set(mascotRef.current, {
+      scale: 0,
+      opacity: 0,
+      y: 30,
+      transformOrigin: "bottom right",
+    });
+
+    const mascotTl = gsap.timeline({ repeat: -1, repeatDelay: 10 });
+
+    mascotTl
+      .to(mascotRef.current, {
+        scale: 1,
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "back.out(1.7)",
+        delay: 1.2, // Initial entrance after 1.2s
+      })
+      .to(mascotRef.current, {
+        scale: 1,
+        duration: 3.8, // Stay visible for 3.8 seconds
+      })
+      .to(mascotRef.current, {
+        scale: 0,
+        opacity: 0,
+        y: 30,
+        duration: 0.5,
+        ease: "back.in(1.4)",
+      });
+
+    return () => mascotTl.kill();
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -166,7 +205,10 @@ export default function ChaiHero() {
       </div>
 
       {/* ── MASCOT POSITIONED AT EXTREME RIGHT EDGE ─────────────────────── */}
-      <div className="absolute bottom-2 right-0 sm:right-1 md:right-2 z-30 flex flex-col items-end group cursor-pointer pointer-events-auto">
+      <div
+        ref={mascotRef}
+        className="absolute bottom-2 right-0 sm:right-1 md:right-2 z-30 flex flex-col items-end group cursor-pointer pointer-events-auto"
+      >
         {/* Label Badge */}
         <div className="bg-paper border-2 border-ink px-3 py-1 rounded-xl shadow-sketch text-xs font-technical font-extrabold text-ink mb-1 transition-all group-hover:scale-105 group-hover:-translate-y-1">
           <span className="text-terracotta font-black">Useless Projects 3.0</span>
