@@ -31,13 +31,6 @@ export default function App() {
       {/* Global Top Navbar */}
       <Navbar />
 
-      {/* Ambient Footer Mark */}
-      <div className="fixed bottom-2 left-3 pointer-events-none z-50 hidden md:block">
-        <span className="font-handwritten text-sm text-ink-faint">
-          Dept. of Unnecessary Fluid Dynamics
-        </span>
-      </div>
-
       {/* Floating Animated Mascot Popup (10s Repeat Cycle) */}
       <MascotPopup />
 

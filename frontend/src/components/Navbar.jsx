@@ -23,9 +23,6 @@ export default function Navbar() {
           <span className="font-technical font-bold text-sm sm:text-base tracking-widest uppercase text-ink group-hover:text-terracotta transition-colors">
             CHAI BUBBLE LAB
           </span>
-          <span className="hidden md:inline font-handwritten text-base text-ink-faint border-l border-ink/20 pl-2.5">
-            Dept. of Unnecessary Fluid Dynamics
-          </span>
         </div>
 
         {/* Navigation Tabs */}

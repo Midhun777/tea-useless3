@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import useBubbleStore, { SAMPLE_SPECIMENS } from "../store/useBubbleStore";
 import IllustratedButton from "./illustrations/IllustratedButton";
-import { CornerRegistrationMarks, StampScientific } from "./illustrations/SpecimenMarks";
+import { CornerRegistrationMarks } from "./illustrations/SpecimenMarks";
 
 /**
  * SpecimenUploader Component
@@ -63,7 +63,6 @@ export default function SpecimenUploader() {
           <span className="font-handwritten text-xl text-terracotta font-bold">
             Phase 02: Specimen Intake
           </span>
-          <StampScientific />
         </div>
       </div>
 

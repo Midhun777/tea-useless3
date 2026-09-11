@@ -1,51 +1,66 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 export default function MascotPopup() {
   const mascotRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
+  // Monitor window scroll position to pop up mascot on scroll
   useEffect(() => {
-    if (!mascotRef.current) return;
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
 
-    // Set initial state: hidden below viewport corner
-    gsap.set(mascotRef.current, {
-      scale: 0,
-      opacity: 0,
-      y: 40,
-      transformOrigin: "bottom right",
-    });
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
-    // Create 10-second repeating popup timeline
-    const mascotTl = gsap.timeline({ repeat: -1, repeatDelay: 10 });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    mascotTl
-      .to(mascotRef.current, {
-        scale: 1,
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "back.out(1.7)",
-        delay: 1.5, // Initial pop up 1.5s after page load
-      })
-      .to(mascotRef.current, {
-        scale: 1,
-        duration: 4.0, // Stays visible for 4 seconds
-      })
-      .to(mascotRef.current, {
+  // Set initial hidden state on mount
+  useEffect(() => {
+    if (mascotRef.current) {
+      gsap.set(mascotRef.current, {
         scale: 0,
         opacity: 0,
         y: 40,
-        duration: 0.5,
+        transformOrigin: "bottom right",
+      });
+    }
+  }, []);
+
+  // Trigger GSAP pop-up / pop-out on scroll visibility state change
+  useEffect(() => {
+    if (!mascotRef.current) return;
+
+    if (isVisible) {
+      gsap.to(mascotRef.current, {
+        scale: 1,
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "back.out(1.7)",
+      });
+    } else {
+      gsap.to(mascotRef.current, {
+        scale: 0,
+        opacity: 0,
+        y: 40,
+        duration: 0.4,
         ease: "back.in(1.4)",
       });
-
-    return () => mascotTl.kill();
-  }, []);
+    }
+  }, [isVisible]);
 
   return (
     <div
       ref={mascotRef}
       className="fixed bottom-4 right-4 z-50 flex flex-col items-end pointer-events-auto cursor-pointer group"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
     >
       {/* Label Badge */}
       <div className="bg-paper border-2 border-ink px-3 py-1 rounded-xl shadow-sketch text-xs font-technical font-extrabold text-ink mb-1 transition-all group-hover:scale-105 group-hover:-translate-y-1">

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import useBubbleStore from "../store/useBubbleStore";
-import { CornerRegistrationMarks, StampScientific } from "./illustrations/SpecimenMarks";
+import { CornerRegistrationMarks } from "./illustrations/SpecimenMarks";
 
 /**
  * AnalysisScanner Component
@@ -62,7 +62,9 @@ export default function AnalysisScanner() {
 
         {/* Top badge */}
         <div className="mb-6">
-          <StampScientific />
+          <span className="font-handwritten text-xl text-terracotta font-bold">
+            Phase 03: Computer Vision Analysis
+          </span>
         </div>
 
         {/* ── CENTRAL OPTICAL SCANNER STAGE ─────────────────────────── */}

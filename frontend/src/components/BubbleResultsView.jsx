@@ -3,7 +3,7 @@ import gsap from "gsap";
 import confetti from "canvas-confetti";
 import useBubbleStore from "../store/useBubbleStore";
 import IllustratedButton from "./illustrations/IllustratedButton";
-import { CornerRegistrationMarks, StampScientific, StampUnnecessary } from "./illustrations/SpecimenMarks";
+import { CornerRegistrationMarks, StampUnnecessary } from "./illustrations/SpecimenMarks";
 
 /**
  * BubbleResultsView Component
