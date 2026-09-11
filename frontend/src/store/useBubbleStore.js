@@ -62,7 +62,6 @@ export const SAMPLE_SPECIMENS = [
   }
 ];
 
-// Helper to generate organic clustered bubble coordinates within tea circular bounds
 function generateRealisticBubbles(total, width = 800, height = 600) {
   const bubbles = [];
   const centerX = width / 2;
@@ -106,7 +105,6 @@ function generateRealisticBubbles(total, width = 800, height = 600) {
   return bubbles;
 }
 
-// Compute whimsical scientific verdict from bubble count
 export function computeVerdict(total, small, medium, large) {
   if (total > 55) {
     return {
@@ -139,7 +137,25 @@ export function computeVerdict(total, small, medium, large) {
   }
 }
 
+export const INITIAL_RECIPE = {
+  initialized: false,
+  tea: 0,
+  milk: 0,
+  sugar: 0,
+  ginger: false,
+  cardamom: false,
+  foam: {
+    type: "medium",
+    density: 50,
+  },
+  boil: 50,
+  stirred: false,
+};
+
+const initialRoute = typeof window !== "undefined" && window.location.pathname === "/code-a-chai" ? "code-a-chai" : "detector";
+
 const useBubbleStore = create((set, get) => ({
+  route: initialRoute, // 'detector' | 'code-a-chai'
   stage: "hero",
   image: null,
   preview: null,
@@ -150,12 +166,37 @@ const useBubbleStore = create((set, get) => ({
   error: null,
   sensitivity: 5,
   debugMode: false,
-  activeDebugLayer: "final", // 'final' | 'small' | 'medium' | 'large' | 'rejected'
+  activeDebugLayer: "final",
+
+  // Code a Chai state
+  codeChaiPhase: "TERMINAL", // 'TERMINAL' | 'COMPILING' | 'BREWING' | 'RESULT'
+  chaiRecipe: { ...INITIAL_RECIPE },
+  commandHistory: [],
+  historyIndex: -1,
+
+  setRoute: (route) => {
+    if (typeof window !== "undefined") {
+      const targetPath = route === "code-a-chai" ? "/code-a-chai" : "/";
+      if (window.location.pathname !== targetPath) {
+        window.history.pushState(null, "", targetPath);
+      }
+    }
+    set({ route });
+  },
 
   setStage: (stage) => set({ stage }),
   setSensitivity: (val) => set({ sensitivity: val }),
   setDebugMode: (val) => set({ debugMode: val }),
   setActiveDebugLayer: (layer) => set({ activeDebugLayer: layer }),
+  setCodeChaiPhase: (phase) => set({ codeChaiPhase: phase }),
+
+  updateRecipe: (updater) => {
+    set((state) => ({
+      chaiRecipe: typeof updater === "function" ? updater(state.chaiRecipe) : { ...state.chaiRecipe, ...updater }
+    }));
+  },
+
+  resetRecipe: () => set({ chaiRecipe: { ...INITIAL_RECIPE }, codeChaiPhase: "TERMINAL" }),
 
   setImage: (file) => {
     const prev = get().preview;
@@ -307,5 +348,13 @@ const useBubbleStore = create((set, get) => ({
     });
   }
 }));
+
+// Synchronize browser history navigation (back/forward buttons)
+if (typeof window !== "undefined") {
+  window.addEventListener("popstate", () => {
+    const r = window.location.pathname === "/code-a-chai" ? "code-a-chai" : "detector";
+    useBubbleStore.setState({ route: r });
+  });
+}
 
 export default useBubbleStore;
