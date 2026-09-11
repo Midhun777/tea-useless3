@@ -27,7 +27,7 @@ export default function App() {
   }, [route, stage]);
 
   return (
-    <div className="min-h-screen bg-paper text-ink relative selection:bg-saffron/30 selection:text-chai">
+    <div className="min-h-screen bg-paper text-ink relative selection:bg-saffron/30 selection:text-chai overflow-x-hidden">
       {/* Global Top Navbar */}
       <Navbar />
 
