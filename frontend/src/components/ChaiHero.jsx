@@ -375,9 +375,6 @@ export default function ChaiHero() {
                 🔴 Live Session Waste Tracker (Real Data)
               </h3>
             </div>
-            <span className="font-technical text-[11px] font-bold text-terracotta bg-terracotta/10 px-2.5 py-0.5 rounded border border-terracotta/30">
-              {Number.isFinite(sessionPoppedCount) && sessionPoppedCount > 0 ? "Tracking Active Pops Live" : "Live Session Active ⏱️"}
-            </span>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center pt-1">
