@@ -1,19 +1,24 @@
 """
-Pipeline orchestrator — runs the full detection sequence and returns results.
+Pipeline orchestrator — runs the multi-scale detection sequence and returns results.
 
-Pipeline:
-    image → preprocess → ROI → hough + contour + edge
-          → merge → validate → classify → count
+Multi-Scale Pipeline:
+  image → preprocess & ROI
+        → [ Small Detector | Medium Detector | Preserved Large Detector ]
+        → Anti-clustering (suppresses false large bubble clusters)
+        → Candidate merging (NMS duplicate removal)
+        → Multi-criteria validation & transparent bubble scoring
+        → Size classification
+        → Count & Statistics calculation
 """
 import cv2
 import numpy as np
 from app.core.config import DetectionConfig
 from app.detection.preprocessing import preprocess
 from app.detection.roi import detect_roi
-from app.detection.hough_detector import detect_hough
-from app.detection.contour_detector import detect_contours
-from app.detection.edge_detector import detect_edges
-from app.detection.candidate_merger import merge_candidates
+from app.detection.small_detector import detect_small_bubbles
+from app.detection.medium_detector import detect_medium_bubbles
+from app.detection.large_detector import detect_large_bubbles
+from app.detection.candidate_merger import merge_candidates, filter_cluster_false_positives
 from app.detection.validator import validate
 from app.detection.classifier import classify
 
@@ -21,19 +26,29 @@ from app.detection.classifier import classify
 def run_pipeline(
     image_bytes: bytes,
     sensitivity: int = 5,
+    debug: bool = False,
     cfg: DetectionConfig | None = None,
 ) -> dict:
     """
     Args:
         image_bytes: raw bytes of the uploaded image
         sensitivity: 1 (conservative) – 10 (aggressive), default 5
+        debug: bool, whether to include debug candidate details
         cfg: optional override config (uses singleton if None)
 
     Returns:
         {
           "success": bool,
           "count": {"total": int, "small": int, "medium": int, "large": int},
-          "bubbles": [{"x", "y", "radius", "size", "confidence"}, ...]
+          "bubbles": [{"x", "y", "radius", "size", "confidence"}, ...],
+          "stats": {
+            "small_candidates": int,
+            "medium_candidates": int,
+            "large_candidates": int,
+            "merged_candidates": int,
+            "final_bubbles": int
+          },
+          "debug_candidates": dict (optional)
         }
     """
     if cfg is None:
@@ -54,32 +69,47 @@ def run_pipeline(
 
     # ── Stage 2: ROI ────────────────────────────────────────────────────────
     roi_mask = detect_roi(image_bgr, cfg)
-    # Apply ROI mask to enhanced image
     enhanced_roi = cv2.bitwise_and(enhanced, enhanced, mask=roi_mask)
 
-    # ── Stage 3–5: Multi-source detection ───────────────────────────────────
-    hough_cands = detect_hough(enhanced_roi, cfg, sensitivity)
-    contour_cands = detect_contours(enhanced_roi, cfg, sensitivity)
-    edge_cands = detect_edges(enhanced_roi, cfg, sensitivity)
+    # ── Stage 3: Multi-Scale Candidate Generation ────────────────────────────
+    small_cands = detect_small_bubbles(image_bgr, roi_mask, cfg, sensitivity)
+    medium_cands = detect_medium_bubbles(enhanced_roi, cfg, sensitivity)
+    large_cands = detect_large_bubbles(enhanced_roi, cfg, sensitivity)
 
-    all_candidates = hough_cands + contour_cands + edge_cands
+    small_count = len(small_cands)
+    medium_count = len(medium_cands)
+    large_count = len(large_cands)
 
-    # ── Stage 6: Merge duplicates ────────────────────────────────────────────
-    merged = merge_candidates(all_candidates, cfg)
+    raw_candidates = small_cands + medium_cands + large_cands
 
-    # ── Stage 7: Validate ────────────────────────────────────────────────────
-    validated = validate(merged, gray, cfg)
+    # ── Stage 4: Anti-Clustering Filter ──────────────────────────────────────
+    declustered = filter_cluster_false_positives(raw_candidates, gray, cfg)
 
-    # ── Stage 8: Classify sizes ──────────────────────────────────────────────
+    # ── Stage 5: Merge Duplicates (NMS) ──────────────────────────────────────
+    merged = merge_candidates(declustered, cfg)
+    merged_count = len(merged)
+
+    # ── Stage 6: Multi-Criteria Candidate Validation ─────────────────────────
+    validated, rejected = validate(merged, gray, roi_mask, cfg)
+
+    # ── Stage 7: Size Classification ─────────────────────────────────────────
     bubbles = classify(validated, (h, w), cfg)
 
-    # ── Stage 9: Count ───────────────────────────────────────────────────────
+    # ── Stage 8: Count & Statistics Summary ──────────────────────────────────
     total = len(bubbles)
     small = sum(1 for b in bubbles if b["size"] == "small")
     medium = sum(1 for b in bubbles if b["size"] == "medium")
     large = sum(1 for b in bubbles if b["size"] == "large")
 
-    return {
+    stats = {
+        "small_candidates": small_count,
+        "medium_candidates": medium_count,
+        "large_candidates": large_count,
+        "merged_candidates": merged_count,
+        "final_bubbles": total,
+    }
+
+    result = {
         "success": True,
         "count": {
             "total": total,
@@ -88,4 +118,16 @@ def run_pipeline(
             "large": large,
         },
         "bubbles": bubbles,
+        "stats": stats,
     }
+
+    if debug:
+        result["debug_candidates"] = {
+            "small": [{"x": round(c.x), "y": round(c.y), "radius": round(c.radius, 1), "confidence": round(c.confidence, 3), "source": c.source} for c in small_cands],
+            "medium": [{"x": round(c.x), "y": round(c.y), "radius": round(c.radius, 1), "confidence": round(c.confidence, 3), "source": c.source} for c in medium_cands],
+            "large": [{"x": round(c.x), "y": round(c.y), "radius": round(c.radius, 1), "confidence": round(c.confidence, 3), "source": c.source} for c in large_cands],
+            "rejected": [{"x": round(c.x), "y": round(c.y), "radius": round(c.radius, 1), "confidence": round(c.confidence, 3), "source": c.source} for c in rejected],
+            "final": bubbles,
+        }
+
+    return result

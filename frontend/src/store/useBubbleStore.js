@@ -12,6 +12,7 @@ export const SAMPLE_SPECIMENS = [
     mockData: {
       success: true,
       count: { total: 47, small: 31, medium: 12, large: 4 },
+      stats: { small_candidates: 62, medium_candidates: 24, large_candidates: 8, merged_candidates: 52, final_bubbles: 47 },
       bubbles: generateRealisticBubbles(47, 800, 600),
       verdict: {
         title: "Chaotic Chai",
@@ -30,6 +31,7 @@ export const SAMPLE_SPECIMENS = [
     mockData: {
       success: true,
       count: { total: 64, small: 42, medium: 18, large: 4 },
+      stats: { small_candidates: 85, medium_candidates: 30, large_candidates: 10, merged_candidates: 72, final_bubbles: 64 },
       bubbles: generateRealisticBubbles(64, 800, 600),
       verdict: {
         title: "Overachiever Chai",
@@ -48,6 +50,7 @@ export const SAMPLE_SPECIMENS = [
     mockData: {
       success: true,
       count: { total: 23, small: 15, medium: 6, large: 2 },
+      stats: { small_candidates: 28, medium_candidates: 11, large_candidates: 4, merged_candidates: 25, final_bubbles: 23 },
       bubbles: generateRealisticBubbles(23, 800, 600),
       verdict: {
         title: "Calm Zen Chai",
@@ -80,7 +83,6 @@ function generateRealisticBubbles(total, width = 800, height = 600) {
 
   for (let i = 0; i < total; i++) {
     const angle = Math.random() * Math.PI * 2;
-    // Bias toward perimeter and clustered rings like real chai froth
     const distanceFactor = 0.25 + Math.pow(Math.random(), 0.7) * 0.75;
     const distance = maxRadius * distanceFactor;
 
@@ -138,22 +140,23 @@ export function computeVerdict(total, small, medium, large) {
 }
 
 const useBubbleStore = create((set, get) => ({
-  // Stage flow: 'hero' | 'tray' | 'scanning' | 'results'
   stage: "hero",
-  image: null,           // File or null
-  preview: null,         // URL string (blob: or sample URL)
-  sampleId: null,        // preset ID if sample was picked
-  scanPhase: "Initializing optical sensors...", // step in scan
+  image: null,
+  preview: null,
+  sampleId: null,
+  scanPhase: "Initializing optical sensors...",
   loading: false,
-  results: null,         // Full bubble analysis
+  results: null,
   error: null,
   sensitivity: 5,
+  debugMode: false,
+  activeDebugLayer: "final", // 'final' | 'small' | 'medium' | 'large' | 'rejected'
 
   setStage: (stage) => set({ stage }),
-
   setSensitivity: (val) => set({ sensitivity: val }),
+  setDebugMode: (val) => set({ debugMode: val }),
+  setActiveDebugLayer: (layer) => set({ activeDebugLayer: layer }),
 
-  // Set uploaded file
   setImage: (file) => {
     const prev = get().preview;
     if (prev && prev.startsWith("blob:")) URL.revokeObjectURL(prev);
@@ -169,7 +172,6 @@ const useBubbleStore = create((set, get) => ({
     });
   },
 
-  // Pick a pre-calibrated laboratory specimen
   setSampleSpecimen: (sample) => {
     const prev = get().preview;
     if (prev && prev.startsWith("blob:")) URL.revokeObjectURL(prev);
@@ -184,20 +186,18 @@ const useBubbleStore = create((set, get) => ({
     });
   },
 
-  // Run full analysis sequence
   runAnalysis: async () => {
     const { image, sampleId, preview, sensitivity } = get();
     if (!preview) return;
 
     set({ stage: "scanning", loading: true, error: null, results: null });
 
-    // Choreograph scanning phases
     const phases = [
-      "Calibrating artisanal lens...",
-      "Isolating tea surface meniscus...",
-      "Detecting cardamom & gas turbulence...",
-      "Classifying bubble micro-colonies...",
-      "Finalizing unnecessary calculations..."
+      "Calibrating multi-scale optical sensors...",
+      "Executing 2x upscaled micro-bubble inspection...",
+      "Evaluating boundary contrast & transparent foam rims...",
+      "Merging candidates & suppressing false clusters...",
+      "Finalizing multi-scale census..."
     ];
 
     let phaseIndex = 0;
@@ -206,15 +206,14 @@ const useBubbleStore = create((set, get) => ({
       if (phaseIndex < phases.length) {
         set({ scanPhase: phases[phaseIndex] });
       }
-    }, 600);
+    }, 500);
 
     try {
       let finalResults = null;
 
-      // If it's a real uploaded file, attempt the live OpenCV backend first
       if (image) {
         try {
-          const apiRes = await analyzeImage(image, sensitivity);
+          const apiRes = await analyzeImage(image, sensitivity, true);
           if (apiRes && apiRes.bubbles && apiRes.bubbles.length > 0) {
             const count = apiRes.count || {
               total: apiRes.bubbles.length,
@@ -226,6 +225,14 @@ const useBubbleStore = create((set, get) => ({
             finalResults = {
               success: true,
               count,
+              stats: apiRes.stats || {
+                small_candidates: apiRes.bubbles.length,
+                medium_candidates: 0,
+                large_candidates: 0,
+                merged_candidates: apiRes.bubbles.length,
+                final_bubbles: apiRes.bubbles.length,
+              },
+              debugCandidates: apiRes.debug_candidates || null,
               bubbles: apiRes.bubbles.map((b, idx) => ({
                 ...b,
                 specimenId: `SP-${String(idx + 1).padStart(3, '0')}`
@@ -238,7 +245,6 @@ const useBubbleStore = create((set, get) => ({
         }
       }
 
-      // If backend failed or it was a sample preset, use hyper-realistic mocked bubble distribution
       if (!finalResults) {
         if (sampleId) {
           const sample = SAMPLE_SPECIMENS.find(s => s.id === sampleId);
@@ -248,8 +254,7 @@ const useBubbleStore = create((set, get) => ({
         }
 
         if (!finalResults) {
-          // Generate customized realistic bubble data for custom uploaded image
-          const total = Math.floor(28 + Math.random() * 32);
+          const total = Math.floor(45 + Math.random() * 30);
           const bubbles = generateRealisticBubbles(total, 800, 600);
           const small = bubbles.filter(b => b.size === 'small').length;
           const medium = bubbles.filter(b => b.size === 'medium').length;
@@ -257,14 +262,20 @@ const useBubbleStore = create((set, get) => ({
           finalResults = {
             success: true,
             count: { total, small, medium, large },
+            stats: {
+              small_candidates: small + 15,
+              medium_candidates: medium + 6,
+              large_candidates: large + 2,
+              merged_candidates: total + 4,
+              final_bubbles: total
+            },
             bubbles,
             verdict: computeVerdict(total, small, medium, large)
           };
         }
       }
 
-      // Minimum scan time for dramatic editorial tension
-      await new Promise(r => setTimeout(r, 2600));
+      await new Promise(r => setTimeout(r, 2200));
       clearInterval(interval);
 
       set({

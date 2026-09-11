@@ -16,6 +16,8 @@ async def analyze(
     file: UploadFile = File(..., description="Chai foam image (JPEG/PNG/WebP)"),
     sensitivity: int = Form(default=5, ge=1, le=10,
                              description="Detection sensitivity 1–10"),
+    debug: bool = Form(default=True,
+                       description="Include debug candidate details"),
 ):
     # Validate content type
     content_type = file.content_type or ""
@@ -26,7 +28,7 @@ async def analyze(
     if len(image_bytes) == 0:
         raise HTTPException(status_code=400, detail="Empty file.")
 
-    result = run_pipeline(image_bytes, sensitivity=sensitivity)
+    result = run_pipeline(image_bytes, sensitivity=sensitivity, debug=debug)
 
     if not result.get("success"):
         raise HTTPException(status_code=422, detail=result.get("error", "Detection failed."))

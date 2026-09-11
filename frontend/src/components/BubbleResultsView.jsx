@@ -7,16 +7,24 @@ import { CornerRegistrationMarks, StampScientific, StampUnnecessary } from "./il
 
 /**
  * BubbleResultsView Component
- * The climax of the experience:
- * - Editorial composition with uploaded chai photo as the hero
- * - Hand-drawn SVG inspection rings around every detected bubble with specimen IDs
- * - Rapid number counter animation settling into the climax (e.g. 47 BUBBLES)
- * - Organic bubble classification: visual cluster of small, medium, large bubbles
- * - Absurd scientific verdict with illustrated cup personality expression
- * - Minimal, collectible poster aesthetics
+ * Editorial composition with specimen photo as hero:
+ * - Multi-scale OpenCV candidate visualization
+ * - Hand-drawn SVG inspection rings around detected bubbles
+ * - Debug mode toggle & candidate pipeline stats (Small/Medium/Large/Merged/Final)
+ * - Interactive layer selector (Final, Small Cands, Medium Cands, Large Cands, Rejected)
+ * - Absurd scientific verdict
  */
 export default function BubbleResultsView() {
-  const { results, preview, resetAll, setStage } = useBubbleStore();
+  const {
+    results,
+    preview,
+    resetAll,
+    setStage,
+    debugMode,
+    setDebugMode,
+    activeDebugLayer,
+    setActiveDebugLayer,
+  } = useBubbleStore();
 
   const containerRef = useRef(null);
   const numberCounterRef = useRef(null);
@@ -31,6 +39,9 @@ export default function BubbleResultsView() {
   const small = results?.count?.small || 0;
   const medium = results?.count?.medium || 0;
   const large = results?.count?.large || 0;
+  const stats = results?.stats || null;
+  const debugCandidates = results?.debugCandidates || null;
+
   const bubbles = results?.bubbles || [];
   const verdict = results?.verdict || {
     title: "Chaotic Chai",
@@ -39,10 +50,26 @@ export default function BubbleResultsView() {
     recommendation: "Consume with Parle-G immediately.",
   };
 
-  // Coordinated Climax Entrance Animation
+  // Determine which list of items to draw on SVG overlay
+  const displayItems = React.useMemo(() => {
+    if (!debugMode || activeDebugLayer === "final") {
+      return filterSize === "all"
+        ? bubbles
+        : bubbles.filter((b) => b.size === filterSize);
+    }
+    if (debugCandidates && debugCandidates[activeDebugLayer]) {
+      return debugCandidates[activeDebugLayer].map((c, idx) => ({
+        ...c,
+        specimenId: `${activeDebugLayer.toUpperCase()}-${idx + 1}`,
+        size: c.size || (c.radius <= 12 ? "small" : c.radius >= 25 ? "large" : "medium"),
+      }));
+    }
+    return [];
+  }, [debugMode, activeDebugLayer, filterSize, bubbles, debugCandidates]);
+
+  // Entrance Animation
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // 1. Initial count rolling
       const counterObj = { val: 0 };
       gsap.to(counterObj, {
         val: total,
@@ -52,7 +79,6 @@ export default function BubbleResultsView() {
           setDisplayCount(Math.round(counterObj.val));
         },
         onComplete: () => {
-          // Subtle celebratory burst of saffron & tea leaf confetti
           try {
             confetti({
               particleCount: 35,
@@ -61,11 +87,8 @@ export default function BubbleResultsView() {
               colors: ["#E89635", "#C85A32", "#8A4B29", "#F7EEDF"],
               disableForReducedMotion: true,
             });
-          } catch (e) {
-            // Ignore confetti errors if any
-          }
+          } catch (e) {}
 
-          // Number pulse
           if (numberCounterRef.current) {
             gsap.fromTo(
               numberCounterRef.current,
@@ -76,7 +99,6 @@ export default function BubbleResultsView() {
         },
       });
 
-      // 2. Animate bubble circles popping into existence
       gsap.fromTo(
         ".bubble-marker",
         { scale: 0, opacity: 0 },
@@ -84,13 +106,12 @@ export default function BubbleResultsView() {
           scale: 1,
           opacity: 1,
           duration: 0.4,
-          stagger: 0.025,
+          stagger: 0.01,
           ease: "back.out(1.8)",
           delay: 0.3,
         }
       );
 
-      // 3. Reveal classification & verdict
       if (classificationRef.current) {
         gsap.from(classificationRef.current, {
           y: 20,
@@ -115,18 +136,13 @@ export default function BubbleResultsView() {
     return () => ctx.revert();
   }, [total]);
 
-  const filteredBubbles =
-    filterSize === "all"
-      ? bubbles
-      : bubbles.filter((b) => b.size === filterSize);
-
   return (
     <section
       ref={containerRef}
       className="relative min-h-screen px-4 py-8 max-w-6xl mx-auto flex flex-col items-center"
     >
       {/* ── TOP EDITORIAL MASTHEAD ────────────────────────────────────── */}
-      <div className="w-full flex items-center justify-between border-b-2 border-ink/20 pb-4 mb-6">
+      <div className="w-full flex flex-wrap items-center justify-between border-b-2 border-ink/20 pb-4 mb-6 gap-3">
         <button
           onClick={() => setStage("tray")}
           className="flex items-center gap-1.5 font-technical text-xs uppercase tracking-wider text-ink-faint hover:text-ink font-semibold"
@@ -135,6 +151,17 @@ export default function BubbleResultsView() {
         </button>
 
         <div className="flex items-center gap-3">
+          {/* Debug View Toggle */}
+          <button
+            onClick={() => setDebugMode(!debugMode)}
+            className={`px-3 py-1 rounded border-2 text-xs font-technical font-bold uppercase transition-all shadow-sketch-sm ${
+              debugMode
+                ? "bg-terracotta text-paper border-ink"
+                : "bg-paper text-ink border-ink/40 hover:border-ink"
+            }`}
+          >
+            {debugMode ? "🔬 Debug View: ON" : "🔬 Enable Debug Mode"}
+          </button>
           <StampUnnecessary />
           <StampScientific />
         </div>
@@ -143,7 +170,7 @@ export default function BubbleResultsView() {
       {/* ── MAIN EDITORIAL TWO-COLUMN LAYOUT ──────────────────────────── */}
       <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* ── LEFT / HERO: SPECIMEN PHOTOGRAPH WITH MARKER OVERLAY (7 COLS) ─ */}
-        <div className="lg:col-span-7 flex flex-col items-center">
+        <div className="lg:col-span-7 flex flex-col items-center gap-4">
           <div
             className="relative w-full rounded-2xl bg-paper-dark border-3 border-ink p-3 sm:p-4 shadow-sketch-lg overflow-hidden"
             style={{
@@ -154,27 +181,30 @@ export default function BubbleResultsView() {
 
             {/* Specimen Frame */}
             <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border-2 border-ink bg-chai-dark/10">
-              {/* Uploaded tea image */}
               <img
                 src={preview}
                 alt="Chai bubble specimen"
                 className="w-full h-full object-cover select-none"
               />
 
-              {/* Hand-drawn Optical Bubble Overlay (SVG) */}
+              {/* SVG Circle Overlay */}
               <svg
                 viewBox="0 0 800 600"
                 preserveAspectRatio="none"
                 className="absolute inset-0 w-full h-full pointer-events-none"
               >
-                {filteredBubbles.map((bubble, idx) => {
+                {displayItems.map((bubble, idx) => {
                   const isHovered = activeBubble?.specimenId === bubble.specimenId;
-                  const strokeColor =
+                  const isRejected = activeDebugLayer === "rejected";
+                  
+                  let strokeColor =
                     bubble.size === "small"
                       ? "#E89635"
                       : bubble.size === "medium"
                       ? "#C85A32"
                       : "#8A4B29";
+
+                  if (isRejected) strokeColor = "#6B7280";
 
                   return (
                     <g
@@ -184,7 +214,6 @@ export default function BubbleResultsView() {
                       onMouseLeave={() => setActiveBubble(null)}
                       style={{ transformOrigin: `${bubble.x}px ${bubble.y}px` }}
                     >
-                      {/* Imperfect sketched circle */}
                       <circle
                         cx={bubble.x}
                         cy={bubble.y}
@@ -193,11 +222,10 @@ export default function BubbleResultsView() {
                         fillOpacity={isHovered ? 0.35 : 0}
                         stroke={strokeColor}
                         strokeWidth={isHovered ? 3.5 : bubble.size === "large" ? 2.8 : 2}
-                        strokeDasharray={bubble.size === "small" ? "none" : "6 2"}
+                        strokeDasharray={isRejected ? "3 3" : bubble.size === "small" ? "none" : "6 2"}
                         className="transition-all duration-150"
                       />
 
-                      {/* Specimen Center Pip */}
                       <circle
                         cx={bubble.x}
                         cy={bubble.y}
@@ -207,7 +235,6 @@ export default function BubbleResultsView() {
                         strokeWidth="1"
                       />
 
-                      {/* Specimen tag for larger bubbles or on hover */}
                       {(isHovered || bubble.size === "large") && (
                         <g>
                           <line
@@ -221,8 +248,8 @@ export default function BubbleResultsView() {
                           <rect
                             x={bubble.x + 16}
                             y={bubble.y - bubble.radius - 24}
-                            width="48"
-                            height="15"
+                            width="54"
+                            height="16"
                             rx="3"
                             fill="#FAF6EE"
                             stroke="#1E1610"
@@ -232,7 +259,7 @@ export default function BubbleResultsView() {
                             x={bubble.x + 20}
                             y={bubble.y - bubble.radius - 13}
                             fontFamily="Space Grotesk"
-                            fontSize="8.5"
+                            fontSize="8"
                             fontWeight="bold"
                             fill="#1E1610"
                           >
@@ -247,46 +274,116 @@ export default function BubbleResultsView() {
 
               {/* Lab tape banner */}
               <div className="absolute bottom-2 left-2 px-2.5 py-1 bg-paper/95 border border-ink text-[11px] font-technical font-bold uppercase tracking-widest shadow-sketch-sm rotate-[-1deg]">
-                ANALYZED SPECIMEN • CV VERIFIED
+                {debugMode ? `DEBUG MODE: ${activeDebugLayer.toUpperCase()}` : "ANALYZED SPECIMEN • MULTI-SCALE CV"}
               </div>
 
               {/* Active bubble inspector tooltip */}
               {activeBubble && (
-                <div className="absolute top-2 right-2 bg-paper/95 border-2 border-ink px-3 py-1.5 rounded shadow-sketch font-technical text-xs">
-                  <span className="font-bold text-terracotta">{activeBubble.specimenId}</span>
-                  <span className="text-ink ml-1.5 capitalize">[{activeBubble.size}]</span>
-                  <span className="text-ink-faint ml-1.5">radius: {activeBubble.radius}px</span>
+                <div className="absolute top-2 right-2 bg-paper/95 border-2 border-ink px-3 py-1.5 rounded shadow-sketch font-technical text-xs flex flex-col gap-0.5">
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-bold text-terracotta">{activeBubble.specimenId}</span>
+                    <span className="text-ink capitalize">[{activeBubble.size}]</span>
+                  </div>
+                  <div className="text-[10px] text-ink-faint flex gap-2">
+                    <span>r: {activeBubble.radius}px</span>
+                    <span>conf: {Math.round((activeBubble.confidence || 0) * 100)}%</span>
+                    {activeBubble.source && <span className="text-chai">src: {activeBubble.source}</span>}
+                  </div>
                 </div>
               )}
             </div>
 
             {/* Specimen legend filter tabs */}
-            <div className="w-full flex items-center justify-between mt-3 px-1 text-xs font-technical">
-              <span className="text-ink-faint uppercase tracking-wider text-[10px]">
-                Filter by Specimen Size:
-              </span>
-              <div className="flex gap-2">
-                {[
-                  { id: "all", label: `All (${total})` },
-                  { id: "small", label: `Small (${small})` },
-                  { id: "medium", label: `Med (${medium})` },
-                  { id: "large", label: `Large (${large})` },
-                ].map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setFilterSize(tab.id)}
-                    className={`px-2 py-0.5 rounded border text-[11px] font-semibold transition-all ${
-                      filterSize === tab.id
-                        ? "bg-ink text-paper border-ink"
-                        : "bg-paper text-ink border-ink/40 hover:border-ink"
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
+            {!debugMode ? (
+              <div className="w-full flex items-center justify-between mt-3 px-1 text-xs font-technical">
+                <span className="text-ink-faint uppercase tracking-wider text-[10px]">
+                  Filter by Specimen Size:
+                </span>
+                <div className="flex gap-2">
+                  {[
+                    { id: "all", label: `All (${total})` },
+                    { id: "small", label: `Small (${small})` },
+                    { id: "medium", label: `Med (${medium})` },
+                    { id: "large", label: `Large (${large})` },
+                  ].map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setFilterSize(tab.id)}
+                      className={`px-2 py-0.5 rounded border text-[11px] font-semibold transition-all ${
+                        filterSize === tab.id
+                          ? "bg-ink text-paper border-ink"
+                          : "bg-paper text-ink border-ink/40 hover:border-ink"
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              /* Debug candidate layer selector tabs */
+              <div className="w-full flex flex-col gap-1.5 mt-3 px-1 text-xs font-technical">
+                <span className="text-terracotta font-bold uppercase tracking-wider text-[10px]">
+                  Debug Layer Selector:
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {[
+                    { id: "final", label: `Final Validated (${bubbles.length})` },
+                    { id: "small", label: `Small Candidates (${debugCandidates?.small?.length || 0})` },
+                    { id: "medium", label: `Medium Candidates (${debugCandidates?.medium?.length || 0})` },
+                    { id: "large", label: `Large Candidates (${debugCandidates?.large?.length || 0})` },
+                    { id: "rejected", label: `Rejected (${debugCandidates?.rejected?.length || 0})` },
+                  ].map((layer) => (
+                    <button
+                      key={layer.id}
+                      onClick={() => setActiveDebugLayer(layer.id)}
+                      className={`px-2 py-1 rounded border text-[10px] font-bold uppercase transition-all ${
+                        activeDebugLayer === layer.id
+                          ? "bg-terracotta text-paper border-ink shadow-sketch-sm"
+                          : "bg-paper text-ink border-ink/30 hover:border-ink"
+                      }`}
+                    >
+                      {layer.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* ── DEBUG STATISTICS PANEL (WHEN DEBUG MODE ACTIVE) ─────────── */}
+          {debugMode && stats && (
+            <div className="w-full p-4 rounded-xl bg-paper border-2 border-ink shadow-sketch-sm font-technical text-xs">
+              <div className="flex items-center justify-between mb-2 pb-1 border-b border-ink/20">
+                <span className="font-bold uppercase tracking-wider text-ink">
+                  MULTI-SCALE PIPELINE CANDIDATE STATISTICS
+                </span>
+                <span className="text-[10px] text-terracotta font-semibold">OpenCV Engine</span>
+              </div>
+              <div className="grid grid-cols-5 gap-2 text-center">
+                <div className="p-2 rounded bg-paper-dark border border-ink/20">
+                  <div className="text-[10px] font-semibold text-ink-faint">Small Cands</div>
+                  <div className="text-base font-bold text-saffron-dark">{stats.small_candidates}</div>
+                </div>
+                <div className="p-2 rounded bg-paper-dark border border-ink/20">
+                  <div className="text-[10px] font-semibold text-ink-faint">Medium Cands</div>
+                  <div className="text-base font-bold text-terracotta">{stats.medium_candidates}</div>
+                </div>
+                <div className="p-2 rounded bg-paper-dark border border-ink/20">
+                  <div className="text-[10px] font-semibold text-ink-faint">Large Cands</div>
+                  <div className="text-base font-bold text-chai">{stats.large_candidates}</div>
+                </div>
+                <div className="p-2 rounded bg-paper-dark border border-ink/20">
+                  <div className="text-[10px] font-semibold text-ink-faint">Merged</div>
+                  <div className="text-base font-bold text-ink">{stats.merged_candidates}</div>
+                </div>
+                <div className="p-2 rounded bg-paper-dark border border-ink/20">
+                  <div className="text-[10px] font-semibold text-ink-faint">Final Count</div>
+                  <div className="text-base font-bold text-terracotta">{stats.final_bubbles}</div>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* ── RIGHT: CLIMACTIC COUNT & REPORT DOSSIER (5 COLS) ───────── */}
@@ -316,7 +413,7 @@ export default function BubbleResultsView() {
             <div className="w-24 h-0.5 bg-ink/20 mx-auto my-3" />
 
             <p className="font-technical text-[11px] uppercase tracking-wider text-ink-faint">
-              Census complete • Accuracy: completely unnecessary
+              Multi-scale census complete • High-fidelity OpenCV
             </p>
           </div>
 
@@ -336,7 +433,6 @@ export default function BubbleResultsView() {
 
             {/* 3 Categories with Organic Bubble Dots */}
             <div className="grid grid-cols-3 gap-3 text-center">
-              {/* Small */}
               <div
                 onClick={() => setFilterSize("small")}
                 className={`p-3 rounded-lg border-2 border-ink cursor-pointer transition-all ${
@@ -352,11 +448,10 @@ export default function BubbleResultsView() {
                   {small}
                 </div>
                 <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink-faint">
-                  Small (≤8px)
+                  Small (≤12px)
                 </div>
               </div>
 
-              {/* Medium */}
               <div
                 onClick={() => setFilterSize("medium")}
                 className={`p-3 rounded-lg border-2 border-ink cursor-pointer transition-all ${
@@ -371,11 +466,10 @@ export default function BubbleResultsView() {
                   {medium}
                 </div>
                 <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink-faint">
-                  Medium (9-18px)
+                  Medium (13-24px)
                 </div>
               </div>
 
-              {/* Large */}
               <div
                 onClick={() => setFilterSize("large")}
                 className={`p-3 rounded-lg border-2 border-ink cursor-pointer transition-all ${
@@ -389,13 +483,13 @@ export default function BubbleResultsView() {
                   {large}
                 </div>
                 <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink-faint">
-                  Large (≥19px)
+                  Large (≥25px)
                 </div>
               </div>
             </div>
           </div>
 
-          {/* ── ABSURD SCIENTIFIC VERDICT (THE ONE FUNNY MOMENT) ───────── */}
+          {/* ── ABSURD SCIENTIFIC VERDICT ─────────────────────────────── */}
           <div
             ref={verdictCardRef}
             className="p-5 rounded-2xl bg-paper border-3 border-ink shadow-sketch relative"
@@ -404,16 +498,12 @@ export default function BubbleResultsView() {
             }}
           >
             <div className="flex items-start gap-3">
-              {/* Cup Character Expression */}
               <div className="w-14 h-14 rounded-full bg-paper-dark border-2 border-ink flex items-center justify-center flex-shrink-0 shadow-sketch-sm">
                 <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-                  {/* Mini animated cup with eyes */}
                   <path d="M 8 10 L 10 26 C 10 28, 24 28, 24 26 L 26 10 Z" fill="#C85A32" stroke="#1E1610" strokeWidth="1.8" />
                   <ellipse cx="17" cy="10" rx="9" ry="3" fill="#FFFBF2" stroke="#1E1610" strokeWidth="1.4" />
-                  {/* Character Eyes based on verdict */}
                   <circle cx="14" cy="18" r="1.5" fill="#FAF6EE" />
                   <circle cx="20" cy="18" r="1.5" fill="#FAF6EE" />
-                  {/* Smirk */}
                   <path d="M 15 22 Q 17 24 19 22" stroke="#FAF6EE" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
               </div>
