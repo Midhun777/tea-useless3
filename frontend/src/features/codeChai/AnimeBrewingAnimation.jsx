@@ -1,16 +1,17 @@
 import React, { useEffect, useRef } from "react";
-import anime from "animejs";
+import { animate, createTimeline, stagger, set } from "animejs";
 import { evaluateChaiQuality } from "./ChaiEvaluator";
 
 /**
  * AnimeBrewingAnimation Component
- * Anime.js powered step-by-step visual brewing sequence:
- * - Tea leaves falling into cup
+ * Anime.js v4 powered step-by-step visual brewing sequence:
+ * - Falling tea leaves into cup
  * - Milk pouring stream
  * - Liquid color blend transition
  * - Stirring wobble
- * - Foam bubbles popping into existence with elastic easing
- * - Steam rising
+ * - Elastic foam bubbles popping on the surface
+ * - Continuous steam wisps
+ * - Tea Quality Rating & Critique
  */
 export default function AnimeBrewingAnimation({ recipe, onComplete }) {
   const containerRef = useRef(null);
@@ -26,7 +27,6 @@ export default function AnimeBrewingAnimation({ recipe, onComplete }) {
     ginger = false,
     cardamom = false,
     foam = { type: "medium", density: 50 },
-    boil = 50,
   } = recipe;
 
   // Calculate target liquid color
@@ -40,88 +40,81 @@ export default function AnimeBrewingAnimation({ recipe, onComplete }) {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Timeline using Anime.js
-    const tl = anime.timeline({
-      easing: "easeOutExpo",
-    });
+    // 1. Initial hidden state using Anime.js v4 set()
+    set(".tea-leaf", { opacity: 0, translateY: -40, scale: 0.5 });
+    if (milkStreamRef.current) set(milkStreamRef.current, { scaleY: 0, opacity: 0 });
+    set(".foam-bubble-pop", { scale: 0, opacity: 0 });
+    set(".spice-particle", { opacity: 0, translateY: -20 });
 
-    // 1. Initial hidden state
-    anime.set(".tea-leaf", { opacity: 0, translateY: -40, scale: 0.5 });
-    anime.set(milkStreamRef.current, { scaleY: 0, opacity: 0 });
-    anime.set(".foam-bubble-pop", { scale: 0, opacity: 0 });
-    anime.set(".spice-particle", { opacity: 0, translateY: -20 });
-
-    // 2. Step A: Tea leaves fall into cup
-    tl.add({
-      targets: ".tea-leaf",
-      opacity: [0, 1],
-      translateY: [-40, 20],
-      scale: [0.5, 1],
-      delay: anime.stagger(120),
-      duration: 600,
-      easing: "easeOutBack",
-    })
-    // 3. Step B: Milk stream pours down
-    .add({
-      targets: milkStreamRef.current,
-      opacity: [0, 1],
-      scaleY: [0, 1],
-      duration: 500,
-      easing: "easeOutQuad",
-    })
-    // 4. Step C: Liquid color blends to chai color
-    .add({
-      targets: liquidRef.current,
-      fill: ["#F3EBDD", targetColor],
-      duration: 1000,
-      easing: "easeInOutQuad",
-    }, "-=200")
-    .add({
-      targets: milkStreamRef.current,
-      opacity: 0,
-      duration: 300,
-    }, "-=400")
-    // 5. Step D: Spices drop if enabled
-    .add({
-      targets: ".spice-particle",
-      opacity: [0, 1],
-      translateY: [-20, 0],
-      delay: anime.stagger(150),
-      duration: 500,
-      easing: "easeOutBounce",
-    }, "-=300")
-    // 6. Step E: Stirring wobble
-    .add({
-      targets: containerRef.current,
-      rotate: [-3, 3, -2, 2, 0],
-      duration: 700,
-      easing: "easeInOutSine",
-    })
-    // 7. Step F: Foam bubbles pop on surface with elastic bounce
-    .add({
-      targets: ".foam-bubble-pop",
-      scale: [0, 1],
-      opacity: [0, 1],
-      delay: anime.stagger(30),
-      duration: 700,
-      easing: "easeOutElastic(1, 0.5)",
-    }, "-=400")
-    // Complete callback
-    .add({
-      complete: () => {
+    // 2. Timeline using Anime.js v4 createTimeline()
+    const tl = createTimeline({
+      onComplete: () => {
         if (onComplete) onComplete();
       },
     });
 
+    // Step A: Tea leaves fall into cup
+    tl.add(".tea-leaf", {
+      opacity: [0, 1],
+      translateY: [-40, 20],
+      scale: [0.5, 1],
+      delay: stagger(120),
+      duration: 600,
+      ease: "easeOutBack",
+    });
+
+    // Step B: Milk stream pours down
+    if (milkStreamRef.current) {
+      tl.add(milkStreamRef.current, {
+        opacity: [0, 1],
+        scaleY: [0, 1],
+        duration: 500,
+        ease: "easeOutQuad",
+      });
+    }
+
+    // Step C: Liquid color blends to chai color
+    if (liquidRef.current) {
+      tl.add(liquidRef.current, {
+        fill: ["#F3EBDD", targetColor],
+        duration: 1000,
+        ease: "easeInOutQuad",
+      }, "-=200");
+    }
+
+    // Step D: Spices drop if enabled
+    tl.add(".spice-particle", {
+      opacity: [0, 1],
+      translateY: [-20, 0],
+      delay: stagger(150),
+      duration: 500,
+      ease: "easeOutBounce",
+    }, "-=300");
+
+    // Step E: Stirring wobble
+    tl.add(containerRef.current, {
+      rotate: [-3, 3, -2, 2, 0],
+      duration: 700,
+      ease: "easeInOutSine",
+    });
+
+    // Step F: Foam bubbles pop on surface with elastic bounce
+    tl.add(".foam-bubble-pop", {
+      scale: [0, 1],
+      opacity: [0, 1],
+      delay: stagger(30),
+      duration: 700,
+      ease: "easeOutElastic(1, 0.5)",
+    }, "-=400");
+
     // Continuous steam wisp animation
-    anime({
-      targets: ".steam-wisp-anime",
+    animate(".steam-wisp-anime", {
       translateY: [0, -35],
       opacity: [0.7, 0],
       duration: 1800,
-      delay: anime.stagger(300),
+      delay: stagger(300),
       loop: true,
-      easing: "linear",
+      ease: "linear",
     });
 
   }, []);
@@ -214,13 +207,13 @@ export default function AnimeBrewingAnimation({ recipe, onComplete }) {
       {/* Tea Quality Evaluation Summary Badge */}
       <div className="w-full p-4 rounded-xl bg-paper border-2 border-ink shadow-sketch text-center flex flex-col items-center gap-1.5 animate-fade-in">
         <span
-          className="font-technical text-xs font-bold uppercase tracking-widest px-3 py-0.5 rounded border text-paper"
+          className="font-technical text-xs font-bold uppercase tracking-widest px-3 py-0.5 rounded border text-paper shadow-sketch-sm"
           style={{ backgroundColor: evaluation.color, borderColor: "#1E1610" }}
         >
-          RATING: {evaluation.rating} ({evaluation.score} / 100)
+          TEA RATING: {evaluation.rating} ({evaluation.score} / 100)
         </span>
         <h3 className="font-display text-2xl font-bold text-ink">{evaluation.title}</h3>
-        <p className="font-handwritten text-lg text-chai leading-snug">{evaluation.description}</p>
+        <p className="font-handwritten text-lg text-chai leading-snug">"{evaluation.description}"</p>
       </div>
     </div>
   );

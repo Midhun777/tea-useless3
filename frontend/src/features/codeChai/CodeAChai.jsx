@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useBubbleStore from "../../store/useBubbleStore";
 import ChaiTerminal from "./ChaiTerminal";
 import BrewingSequence from "./BrewingSequence";
+import AnimeBrewingAnimation from "./AnimeBrewingAnimation";
 import ResultScreen from "./ResultScreen";
 import { executeChaiCommand } from "./ChaiCompiler";
 import { COMMAND_LIST } from "./ChaiParser";
@@ -147,9 +148,18 @@ export default function CodeAChai() {
 
       {codeChaiPhase === "COMPILING" && <BrewingSequence />}
 
-      {(codeChaiPhase === "BREWING" || codeChaiPhase === "RESULT") && (
-        <ResultScreen />
+      {codeChaiPhase === "BREWING" && (
+        <AnimeBrewingAnimation
+          recipe={chaiRecipe}
+          onComplete={() => {
+            setTimeout(() => {
+              setCodeChaiPhase("RESULT");
+            }, 1200);
+          }}
+        />
       )}
+
+      {codeChaiPhase === "RESULT" && <ResultScreen />}
     </section>
   );
 }
