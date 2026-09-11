@@ -183,9 +183,15 @@ const useBubbleStore = create((set, get) => ({
   // Pop the Bubble game bridge state
   customGameProfile: null,
 
+  // Real-time live popping statistics state (counts from start of popping)
+  appLaunchTimestamp: typeof window !== "undefined" ? Date.now() : 0,
+  sessionPoppedCount: 0,
+  firstPopTimestamp: null,
+
   registerBubblePop: (count = 1) => {
+    const validCount = Number.isFinite(count) && count > 0 ? count : 1;
     set((state) => ({
-      sessionPoppedCount: state.sessionPoppedCount + count,
+      sessionPoppedCount: (Number.isFinite(state.sessionPoppedCount) ? state.sessionPoppedCount : 0) + validCount,
       firstPopTimestamp: state.firstPopTimestamp || Date.now(),
     }));
   },

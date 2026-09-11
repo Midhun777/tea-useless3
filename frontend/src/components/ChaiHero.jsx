@@ -258,155 +258,128 @@ export default function ChaiHero() {
         </div>
       </section>
 
-      {/* ── 3. THREE PILLARS OF ABSURD SCIENCE ──────────────────────────── */}
-      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
+      {/* ── 3. THE THREE PILLARS OF CHAI PHYSICS (ANNOTATED DIAGRAM LAYOUT) ─ */}
+      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
         <div className="text-center space-y-2 max-w-2xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-chai/10 border border-chai/30 text-chai font-technical text-xs font-bold uppercase tracking-wider">
+            <span>🔬</span> Laboratory Blueprint & Hydrodynamics
+          </div>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink">
-            The Three Pillars of Absurd Tea Science
+            The Three Pillars of ചായ Physics
           </h2>
-          <p className="font-technical text-xs sm:text-sm text-ink/70">
-            Powered by high-speed classical OpenCV contour algorithms and unyielding pedantry.
+          <p className="font-handwritten text-xl sm:text-2xl text-terracotta font-semibold">
+            High-precision classical OpenCV detection without neural network fluff.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {/* Pillar 1 */}
-          <div className="p-6 rounded-2xl bg-paper border-2 border-ink shadow-sketch space-y-3 flex flex-col justify-between hover:scale-[1.02] transition-transform">
-            <div className="space-y-2">
-              <div className="w-12 h-12 rounded-xl bg-saffron/20 border border-ink flex items-center justify-center text-2xl font-black">
-                🧼
-              </div>
-              <h3 className="font-display font-bold text-xl text-ink">
-                Micro-Froth Physics
-              </h3>
-              <p className="font-technical text-xs text-ink/70 leading-relaxed">
-                Calculates surface tension, bubble radius distributions, and packing efficiency within the upper 15mm foam boundary.
-              </p>
-            </div>
-            <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-terracotta pt-2 border-t border-dashed border-ink/20">
-              ACCURACY: &plusmn; 0.01 BUBBLES
-            </div>
+        {/* Horizontal Annotated Laboratory Diagram Container */}
+        <div className="p-6 sm:p-8 rounded-3xl bg-paper border-3 border-ink shadow-sketch lab-grid-dense space-y-6">
+          <div className="flex items-center justify-between border-b-2 border-ink/20 pb-3">
+            <span className="font-technical text-xs font-bold uppercase tracking-widest text-ink flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-terracotta" />
+              FLUID DYNAMICS DIAGRAM • FIG 4.2
+            </span>
+            <span className="font-handwritten text-lg text-chai font-bold">
+              Roadside Aeration Matrix
+            </span>
           </div>
 
-          {/* Pillar 2 */}
-          <div className="p-6 rounded-2xl bg-paper border-2 border-ink shadow-sketch space-y-3 flex flex-col justify-between hover:scale-[1.02] transition-transform">
-            <div className="space-y-2">
-              <div className="w-12 h-12 rounded-xl bg-chai/20 border border-ink flex items-center justify-center text-2xl font-black">
-                🫖
-              </div>
-              <h3 className="font-display font-bold text-xl text-ink">
-                Kadak Viscosity Matrix
-              </h3>
-              <p className="font-technical text-xs text-ink/70 leading-relaxed">
-                Determines liquid opacity and boiling duration by assessing milk-fat light scattering and tea leaf extraction depth.
-              </p>
-            </div>
-            <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-chai pt-2 border-t border-dashed border-ink/20">
-              STEEPMETER: 100% ROAD-TESTED
-            </div>
-          </div>
-
-          {/* Pillar 3 */}
-          <div className="p-6 rounded-2xl bg-paper border-2 border-ink shadow-sketch space-y-3 flex flex-col justify-between hover:scale-[1.02] transition-transform">
-            <div className="space-y-2">
-              <div className="w-12 h-12 rounded-xl bg-terracotta/20 border border-ink flex items-center justify-center text-2xl font-black">
-                💨
-              </div>
-              <h3 className="font-display font-bold text-xl text-ink">
-                Vapor Plume Dynamics
-              </h3>
-              <p className="font-technical text-xs text-ink/70 leading-relaxed">
-                Tracks thermal steam wisps rising from fresh pours to calculate optimal sipping temperature without tongue scalding.
-              </p>
-            </div>
-            <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-saffron-dark pt-2 border-t border-dashed border-ink/20">
-              THERMAL INDEX: 68&deg;C OPTIMAL
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 4. OFFICIAL CHAI QUALITY SCALE (6 TIERS) ────────────────────── */}
-      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
-        <div className="text-center space-y-2 max-w-2xl mx-auto">
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink">
-            Official Laboratory Quality Scale
-          </h2>
-          <p className="font-technical text-xs sm:text-sm text-ink/70">
-            Categorizing tapri ചായ brews based strictly on bubble volume and froth integrity.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            {
-              icon: "🌟",
-              rank: "TIER 01",
-              title: "Roadside Perfection",
-              desc: "Dense, velvety micro-foam with uniform bubble radius. High ginger & cardamom aromatics.",
-              color: "border-saffron bg-saffron/10",
-            },
-            {
-              icon: "☕",
-              rank: "TIER 02",
-              title: "Standard Cutting",
-              desc: "Solid everyday tea. Good froth coverage, slight bubble asymmetry on rim.",
-              color: "border-chai bg-chai/10",
-            },
-            {
-              icon: "💧",
-              rank: "TIER 03",
-              title: "Water-Logged Brew",
-              desc: "Too much water added to stretch milk supply. Zero foam retention capability.",
-              color: "border-terracotta bg-terracotta/10",
-            },
-            {
-              icon: "🌫️",
-              rank: "TIER 04",
-              title: "Over-Boiled Tar",
-              desc: "Left simmering on saucepan for 4 hours while vendor chatted on the phone.",
-              color: "border-slate-400 bg-slate-50/50",
-            },
-            {
-              icon: "🍯",
-              rank: "TIER 05",
-              title: "Diabetic Syrup",
-              desc: "14 sugar packets. Liquid molasses with faint tea aroma.",
-              color: "border-yellow-600 bg-yellow-50/50",
-            },
-            {
-              icon: "⚡",
-              rank: "HAZARDOUS",
-              title: "Battery Acid Tar",
-              desc: "Will strip paint off wooden tables and dissolve spoon handles on contact.",
-              color: "border-red-600 bg-red-50/50",
-            },
-          ].map((item, idx) => (
-            <div
-              key={idx}
-              className={`p-5 rounded-2xl border-2 shadow-sketch-sm space-y-2 flex flex-col justify-between ${item.color}`}
-            >
-              <div className="space-y-1">
-                <div className="text-3xl">{item.icon}</div>
-                <div className="font-technical text-[10px] font-black uppercase tracking-wider text-terracotta">
-                  {item.rank}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+            {/* Pillar 1: Ink SVG Diagram */}
+            <div className="p-5 rounded-2xl bg-paper-dark border-2 border-ink shadow-sketch-sm flex flex-col justify-between space-y-4 hover:scale-[1.01] transition-transform">
+              <div className="space-y-3">
+                <div className="w-16 h-16 rounded-2xl bg-paper border-2 border-ink flex items-center justify-center p-2 shadow-sketch-sm">
+                  {/* Hand-sketched Ink SVG Bubbles */}
+                  <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                    <circle cx="16" cy="18" r="10" stroke="#1E1610" strokeWidth="2" strokeDasharray="3 2" />
+                    <circle cx="16" cy="18" r="3" fill="#1E1610" />
+                    <circle cx="30" cy="28" r="8" stroke="#1E1610" strokeWidth="2" />
+                    <circle cx="28" cy="12" r="5" stroke="#C85A32" strokeWidth="1.8" />
+                    <path d="M 8 32 Q 22 36 36 32" stroke="#1E1610" strokeWidth="1.5" strokeDasharray="2 2" />
+                  </svg>
                 </div>
-                <h4 className="font-display font-bold text-base text-ink">
-                  {item.title}
-                </h4>
-                <p className="font-technical text-xs text-ink/70 leading-relaxed">
-                  {item.desc}
+                <div className="font-technical text-[10px] font-black uppercase tracking-wider text-terracotta">
+                  PILLAR 01 • SURFACE TENSION
+                </div>
+                <h3 className="font-display font-bold text-xl text-ink">
+                  Micro-Froth Physics
+                </h3>
+                <p className="font-technical text-xs text-ink/75 leading-relaxed">
+                  Calculates surface tension, bubble radius distributions, and packing efficiency within the upper 15mm foam boundary.
                 </p>
               </div>
+              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-terracotta pt-2 border-t border-dashed border-ink/20 flex justify-between">
+                <span>ACCURACY: &plusmn; 0.01 BUBBLES</span>
+                <span>FIG A</span>
+              </div>
             </div>
-          ))}
+
+            {/* Pillar 2: Ink SVG Diagram */}
+            <div className="p-5 rounded-2xl bg-paper-dark border-2 border-ink shadow-sketch-sm flex flex-col justify-between space-y-4 hover:scale-[1.01] transition-transform">
+              <div className="space-y-3">
+                <div className="w-16 h-16 rounded-2xl bg-paper border-2 border-ink flex items-center justify-center p-2 shadow-sketch-sm">
+                  {/* Hand-sketched Ink SVG Teapot Viscosity */}
+                  <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                    <path d="M 12 16 C 12 12, 32 12, 32 16 L 30 36 C 30 38, 14 38, 14 36 Z" stroke="#1E1610" strokeWidth="2" />
+                    <path d="M 10 22 C 4 22, 4 30, 14 30" stroke="#1E1610" strokeWidth="1.8" />
+                    <path d="M 32 20 L 38 14" stroke="#C85A32" strokeWidth="2" strokeLinecap="round" />
+                    <line x1="18" y1="24" x2="26" y2="24" stroke="#1E1610" strokeWidth="1.5" strokeDasharray="2 2" />
+                    <line x1="16" y1="28" x2="28" y2="28" stroke="#1E1610" strokeWidth="1.5" strokeDasharray="2 2" />
+                  </svg>
+                </div>
+                <div className="font-technical text-[10px] font-black uppercase tracking-wider text-chai">
+                  PILLAR 02 • VISCOSITY MATRIX
+                </div>
+                <h3 className="font-display font-bold text-xl text-ink">
+                  Kadak Viscosity Matrix
+                </h3>
+                <p className="font-technical text-xs text-ink/75 leading-relaxed">
+                  Determines liquid opacity and boiling duration by assessing milk-fat light scattering and tea leaf extraction depth.
+                </p>
+              </div>
+              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-chai pt-2 border-t border-dashed border-ink/20 flex justify-between">
+                <span>STEEPMETER: 100% ROAD-TESTED</span>
+                <span>FIG B</span>
+              </div>
+            </div>
+
+            {/* Pillar 3: Ink SVG Diagram */}
+            <div className="p-5 rounded-2xl bg-paper-dark border-2 border-ink shadow-sketch-sm flex flex-col justify-between space-y-4 hover:scale-[1.01] transition-transform">
+              <div className="space-y-3">
+                <div className="w-16 h-16 rounded-2xl bg-paper border-2 border-ink flex items-center justify-center p-2 shadow-sketch-sm">
+                  {/* Hand-sketched Ink SVG Steam Plume */}
+                  <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                    <path d="M 14 36 C 10 26, 22 18, 16 8" stroke="#1E1610" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M 24 38 C 30 28, 18 16, 26 6" stroke="#C85A32" strokeWidth="2.2" strokeLinecap="round" />
+                    <path d="M 32 34 C 36 26, 28 20, 34 12" stroke="#1E1610" strokeWidth="1.5" strokeDasharray="3 2" />
+                    <line x1="8" y1="38" x2="36" y2="38" stroke="#1E1610" strokeWidth="1.8" />
+                  </svg>
+                </div>
+                <div className="font-technical text-[10px] font-black uppercase tracking-wider text-saffron-dark">
+                  PILLAR 03 • THERMAL STEAM
+                </div>
+                <h3 className="font-display font-bold text-xl text-ink">
+                  Vapor Plume Dynamics
+                </h3>
+                <p className="font-technical text-xs text-ink/75 leading-relaxed">
+                  Tracks thermal steam wisps rising from fresh pours to calculate optimal sipping temperature without tongue scalding.
+                </p>
+              </div>
+              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-saffron-dark pt-2 border-t border-dashed border-ink/20 flex justify-between">
+                <span>THERMAL INDEX: 68&deg;C OPTIMAL</span>
+                <span>FIG C</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
+
+
 
       {/* ── 5. USELESS STATISTICS & LIVE SESSION TRACKER ──────────────── */}
       <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
-        {/* Real Live Session Popping Counter */}
-        <div className="p-6 rounded-3xl bg-paper-dark border-3 border-ink shadow-sketch space-y-3">
+        {/* Real Live Session Popping Counter (NaN-Safe Guards) */}
+        <div className="p-6 sm:p-8 rounded-3xl bg-paper-dark border-3 border-ink shadow-sketch space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-ink/15 pb-2">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-saffron animate-pulse" />
@@ -415,41 +388,43 @@ export default function ChaiHero() {
               </h3>
             </div>
             <span className="font-technical text-[11px] font-bold text-terracotta bg-terracotta/10 px-2.5 py-0.5 rounded border border-terracotta/30">
-              {sessionPoppedCount > 0 ? "Tracking Active Pops Live" : "Waiting for First Bubble Pop..."}
+              {Number.isFinite(sessionPoppedCount) && sessionPoppedCount > 0 ? "Tracking Active Pops Live" : "Awaiting First Specimen Pop..."}
             </span>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center pt-1">
-            <div className="p-3.5 rounded-2xl bg-paper border-2 border-ink shadow-sketch-sm space-y-1">
+            <div className="p-4 rounded-2xl bg-paper border-2 border-ink shadow-sketch-sm space-y-1">
               <div className="font-display font-black text-3xl sm:text-4xl text-terracotta">
-                {sessionPoppedCount}
+                {Number.isFinite(sessionPoppedCount) && sessionPoppedCount >= 0 ? sessionPoppedCount : 0}
               </div>
               <div className="font-technical text-xs font-bold uppercase tracking-wider text-ink-faint">
                 Bubbles Popped by You 🫧
               </div>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-paper border-2 border-ink shadow-sketch-sm space-y-1">
+            <div className="p-4 rounded-2xl bg-paper border-2 border-ink shadow-sketch-sm space-y-1">
               <div className="font-display font-black text-3xl sm:text-4xl text-chai">
-                {(sessionPoppedCount * 0.45).toFixed(1)} ml
+                {Number.isFinite(sessionPoppedCount) ? (sessionPoppedCount * 0.45).toFixed(1) : "0.0"} ml
               </div>
               <div className="font-technical text-xs font-bold uppercase tracking-wider text-ink-faint">
                 Chai Displaced by You ☕
               </div>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-paper border-2 border-ink shadow-sketch-sm space-y-1">
+            <div className="p-4 rounded-2xl bg-paper border-2 border-ink shadow-sketch-sm space-y-1">
               <div className="font-display font-black text-3xl sm:text-4xl text-ink">
-                {firstPopTimestamp ? `${Math.floor(elapsedSec / 60)}m ${elapsedSec % 60}s` : "0m 0s"}
+                {firstPopTimestamp && Number.isFinite(elapsedSec) && elapsedSec > 0
+                  ? `${Math.floor(elapsedSec / 60)}m ${elapsedSec % 60}s`
+                  : "0m 0s"}
               </div>
               <div className="font-technical text-xs font-bold uppercase tracking-wider text-ink-faint">
                 Session Time Wasted ⏰
               </div>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-paper border-2 border-ink shadow-sketch-sm space-y-1">
+            <div className="p-4 rounded-2xl bg-paper border-2 border-ink shadow-sketch-sm space-y-1">
               <div className="font-display font-black text-3xl sm:text-4xl text-saffron-dark">
-                {Math.floor(sessionPoppedCount / 8)}
+                {Number.isFinite(sessionPoppedCount) ? Math.floor(sessionPoppedCount / 8) : 0}
               </div>
               <div className="font-technical text-xs font-bold uppercase tracking-wider text-ink-faint">
                 Parle-G Lost to Foam 🍪
@@ -457,14 +432,14 @@ export default function ChaiHero() {
             </div>
           </div>
 
-          {sessionPoppedCount === 0 && (
-            <p className="font-technical text-[11px] text-ink/70 text-center italic pt-1">
-              💡 Tip: Click micro-bubbles on the illustrated cup above or open <button onClick={() => setRoute("pop-the-bubble")} className="underline font-bold text-terracotta">Bubble Popper</button> to start your live session popping counter!
+          {(!sessionPoppedCount || sessionPoppedCount === 0) && (
+            <p className="font-technical text-xs text-ink/75 text-center italic pt-1">
+              💡 Tip: Click micro-bubbles on the illustrated cup above or launch <button onClick={() => setRoute("pop-the-bubble")} className="underline font-bold text-terracotta">Bubble Popper</button> to start live tracking!
             </p>
           )}
         </div>
 
-        {/* Global Lifetime Metrics */}
+        {/* Global Laboratory Metrics (Unique, Non-Duplicate Metrics) */}
         <div className="p-6 sm:p-8 rounded-3xl bg-paper border-3 border-ink shadow-sketch space-y-4 text-center">
           <h3 className="font-technical text-xs sm:text-sm font-bold uppercase tracking-widest text-terracotta">
             📊 Global Laboratory Metrics
@@ -472,56 +447,59 @@ export default function ChaiHero() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 pt-2">
             <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
-              <div className="font-display font-black text-3xl sm:text-4xl text-terracotta">
-                412 L
+              <div className="font-display font-black text-2xl sm:text-3xl text-terracotta">
+                8,420
               </div>
-              <div className="font-technical text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/70">
-                Chai Wasted ☕
-              </div>
-            </div>
-
-            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
-              <div className="font-display font-black text-3xl sm:text-4xl text-chai">
-                89.4 hrs
-              </div>
-              <div className="font-technical text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/70">
-                Work Time Wasted ⏰
+              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink/70">
+                Tapri Talks Overhead 🗣️
               </div>
             </div>
 
             <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
-              <div className="font-display font-black text-3xl sm:text-4xl text-ink">
-                1.42M+
+              <div className="font-display font-black text-2xl sm:text-3xl text-chai">
+                98.2%
               </div>
-              <div className="font-technical text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/70">
-                Bubbles Cataloged 🫧
-              </div>
-            </div>
-
-            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
-              <div className="font-display font-black text-3xl sm:text-4xl text-saffron-dark">
-                99.8%
-              </div>
-              <div className="font-technical text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/70">
-                Unnecessary Accuracy 🔬
+              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink/70">
+                Leaf Extraction Rate 🫖
               </div>
             </div>
 
             <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
-              <div className="font-display font-black text-3xl sm:text-4xl text-terracotta">
-                1,204
+              <div className="font-display font-black text-2xl sm:text-3xl text-ink">
+                14.2 km
               </div>
-              <div className="font-technical text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/70">
-                Parle-G Sacrificed 🍪
+              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink/70">
+                Meniscus Distance 📏
               </div>
             </div>
 
             <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
-              <div className="font-display font-black text-3xl sm:text-4xl text-chai">
+              <div className="font-display font-black text-2xl sm:text-3xl text-saffron-dark">
                 0.00s
               </div>
-              <div className="font-technical text-[10px] sm:text-xs font-bold uppercase tracking-wider text-ink/70">
-                Practical Utility 📉
+              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink/70">
+                Market Value 📉
+              </div>
+              <div className="font-handwritten text-[11px] text-terracotta">
+                Re-verified: Still 0.00s
+              </div>
+            </div>
+
+            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
+              <div className="font-display font-black text-2xl sm:text-3xl text-terracotta">
+                5,190
+              </div>
+              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink/70">
+                Crumbs Dissolved 🍪
+              </div>
+            </div>
+
+            <div className="p-3 rounded-xl bg-ink/5 border border-ink/10 space-y-1">
+              <div className="font-display font-black text-2xl sm:text-3xl text-chai">
+                100%
+              </div>
+              <div className="font-technical text-[10px] font-bold uppercase tracking-wider text-ink/70">
+                Roadside Authenticity ☕
               </div>
             </div>
           </div>
@@ -545,7 +523,7 @@ export default function ChaiHero() {
             onClick={handleStartInspection}
             size="lg"
           >
-            BEGIN BUBBLE CENSUS 🔬
+            BEGIN ചായ CENSUS 🔬
           </IllustratedButton>
 
           <button

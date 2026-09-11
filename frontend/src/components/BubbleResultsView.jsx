@@ -456,14 +456,14 @@ export default function BubbleResultsView() {
             }}
           >
             <span className="font-technical text-xs font-bold uppercase tracking-widest text-ink-faint block mb-1">
-              TOTAL BUBBLE POPULATION
+              TOTAL ചായ BUBBLE POPULATION
             </span>
 
             <div
               ref={numberCounterRef}
               className="font-display font-bold text-7xl sm:text-8xl md:text-9xl text-ink leading-none my-1 tracking-tight"
             >
-              {displayCount}
+              {Number.isFinite(displayCount) && displayCount >= 0 ? displayCount : 0}
             </div>
 
             <span className="font-handwritten text-3xl sm:text-4xl text-terracotta font-bold block -mt-1">

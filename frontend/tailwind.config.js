@@ -5,7 +5,7 @@ export default {
     extend: {
       fontFamily: {
         handwritten: ["'Caveat'", "cursive"],
-        display: ["'Kalam'", "cursive"],
+        display: ["'Space Grotesk'", "sans-serif"],
         technical: ["'Space Grotesk'", "sans-serif"],
         sans: ["'Space Grotesk'", "system-ui", "sans-serif"],
       },
