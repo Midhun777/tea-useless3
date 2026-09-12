@@ -88,5 +88,6 @@ Image Input
 When running locally, the project gives the expected and accurate output. However, after deploying it to the live website, the output is no longer accurate and behaves differently from the local version.
 
 - **Live Demo:** [(https://tea-useless3.vercel.app/)]
+- **Video Demo:** [(https://youtu.be/jY4FcLxva-o)]
 ---
 Made with ☕ for TinkerHub Useless Projects
