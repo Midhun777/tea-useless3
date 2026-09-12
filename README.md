@@ -7,7 +7,7 @@ An AI-powered real-time computer vision system that detects and tracks tea-foam 
 ### Team Name: Real Fighters
 
 ### Team Members
-- Team Lead: Midhun Mathew - College Of Engineering Chengannur
+- Member 1: Midhun Mathew - College Of Engineering Chengannur
 - Member 2: Zen Varghese - College Of Engineering Chengannur
 
 ### Project Description
@@ -85,8 +85,8 @@ Image Input
 
 ## Project Documentation & Links
 
-- **Live Demo:** [Insert Link Here]
-- **Video Demo:** [Insert Link Here]
+When running locally, the project gives the expected and accurate output. However, after deploying it to the live website, the output is no longer accurate and behaves differently from the local version.
 
+- **Live Demo:** [(https://tea-useless3.vercel.app/)]
 ---
 Made with ☕ for TinkerHub Useless Projects
