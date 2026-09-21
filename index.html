@@ -140,7 +140,7 @@
               <div class="member-circle-wrap">
                 <div class="member-circle-ring"></div>
                 <div class="member-circle-img-box">
-                  <img src="images/midhun.png" alt="Midhun Mathew - Team realFighters" loading="lazy">
+                  <img src="images/midhun.jpeg" alt="Midhun Mathew - Team realFighters" loading="lazy">
                 </div>
                 <div class="member-circle-badge-pill">☕ Chief Chaya Officer</div>
               </div>
@@ -344,17 +344,15 @@
             </div>
             <ul class="member-stats-list">
               <li><span>Status</span> <span class="val">1st Year MCA</span></li>
-              <li><span>Deadline Heartrate</span> <span class="val">180 BPM</span></li>
-              <li><span>Claude/GPT Patience</span> <span class="val">0 / 100</span></li>
+
               <li><span>Past Hackathon Exp</span> <span class="val">0.00%</span></li>
-              <li><span>Core Skill</span> <span class="val">Appam Lore Recall</span></li>
             </ul>
           </div>
 
           <!-- Midhun Mathew -->
           <div class="member-sheet">
             <div class="member-badge-top">
-              <img src="images/midhun.png" alt="Midhun Mathew" class="avatar-photo-thumb">
+              <img src="images/midhun.jpeg" alt="Midhun Mathew" class="avatar-photo-thumb">
               <div>
                 <h3>Midhun Mathew</h3>
                 <span class="role">Decision Maker • Chaya Connoisseur</span>
@@ -362,9 +360,7 @@
             </div>
             <ul class="member-stats-list">
               <li><span>Status</span> <span class="val">1st Year MCA</span></li>
-              <li><span>Decision Speed</span> <span class="val">0.2 Seconds</span></li>
-              <li><span>Daily Chaya Intake</span> <span class="val">6 Glasses Minimum</span></li>
-              <li><span>Famous Quote</span> <span class="val">"Edukkam Da!"</span></li>
+
               <li><span>Uselessness Factor</span> <span class="val">100% Unapologetic</span></li>
             </ul>
           </div>
@@ -373,10 +369,356 @@
       </article>
 
 
-      <!-- CHAPTER 2 TEASER -->
+      <!-- ====================================================================
+           CHAPTER 02: THE BUBBLE DETECTION NIGHTMARE & THE GREAT CODE WIPEOUT
+           ==================================================================== -->
+      <article class="journal-entry-card" id="chapter-02" style="border-top: 5px solid var(--stamp-red);">
+        <div class="entry-ribbon" style="background: rgba(239, 68, 68, 0.12); color: #b91c1c;">
+          🔬 Chapter 02 • The Bubble Detection Nightmare
+        </div>
+
+        <h2 class="entry-heading">
+          The Great Bubble Crisis: AI Failures, Vibe Coding, & The Honest Hacker's Wipeout 💥
+        </h2>
+
+        <div class="entry-narrative">
+          <p>
+            Everything was smooth sailing in our heads. We had registered for <strong>Useless Projects 3.0</strong>,
+            we had our glorious mission—<strong>Project കുമിള</strong>—and the roles in <strong>Team realFighters</strong>
+            were crystal clear from minute one:
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.2rem 0;">
+            <div style="background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 10px; padding: 1rem;">
+              <h4 style="font-family: var(--font-serif); color: var(--chai-roast); margin-bottom: 0.3rem;">🥋 Zen Varghese</h4>
+              <p style="font-size: 0.9rem; color: #7c2d12; margin: 0;">
+                <strong>Backend & AI / CV Engineer:</strong> In charge of anything touching computer vision, bubble segmentation algorithms, Python APIs, and existential panic.
+              </p>
+            </div>
+            <div style="background: #fdf2f8; border: 1.5px solid #fbcfe8; border-radius: 10px; padding: 1rem;">
+              <h4 style="font-family: var(--font-serif); color: #831843; margin-bottom: 0.3rem;">☕ Midhun Mathew</h4>
+              <p style="font-size: 0.9rem; color: #701a75; margin: 0;">
+                <strong>UI Mastermind & Future CEO:</strong> In charge of frontend design, product aesthetics, and strategic coffee-shop decisions because he aspires to be the CEO of our future company!
+              </p>
+            </div>
+          </div>
+
+          <p>
+            <em>"Bro, how hard could it be to count bubbles in a glass of tea?"</em> we asked ourselves.
+            <strong>Famous last words.</strong>
+          </p>
+
+          <p>
+            The moment we actually looked at high-resolution photos of fresh Kerala meter-chaya, reality slapped us in the face.
+            Tea froth isn't neat circles on a whiteboard. It’s an organic, chaotic storm of overlapping membranes, 
+            microscopic foam, light reflections, caramel shadows, and translucent semi-invisible bubbles!
+            We literally had no clue how to detect them.
+          </p>
+
+          <!-- The AI Trials Gauntlet -->
+          <h3 style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--chai-deep); margin-top: 1.8rem;">
+            The AI Model Gauntlet (Or: How Deep Learning Gave Up on Kerala Tea)
+          </h3>
+          <p>
+            I (Zen) rolled up my sleeves with <strong>FastAPI and OpenCV</strong> as the backend backbone, and unleashed 
+            every cutting-edge AI and segmentation model I could get my hands on. Here is what happened:
+          </p>
+
+          <div class="ai-trials-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <!-- YOLO Segmentation -->
+            <div class="ai-trial-card">
+              <div class="ai-trial-header">
+                <h4>YOLO Segmentation</h4>
+                <span class="ai-trial-status status-fail">Failed</span>
+              </div>
+              <p class="ai-trial-desc">
+                Trained on objects, not foam. It hallucinated bounding boxes around cup reflections and ignored 90% of actual froth. Completely useless on tea.
+              </p>
+              <div class="ai-trial-footnote">Result: Detected the glass rim, not a single bubble.</div>
+            </div>
+
+            <!-- SAM / SAM 2 -->
+            <div class="ai-trial-card">
+              <div class="ai-trial-header">
+                <h4>SAM / SAM 2 (Meta)</h4>
+                <span class="ai-trial-status status-fail">Failed</span>
+              </div>
+              <p class="ai-trial-desc">
+                Either merged the entire foam layer into one giant blob, or fragmented each bubble into dozens of micro-polygons. No useful middle ground.
+              </p>
+              <div class="ai-trial-footnote">Result: 1 bubble or 400 — never 74.</div>
+            </div>
+
+            <!-- Moondream AI -->
+            <div class="ai-trial-card">
+              <div class="ai-trial-header">
+                <h4>Moondream AI</h4>
+                <span class="ai-trial-status status-fail">Failed</span>
+              </div>
+              <p class="ai-trial-desc">
+                A vision-language model. We prompted it to find bubbles — it wrote a short essay about hot beverages and located exactly zero bubbles.
+              </p>
+              <div class="ai-trial-footnote">Result: Beautiful prose, zero CV output.</div>
+            </div>
+
+            <!-- Cellpose -->
+            <div class="ai-trial-card" style="border: 2px solid #f59e0b; background: #fffdfa;">
+              <div class="ai-trial-header">
+                <h4>Cellpose</h4>
+                <span class="ai-trial-status status-partial">Partially Worked</span>
+              </div>
+              <p class="ai-trial-desc">
+                Built for biological cell membranes — and the only model that found <strong>anything</strong>. Detected visible bubbles reasonably well, but completely missed the translucent, invisible ones.
+              </p>
+              <div class="ai-trial-footnote" style="color: #b45309;">Result: Best option, still not good enough.</div>
+            </div>
+          </div>
+
+          <!-- THE WRONG RESULT SPECIMEN SHOWCASE (Matching Attached User Screenshot) -->
+          <div style="margin: 2.5rem 0;">
+            <div class="doodle-note" style="margin-bottom: 0.8rem;">
+              🔬 <em>"Behold: The specimen scan results that made us question our life choices..."</em>
+            </div>
+
+            <div class="specimen-analyzer-container">
+              <!-- Top bar navigation -->
+              <div class="specimen-nav-bar">
+                <div class="specimen-nav-back">
+                  <span>←</span> INSPECT ANOTHER ചായ
+                </div>
+                <button class="debug-mode-btn" id="toggle-debug-btn" type="button">
+                  <span>☕</span> ENABLE DEBUG MODE
+                </button>
+              </div>
+
+              <!-- Main Grid Layout -->
+              <div class="specimen-main-grid">
+                <!-- Left Viewport Card -->
+                <div class="specimen-viewport-card" id="specimen-viewport-card">
+                  <div class="specimen-frame">
+                    <img src="images/chaya.jpeg" alt="Analyzed Chaya Specimen" class="specimen-img">
+                    
+                    <!-- Coordinate Grid Overlay -->
+                    <div class="specimen-grid-overlay"></div>
+                    <div class="specimen-col-labels">
+                      <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span>
+                    </div>
+                    <div class="specimen-row-labels">
+                      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                    </div>
+
+                    <!-- Top-right HUD Box -->
+                    <div class="specimen-hud-box">
+                      <div class="hud-id" id="hud-id-display">[ 0 ]</div>
+                      <div class="hud-stats" id="hud-stats-display">r: px &nbsp; conf: 0%</div>
+                    </div>
+
+                    <!-- Bottom-left Specimen Label Badge -->
+                    <div class="specimen-bottom-badge">
+                      ANALYZED SPECIMEN • MULTI-SCALE CV
+                    </div>
+
+                    <!-- Dynamic SVG Bubble Marker Layer -->
+                    <svg class="specimen-bubble-svg" id="specimen-svg" viewBox="0 0 1000 825"></svg>
+                  </div>
+
+                  <!-- Specimen Size Filter Row -->
+                  <div class="specimen-filter-bar" style="flex-wrap: nowrap; overflow-x: auto; padding-bottom: 0.1rem;">
+                    <span style="white-space: nowrap;">FILTER BY SIZE:</span>
+                    <button type="button" class="filter-pill-btn active" data-filter="all">All (74)</button>
+                    <button type="button" class="filter-pill-btn" data-filter="small">Small (48)</button>
+                    <button type="button" class="filter-pill-btn" data-filter="med">Med (19)</button>
+                    <button type="button" class="filter-pill-btn" data-filter="large">Large (7)</button>
+                  </div>
+                </div>
+
+                <!-- Right Stats & Classification Cards -->
+                <div class="specimen-stats-column">
+                  <!-- Census Population Card -->
+                  <div class="specimen-census-card">
+                    <div class="census-header-sub">TOTAL ചായ BUBBLE POPULATION</div>
+                    <div class="census-big-number">74</div>
+                    <div class="census-title-brush">BUBBLES DETECTED</div>
+                    <div class="census-footer-tag">
+                      • MULTI-SCALE CENSUS COMPLETE • HIGH-FIDELITY OPENCV
+                    </div>
+                  </div>
+
+                  <!-- Specimen Classification Card -->
+                  <div class="specimen-classification-card">
+                    <div class="classification-header">
+                      <h4>SPECIMEN CLASSIFICATION</h4>
+                      <span class="italic-sub">Organic Population</span>
+                    </div>
+                    
+                    <div class="classification-tri-grid">
+                      <!-- Small -->
+                      <div class="class-mini-box">
+                        <div class="class-dot-icons">
+                          <span class="dot-indicator dot-small"></span>
+                          <span class="dot-indicator dot-small"></span>
+                          <span class="dot-indicator dot-small"></span>
+                        </div>
+                        <div class="class-mini-num">48</div>
+                        <div class="class-mini-label">SMALL (≤12PX)</div>
+                      </div>
+
+                      <!-- Medium -->
+                      <div class="class-mini-box">
+                        <div class="class-dot-icons">
+                          <span class="dot-indicator dot-med"></span>
+                          <span class="dot-indicator dot-med"></span>
+                        </div>
+                        <div class="class-mini-num">19</div>
+                        <div class="class-mini-label">MEDIUM (13-24PX)</div>
+                      </div>
+
+                      <!-- Large -->
+                      <div class="class-mini-box">
+                        <div class="class-dot-icons">
+                          <span class="dot-indicator dot-large"></span>
+                        </div>
+                        <div class="class-mini-num">7</div>
+                        <div class="class-mini-label">LARGE (≥25PX)</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Archival Note for the UI -->
+              <div class="archival-disclaimer">
+                <span class="icon">📸</span>
+                <div>
+                  <strong>Archival Note regarding this Specimen View:</strong><br>
+                  The interactive interface above is reconstructed directly inside our new UI to showcase the flawed detection results (it tagged only 74 bubbles, completely missing hundreds of real, fine foam bubbles beneath the surface!). Our very original, messy early-experiment screenshots were lost to the digital void during our late-night panic, so we memorialized the exact flawed data in this new interactive view.
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- THE HONEST HACKER'S WIPEOUT -->
+          <h3 style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--chai-deep); margin-top: 2rem;">
+            The Honest Hacker's Blunder: "Wait... You Mean We Didn't Have to Delete It?!"
+          </h3>
+          <p>
+            While experimenting with these crazy detection techniques, the official kickoff time for 
+            <strong>Useless Projects 3.0</strong> was approaching.
+          </p>
+
+          <div class="post-it">
+            <div class="post-it-author">🥋 Zen's Innocent Rulebook Logic:</div>
+            <div class="post-it-body">
+              "In every rulebook I had ever read on the internet, hackathons are supposed to be built 100% from scratch AFTER the clock starts! I was genuinely terrified the organizers would inspect our GitHub commit logs, see pre-existing files, and instantly banish us. So what did I do? Right before Useless 3.0 began... <strong>I DELETED EVERYTHING.</strong> Clean slate. Zero code. Tabula rasa!"
+            </div>
+          </div>
+
+          <p>
+            I sat back, proud of my ironclad integrity. <em>"Now we will code like true realFighters from minute zero!"</em>
+          </p>
+          <p>
+            And then the hackathon started. We logged into the channels and saw what the other participants were doing:
+            <strong>EVERY SINGLE TEAM HAD ALREADY BUILT HALF OR ALL OF THEIR PROJECTS!</strong>
+            People were showing off polished repos, pre-trained pipelines, and working prototypes! 
+            Meanwhile, Team realFighters were sitting there with a freshly wiped directory and an empty hard drive.
+          </p>
+
+          <!-- MIDHUN'S VIBE CODING CRISIS -->
+          <h3 style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--chai-deep); margin-top: 2rem;">
+            Midhun to the Rescue... Or So We Thought! ☕📉
+          </h3>
+          <p>
+            As sheer terror washed over me, Midhun leaned back with the calm swagger of a Fortune 500 CEO and smiled:
+          </p>
+
+          <div class="grand-quote" style="border-left-color: var(--stamp-red); background: #fef2f2;">
+            "Relax da Zen! Njan delete cheythilla (I didn't delete mine)! I did some code in JS, we are saved!"
+            <span class="sub">— Midhun Mathew, delivering false hope at 12:40 AM</span>
+          </div>
+
+          <p>
+            My heart leaped! We were saved! The future CEO had clutched the round! 
+            I scrambled over to check his machine, expecting a miracle. 
+            Instead, I stared into the abyss of <strong>Pure Vibe Coding™</strong>.
+          </p>
+          <p>
+            Midhun had decided to bring Computer Vision into the client-side browser using <strong>pure JavaScript and OpenCV.js</strong>.
+            The catch? He had vibe-coded the entire thing without knowing what algorithms, matrix filters, or thresholding mechanisms were actually happening under the hood!
+          </p>
+
+          <!-- Vibe Coding Terminal Disaster Log -->
+          <div class="vibe-terminal-card">
+            <div class="vibe-terminal-header">
+              <div class="vibe-terminal-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="vibe-terminal-title">midhun_vibe_opencv_runner.js [EMERGENCY CRASH DUMP]</div>
+            </div>
+            <div class="vibe-log-line">> Loading opencv.js (8.4MB WebAssembly heap)...</div>
+            <div class="vibe-log-line warn">> [WARN] Main UI thread blocked: Math.hypot() loop running 4,800,000 times</div>
+            <div class="vibe-log-line warn">> [WARN] Browser fan sounding like an Air India Boeing 737 takeoff...</div>
+            <div class="vibe-log-line error">> [ERROR] cv.HoughCircles(): Target matrix isNaN or completely hallucinating</div>
+            <div class="vibe-log-line error">> [CRITICAL] 0 BUBBLES FOUND. BROWSER TAB NOT RESPONDING.</div>
+            <div class="vibe-log-line panic">> [ZEN INTERNAL MONOLOGUE] "WE ARE ABSOLUTELY DOOMED."</div>
+          </div>
+
+          <p>
+            The browser tab choked, froze, and died. OpenCV.js was getting stuck in infinite loops, 
+            the detection was failing catastrophically, and neither the browser nor Midhun knew what the math was doing. 
+            At that exact moment, at 2:00 in the morning, with all my clean backend deleted and Midhun's vibe-coded JS melted, 
+            <strong>I thought: We are 100% doomed.</strong>
+          </p>
+
+          <!-- THE FINAL MASTER PLAN & RESET -->
+          <h3 style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--chai-deep); margin-top: 2rem;">
+            The Executive Decree: "Start From 1!" 🚀
+          </h3>
+          <p>
+            You can't rattle a future CEO for long. Midhun closed the frozen browser tab, took a deep breath, 
+            looked at our cold mugs of tea, and laid down the law:
+          </p>
+
+          <div class="grand-quote" style="border-left-color: var(--stamp-green); background: #f0fdf4;">
+            "Enough of this browser vibe-coding nonsense. We start from 1. Real Python backend with FastAPI and OpenCV, and a fresh, bulletproof React frontend. Let's build it right!"
+            <span class="sub">— The Turning Point of Team realFighters</span>
+          </div>
+
+          <!-- Architecture Comparison Grid -->
+          <div class="architecture-pivot-grid">
+            <div class="arch-side-box fail-side">
+              <h4>❌ The Disaster Architecture</h4>
+              <ul>
+                <li>• Pure JS / OpenCV.js running on browser thread</li>
+                <li>• Vibe-coded blind algorithms with zero OpenCV math understanding</li>
+                <li>• Browser freezing, memory leaks, 0 real bubbles detected</li>
+                <li>• Zen's backend pre-code wiped out by honest paranoia</li>
+              </ul>
+            </div>
+            <div class="arch-side-box win-side">
+              <h4>✅ The Reborn RealFighters Architecture</h4>
+              <ul>
+                <li>• <strong>Backend:</strong> High-performance Python + FastAPI + OpenCV server</li>
+                <li>• <strong>Frontend:</strong> React.js modern UI with responsive specimen viewer</li>
+                <li>• <strong>Detection:</strong> Engineered multi-scale thresholding & contour analysis</li>
+                <li>• <strong>Status:</strong> Starting from square 1 with pure grit and tea!</li>
+              </ul>
+            </div>
+          </div>
+
+          <p>
+            With that decision locked in, the real fight began. We wiped the sweat from our foreheads, 
+            brewed another round of strong tea, and got to work building the true, immortal 
+            <strong>Project കുമിള</strong>.
+          </p>
+
+        </div>
+      </article>
+
+      <!-- CHAPTER 3 ROADMAP -->
       <div style="text-align: center; margin-top: 2rem;">
         <div class="rubber-stamp stamp-tea" style="font-size: 0.9rem; padding: 0.5rem 1.2rem;">
-          ⏳ Chapter 02: "Building the Detector" • Coming Next as We Hack!
+          ☕ Up Next: The React + FastAPI Resurrection & Live Deployment
         </div>
       </div>
 

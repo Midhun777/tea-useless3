@@ -999,18 +999,661 @@ body {
   100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
 }
 
-/* Responsive */
+/* ==========================================================================
+   CHAPTER 02 STYLES: THE BUBBLE DETECTION NIGHTMARE & SPECIMEN ANALYZER
+   ========================================================================== */
+
+/* AI Trials Breakdown Grid */
+.ai-trials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin: 1.8rem 0;
+}
+
+.ai-trial-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(140, 66, 29, 0.18);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.ai-trial-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+}
+
+.ai-trial-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.ai-trial-header h4 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--chai-deep);
+}
+
+.ai-trial-status {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.ai-trial-status.status-fail {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.ai-trial-status.status-partial {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #f59e0b;
+}
+
+.ai-trial-desc {
+  font-size: 0.88rem;
+  color: var(--ink-faded);
+  line-height: 1.5;
+  margin-bottom: 0.8rem;
+  flex-grow: 1;
+}
+
+.ai-trial-footnote {
+  font-family: var(--font-hand);
+  font-size: 0.95rem;
+  color: var(--chai-rich);
+  border-top: 1px dashed rgba(140, 66, 29, 0.18);
+  padding-top: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Specimen Analyzer (Matching Attached Screenshot)
+   -------------------------------------------------------------------------- */
+
+.specimen-analyzer-container {
+  background: #f8f6f0;
+  border: 2px solid #2b1a11;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 2.2rem 0;
+  box-shadow: 
+    0 18px 40px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+  color: #2b1a11;
+  position: relative;
+}
+
+/* Top Nav of Specimen Viewer */
+.specimen-nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid #dfd8cc;
+  padding-bottom: 0.9rem;
+  margin-bottom: 1.4rem;
+}
+
+.specimen-nav-back {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #4b3621;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.specimen-nav-back:hover {
+  color: var(--chai-roast);
+}
+
+.debug-mode-btn {
+  background: #ffffff;
+  border: 1.5px solid #2b1a11;
+  border-radius: 6px;
+  padding: 0.45rem 0.95rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: #2b1a11;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  box-shadow: 2px 2px 0px #2b1a11;
+  transition: all 0.15s ease;
+}
+
+.debug-mode-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px #2b1a11;
+}
+
+.debug-mode-btn.active {
+  background: #2b1a11;
+  color: #fef3c7;
+}
+
+/* Specimen Dashboard Layout */
+.specimen-main-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .specimen-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Specimen Left Frame */
+.specimen-viewport-card {
+  background: #ffffff;
+  border: 2px solid #2b1a11;
+  border-radius: 12px;
+  padding: 0.75rem;
+  box-shadow: 3px 4px 0px #2b1a11;
+  display: flex;
+  flex-direction: column;
+}
+
+.specimen-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3.3;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.specimen-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Coordinate Grid Overlay on Chaya */
+.specimen-grid-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to right, rgba(234, 88, 12, 0.22) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(234, 88, 12, 0.22) 1px, transparent 1px);
+  background-size: 16.666% 20%;
+}
+
+.specimen-col-labels {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: rgba(234, 88, 12, 0.85);
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.specimen-row-labels {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: rgba(234, 88, 12, 0.85);
+  font-weight: 700;
+  pointer-events: none;
+}
+
+/* HUD Readout Box in Top Right of Image */
+.specimen-hud-box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1.5px solid #2b1a11;
+  border-radius: 6px;
+  padding: 0.35rem 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #2b1a11;
+  text-align: right;
+  line-height: 1.25;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.specimen-hud-box .hud-id {
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.specimen-hud-box .hud-stats {
+  font-size: 0.68rem;
+  color: #554438;
+}
+
+/* Bottom Badge on Specimen Image */
+.specimen-bottom-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: #ffffff;
+  border: 1.5px solid #2b1a11;
+  border-radius: 4px;
+  padding: 0.25rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #2b1a11;
+  box-shadow: 1px 1px 0px #2b1a11;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Interactive SVG Bubble Layer */
+.specimen-bubble-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+.bubble-marker {
+  fill: rgba(245, 158, 11, 0.3);
+  stroke: #ea580c;
+  stroke-width: 1.4;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bubble-marker:hover {
+  fill: rgba(239, 68, 68, 0.7);
+  stroke: #ffffff;
+  stroke-width: 2;
+  r: 9;
+}
+
+.bubble-center-dot {
+  fill: #2b1a11;
+  pointer-events: none;
+}
+
+.bubble-debug-ring {
+  stroke: #ef4444;
+  stroke-dasharray: 2 2;
+  fill: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.debug-mode-active .bubble-debug-ring {
+  opacity: 1;
+}
+
+/* Filter Bar Below Specimen */
+.specimen-filter-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #786b5e;
+  font-weight: 700;
+}
+
+.filter-pill-btn {
+  background: #f1ede4;
+  border: 1px solid #c9bea9;
+  border-radius: 6px;
+  padding: 0.25rem 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #2b1a11;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filter-pill-btn:hover {
+  background: #e5dfd2;
+}
+
+.filter-pill-btn.active {
+  background: #2b1a11;
+  color: #ffffff;
+  border-color: #2b1a11;
+}
+
+/* --------------------------------------------------------------------------
+   Specimen Right Column: Stats & Classification
+   -------------------------------------------------------------------------- */
+
+.specimen-stats-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Grid-paper Population Card */
+.specimen-census-card {
+  background: #ffffff;
+  background-image: 
+    linear-gradient(#ece7dc 1px, transparent 1px),
+    linear-gradient(to right, #ece7dc 1px, #ffffff 1px);
+  background-size: 16px 16px;
+  border: 2px solid #2b1a11;
+  border-radius: 12px;
+  padding: 2.2rem 1.5rem;
+  text-align: center;
+  box-shadow: 4px 4px 0px #2b1a11;
+  position: relative;
+}
+
+.census-header-sub {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #8c6d56;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.census-big-number {
+  font-family: var(--font-serif);
+  font-size: clamp(4.5rem, 8vw, 6.2rem);
+  font-weight: 800;
+  color: #2b1a11;
+  line-height: 1;
+  margin: 0.2rem 0;
+  letter-spacing: -2px;
+}
+
+.census-title-brush {
+  font-family: var(--font-hand);
+  font-size: clamp(1.8rem, 3.5vw, 2.3rem);
+  color: #c2410c;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.census-footer-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #9a8b79;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-top: 1px dashed #d5cdbf;
+  padding-top: 0.8rem;
+}
+
+/* Classification Breakdown Card */
+.specimen-classification-card {
+  background: #ffffff;
+  border: 2px solid #2b1a11;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 4px 4px 0px #2b1a11;
+}
+
+.classification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1.5px solid #efeae0;
+  padding-bottom: 0.6rem;
+}
+
+.classification-header h4 {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #2b1a11;
+  text-transform: uppercase;
+}
+
+.classification-header span.italic-sub {
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+  color: #b45309;
+}
+
+.classification-tri-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.class-mini-box {
+  background: #faf7f2;
+  border: 1.5px solid #2b1a11;
+  border-radius: 8px;
+  padding: 0.9rem 0.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.class-dot-icons {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  height: 18px;
+}
+
+.dot-indicator {
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-small {
+  width: 7px;
+  height: 7px;
+  background: #d97706;
+}
+
+.dot-med {
+  width: 11px;
+  height: 11px;
+  background: #ea580c;
+}
+
+.dot-large {
+  width: 17px;
+  height: 17px;
+  background: #451a03;
+}
+
+.class-mini-num {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #2b1a11;
+  line-height: 1;
+}
+
+.class-mini-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #635043;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Archival Disclaimer Ribbon */
+.archival-disclaimer {
+  background: #fffbeb;
+  border: 1.5px dashed #d97706;
+  border-radius: 8px;
+  padding: 0.85rem 1.1rem;
+  margin-top: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  color: #78350f;
+  line-height: 1.5;
+}
+
+.archival-disclaimer .icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Vibe Coding Terminal Crisis Card
+   -------------------------------------------------------------------------- */
+
+.vibe-terminal-card {
+  background: #18110b;
+  color: #fdba74;
+  border: 2px solid #ea580c;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.8rem 0;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  font-family: var(--font-mono);
+}
+
+.vibe-terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(234, 88, 12, 0.3);
+  padding-bottom: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.vibe-terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.vibe-terminal-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.vibe-terminal-dots span:nth-child(1) { background: #ef4444; }
+.vibe-terminal-dots span:nth-child(2) { background: #f59e0b; }
+.vibe-terminal-dots span:nth-child(3) { background: #10b981; }
+
+.vibe-terminal-title {
+  font-size: 0.78rem;
+  color: #fed7aa;
+  font-weight: 700;
+}
+
+.vibe-log-line {
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: #fed7aa;
+}
+
+.vibe-log-line.warn {
+  color: #facc15;
+}
+
+.vibe-log-line.error {
+  color: #f87171;
+  font-weight: bold;
+}
+
+.vibe-log-line.panic {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.15);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* Architecture Pivot Comparison */
+.architecture-pivot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin: 1.8rem 0;
+}
+
 @media (max-width: 640px) {
-  .journal-cover-sheet {
-    padding: 2.5rem 1.5rem 2rem;
+  .architecture-pivot-grid {
+    grid-template-columns: 1fr;
   }
-  .journal-entry-card {
-    padding: 1.8rem 1.25rem;
-  }
-  .top-bar {
-    padding: 0.75rem 1rem;
-  }
-  .washi-tape {
-    width: 120px;
-  }
+}
+
+.arch-side-box {
+  border-radius: 12px;
+  padding: 1.25rem;
+  border: 1.5px solid;
+}
+
+.arch-side-box.fail-side {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #7f1d1d;
+}
+
+.arch-side-box.win-side {
+  background: #f0fdf4;
+  border-color: #86efac;
+  color: #14532d;
+}
+
+.arch-side-box h4 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.arch-side-box ul {
+  list-style: none;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  padding-left: 0;
+}
+
+.arch-side-box ul li {
+  margin-bottom: 0.3rem;
 }
