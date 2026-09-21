@@ -1324,14 +1324,18 @@ body {
 .specimen-filter-bar {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 0.45rem;
   margin-top: 0.8rem;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: #786b5e;
   font-weight: 700;
+  scrollbar-width: none;
 }
+
+.specimen-filter-bar::-webkit-scrollbar { display: none; }
 
 .filter-pill-btn {
   background: #f1ede4;
