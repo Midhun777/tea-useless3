@@ -16,7 +16,7 @@
   --chai-cream: #fff3e3;
   --paper-cream: #fbf7ee;
   --paper-bg: #fffdf9;
-  
+
   /* Accents */
   --stamp-red: #dc2626;
   --stamp-green: #16a34a;
@@ -24,7 +24,7 @@
   --ink-dark: #1e120c;
   --ink-faded: #5a4033;
   --tape-color: rgba(254, 243, 199, 0.7);
-  
+
   /* Fonts */
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', sans-serif;
@@ -45,7 +45,7 @@ html {
 body {
   background-color: var(--chai-deep);
   /* Rich, warm, swirling Kerala milk-tea background */
-  background: 
+  background:
     radial-gradient(ellipse at 15% 10%, rgba(217, 119, 6, 0.45) 0%, transparent 60%),
     radial-gradient(ellipse at 85% 25%, rgba(140, 66, 29, 0.55) 0%, transparent 55%),
     radial-gradient(ellipse at 50% 70%, rgba(232, 151, 77, 0.35) 0%, transparent 65%),
@@ -97,8 +97,13 @@ body {
 }
 
 @keyframes waveMotion {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* Floating Audio / Theme Bar */
@@ -173,12 +178,12 @@ body {
 /* The Scrapbook Journal Cover / Header */
 .journal-cover-sheet {
   background: var(--paper-bg);
-  background-image: 
+  background-image:
     radial-gradient(#e2d5c3 0.75px, transparent 0.75px),
     linear-gradient(to bottom, #fffef9, #f7f1e5);
   background-size: 20px 20px, 100% 100%;
   border-radius: 20px;
-  box-shadow: 
+  box-shadow:
     0 20px 50px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(140, 66, 29, 0.2),
     inset 0 0 60px rgba(180, 110, 60, 0.08);
@@ -434,12 +439,12 @@ body {
 
 .journal-entry-card {
   background: var(--paper-bg);
-  background-image: 
+  background-image:
     radial-gradient(#e2d5c3 0.7px, transparent 0.7px),
     linear-gradient(to bottom, #ffffff, #faf6ee);
   background-size: 24px 24px, 100% 100%;
   border-radius: 18px;
-  box-shadow: 
+  box-shadow:
     0 15px 40px rgba(0, 0, 0, 0.45),
     0 0 0 1px rgba(140, 66, 29, 0.15);
   padding: 2.5rem;
@@ -484,7 +489,7 @@ body {
   line-height: 1.8;
 }
 
-.entry-narrative p + p {
+.entry-narrative p+p {
   margin-top: 1rem;
 }
 
@@ -823,8 +828,13 @@ body {
 }
 
 @keyframes spinChaiRing {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Team realFighters Profiles (Scrapbook Dossier) */
@@ -976,13 +986,25 @@ body {
 
 /* Animations */
 @keyframes cupBob {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(-4px) rotate(5deg); }
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(-4px) rotate(5deg);
+  }
 }
 
 @keyframes floatUp {
-  0% { transform: translateY(0px); opacity: 0.6; }
-  100% { transform: translateY(-8px); opacity: 1; }
+  0% {
+    transform: translateY(0px);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
 }
 
 /* Pop particle effect */
@@ -995,8 +1017,15 @@ body {
 }
 
 @keyframes particleBurst {
-  0% { transform: translate(0, 0) scale(1); opacity: 1; }
-  100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
 }
 
 /* ==========================================================================
@@ -1087,7 +1116,7 @@ body {
   border-radius: 16px;
   padding: 1.5rem;
   margin: 2.2rem 0;
-  box-shadow: 
+  box-shadow:
     0 18px 40px rgba(0, 0, 0, 0.25),
     inset 0 0 0 1px rgba(255, 255, 255, 0.8);
   color: #2b1a11;
@@ -1196,7 +1225,7 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(234, 88, 12, 0.22) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(234, 88, 12, 0.22) 1px, transparent 1px);
   background-size: 16.666% 20%;
@@ -1335,7 +1364,9 @@ body {
   scrollbar-width: none;
 }
 
-.specimen-filter-bar::-webkit-scrollbar { display: none; }
+.specimen-filter-bar::-webkit-scrollbar {
+  display: none;
+}
 
 .filter-pill-btn {
   background: #f1ede4;
@@ -1373,7 +1404,7 @@ body {
 /* Grid-paper Population Card */
 .specimen-census-card {
   background: #ffffff;
-  background-image: 
+  background-image:
     linear-gradient(#ece7dc 1px, transparent 1px),
     linear-gradient(to right, #ece7dc 1px, #ffffff 1px);
   background-size: 16px 16px;
@@ -1581,9 +1612,17 @@ body {
   display: inline-block;
 }
 
-.vibe-terminal-dots span:nth-child(1) { background: #ef4444; }
-.vibe-terminal-dots span:nth-child(2) { background: #f59e0b; }
-.vibe-terminal-dots span:nth-child(3) { background: #10b981; }
+.vibe-terminal-dots span:nth-child(1) {
+  background: #ef4444;
+}
+
+.vibe-terminal-dots span:nth-child(2) {
+  background: #f59e0b;
+}
+
+.vibe-terminal-dots span:nth-child(3) {
+  background: #10b981;
+}
 
 .vibe-terminal-title {
   font-size: 0.78rem;
@@ -1660,4 +1699,588 @@ body {
 
 .arch-side-box ul li {
   margin-bottom: 0.3rem;
+}
+
+/* ==========================================================================
+   CHAPTER 03: EUREKA BOX + IMAGE SHOWCASE
+   ========================================================================== */
+
+.eureka-box {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border: 2.5px solid #16a34a;
+  border-radius: 16px;
+  padding: 2rem 1.75rem;
+  text-align: center;
+  margin: 2rem 0;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.18), 4px 4px 0px #15803d;
+}
+
+.eureka-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #15803d;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.eureka-text {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #14532d;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.eureka-sub {
+  font-family: var(--font-hand);
+  font-size: 1rem;
+  color: #166534;
+  opacity: 0.85;
+}
+
+/* Chapter Image Showcase */
+.chapter-img-showcase {
+  margin: 2.5rem 0;
+  background: #fff;
+  border: 2px solid #2b1a11;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 5px 5px 0px #2b1a11;
+}
+
+.img-showcase-badge {
+  background: #2b1a11;
+  color: #fef3c7;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 0.6rem 1.25rem;
+}
+
+.img-showcase-frame {
+  padding: 1rem;
+  background: #f8f6f0;
+}
+
+.chapter-showcase-img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  border: 1.5px solid #ddd6c8;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.img-showcase-caption {
+  padding: 1rem 1.25rem 1.25rem;
+  font-size: 0.92rem;
+  color: var(--chai-roast);
+  line-height: 1.65;
+  border-top: 1px dashed #ddd6c8;
+}
+
+/* ==========================================================================
+   CHAPTER 04: MODI REVEAL CARD
+   ========================================================================== */
+
+.modi-reveal-card {
+  background: #fefce8;
+  border: 2px solid #d97706;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 2.2rem 0;
+  box-shadow: 5px 5px 0px #b45309;
+}
+
+.modi-reveal-badge {
+  background: #d97706;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 0.65rem 1.25rem;
+}
+
+.modi-reveal-content {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 0;
+}
+
+@media (max-width: 760px) {
+  .modi-reveal-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+.modi-img-wrapper {
+  border-right: 2px solid #fde68a;
+  overflow: hidden;
+  background: #f8f6f0;
+}
+
+@media (max-width: 760px) {
+  .modi-img-wrapper {
+    border-right: none;
+    border-bottom: 2px solid #fde68a;
+  }
+}
+
+.modi-ui-screenshot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  max-height: 340px;
+}
+
+.modi-reveal-text {
+  padding: 1.5rem;
+}
+
+.modi-reveal-text h3 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--chai-deep);
+  margin-bottom: 0.75rem;
+}
+
+.modi-reveal-text p {
+  font-size: 0.92rem;
+  color: var(--chai-roast);
+  line-height: 1.65;
+}
+
+/* ==========================================================================
+   CHAPTER 05: CHAISCRIPT BLOCKS
+   ========================================================================== */
+
+.chaiscript-block {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0;
+  margin: 2.5rem 0;
+  border: 2px solid #2b1a11;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 5px 5px 0px #2b1a11;
+}
+
+.chaiscript-block-alt .chaiscript-number {
+  background: #7c3aed;
+}
+
+.chaiscript-block-alt {
+  border-color: #7c3aed;
+  box-shadow: 5px 5px 0px #5b21b6;
+}
+
+@media (max-width: 640px) {
+  .chaiscript-block {
+    grid-template-columns: 1fr;
+  }
+
+  .chaiscript-number {
+    writing-mode: horizontal-tb;
+    padding: 0.65rem 1rem;
+    font-size: 1.8rem;
+    border-right: none !important;
+    border-bottom: 2px solid #2b1a11;
+  }
+}
+
+.chaiscript-number {
+  background: #2b1a11;
+  color: #fef3c7;
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 4px;
+  border-right: 2px solid #2b1a11;
+  flex-shrink: 0;
+}
+
+.chaiscript-body {
+  background: #fffdf9;
+  padding: 1.5rem;
+}
+
+.chaiscript-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  color: #8c421d;
+  text-transform: uppercase;
+  margin-bottom: 0.65rem;
+}
+
+.chaiscript-block-alt .chaiscript-label {
+  color: #6d28d9;
+}
+
+.chaiscript-desc {
+  font-size: 0.92rem;
+  color: var(--chai-roast);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.chaiscript-desc code {
+  background: #1e1e1e;
+  color: #4ade80;
+  font-family: var(--font-mono);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.chaiscript-img-frame {
+  border: 1.5px solid #ddd6c8;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background: #f8f6f0;
+}
+
+.chaiscript-screenshot {
+  width: 100%;
+  display: block;
+}
+
+.chaiscript-verdict {
+  background: #f8f6f0;
+  border-left: 3px solid var(--chai-amber);
+  padding: 0.65rem 1rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.88rem;
+  color: var(--chai-roast);
+  line-height: 1.5;
+}
+
+.chaiscript-block-alt .chaiscript-verdict {
+  border-left-color: #7c3aed;
+}
+
+/* ==========================================================================
+   CHAPTER 06: FLOP TIMELINE + DEVASTATION CARD
+   ========================================================================== */
+
+.flop-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 2rem 0;
+  border: 2px solid #fee2e2;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 4px 4px 0px #fca5a5;
+}
+
+.flop-act {
+  padding: 1.5rem 1.75rem;
+  border-bottom: 1.5px solid #fee2e2;
+  position: relative;
+}
+
+.flop-act:last-child {
+  border-bottom: none;
+}
+
+.flop-act:nth-child(odd) {
+  background: #fff5f5;
+}
+
+.flop-act:nth-child(even) {
+  background: #fef2f2;
+}
+
+.flop-act-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.flop-act-num {
+  background: #dc2626;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.flop-act-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #7f1d1d;
+}
+
+.flop-act-body {
+  font-size: 0.92rem;
+  color: #991b1b;
+  line-height: 1.7;
+}
+
+.devastation-card {
+  background: #fff;
+  border: 2px solid #2b1a11;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 2rem 0;
+  box-shadow: 4px 4px 0px #2b1a11;
+}
+
+.devastation-header {
+  background: #2b1a11;
+  color: #fef3c7;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 0.65rem 1.25rem;
+}
+
+.devastation-body {
+  padding: 0.75rem 0;
+}
+
+.devastation-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid #f5ede4;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.devastation-item:last-child {
+  border-bottom: none;
+}
+
+.dev-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #5a4033;
+  letter-spacing: 0.5px;
+}
+
+.dev-value {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-align: right;
+}
+
+.dev-red {
+  color: #dc2626;
+}
+
+/* ==========================================================================
+   CHAPTER 07: REWARD CARD
+   ========================================================================== */
+
+.reward-card {
+  display: flex;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  border: 2px solid #d97706;
+  border-radius: 16px;
+  padding: 1.75rem;
+  margin: 2rem 0;
+  box-shadow: 5px 5px 0px #b45309;
+  align-items: flex-start;
+}
+
+@media (max-width: 600px) {
+  .reward-card {
+    flex-direction: column;
+  }
+}
+
+.reward-left {
+  text-align: center;
+  flex-shrink: 0;
+  min-width: 90px;
+}
+
+.reward-big-emoji {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.reward-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #92400e;
+  text-transform: uppercase;
+}
+
+.reward-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reward-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.reward-item-emoji {
+  font-size: 2rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.reward-item strong {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #78350f;
+  display: block;
+  margin-bottom: 0.25rem;
+  letter-spacing: 1px;
+}
+
+.reward-item p {
+  font-size: 0.88rem;
+  color: #92400e;
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   CLOSING CREDITS
+   ========================================================================== */
+
+.closing-credits-card {
+  background: linear-gradient(135deg, #fffdf9, #fdf8ee);
+  border: 2px solid var(--chai-amber) !important;
+}
+
+.closing-team-grid {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 2.5rem 0;
+  flex-wrap: wrap;
+}
+
+.closing-member {
+  flex: 1;
+  min-width: 180px;
+  max-width: 260px;
+  text-align: center;
+}
+
+.closing-photo-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0.85rem;
+}
+
+.closing-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 3px solid var(--chai-amber);
+  box-shadow: 4px 4px 0px var(--chai-roast), 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: block;
+  filter: grayscale(20%);
+  transition: filter 0.3s ease;
+}
+
+.closing-photo:hover {
+  filter: grayscale(0%);
+}
+
+.closing-photo-sticker {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2b1a11;
+  color: #fef3c7;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: 20px;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.closing-member-name {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--chai-deep);
+  margin-bottom: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.closing-member-quote {
+  font-family: var(--font-hand);
+  font-size: 0.92rem;
+  color: var(--ink-faded);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.closing-vs {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--chai-amber);
+  align-self: center;
+  opacity: 0.6;
+}
+
+.final-disclaimer {
+  background: #fff;
+  border: 2px dashed var(--chai-amber);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+  font-size: 0.92rem;
+  color: var(--chai-roast);
+  line-height: 1.75;
+}
+
+.final-disclaimer-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+  line-height: 1;
 }
